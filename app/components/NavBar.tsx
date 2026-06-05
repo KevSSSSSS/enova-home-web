@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const NavBar = () => {
   return (
-    <header className="px-6 py-6 flex items-start shadow-md bg-[#E7E7E5]">
+    <header className="px-6 py-6 flex items-start shadow-xl w-full bg-[#E7E7E5] shadow-[0_15px_35px_rgba(0,0,0,0.8)] relative z-50">
       {/* Logo */}
       <Image
-        src="/Images/Logo-eNovaHome.png"
+        src="/Images/Logo-eNovaHome-.png"
         alt="Logo eNova Home"
         width={150}
         height={50}
@@ -24,10 +24,10 @@ const NavBar = () => {
         <a href="#" className="hover:text-[#6B705C]">Contacto</a>
 
         {/* Icono de búsqueda */}
-        <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto" />
+        <a href=""><img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto" /></a>
 
         {/* Icono de carrito */}
-        <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
+        <a href=""><img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" /></a>
       </nav>
     </header>
   );
