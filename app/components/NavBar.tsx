@@ -13,8 +13,8 @@ const NavBar = () => {
         className="flex-shrink-0"
       />
 
-      {/* Navegación más abajo */}
-      <nav className="ml-auto flex gap-6 text-sm font-[var(--font-montserrat)] items-center mt-20">
+      {/* Navegación responsiva */}
+      <nav className="ml-auto flex flex-col md:flex-row gap-4 md:gap-6 text-sm font-[var(--font-montserrat)] items-start md:items-center mt-0 md:mt-20">
         <a href="#" className="hover:text-[#6B705C]">Mesa & Comedor</a>
         <a href="#" className="hover:text-[#6B705C]">Cocina</a>
         <a href="#" className="hover:text-[#6B705C]">Baño</a>
@@ -34,4 +34,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-

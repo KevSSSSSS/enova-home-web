@@ -1,3 +1,4 @@
+"use client";
 import NavBar from "./components/NavBar";
 import { Playfair_Display } from "next/font/google";
 
@@ -14,16 +15,31 @@ export default function Home() {
 
       {/* Banner */}
       <section className="grid md:grid-cols-2 gap-0 px-0 py-0 bg-[#FFFFFF] flex-grow items-center">
-        <div className="space-y-6 px-12">
-          {/* añadimos fuente playfair.className */}
-          <h2 className={`${playfair.className} text-5xl font-bold leading-tight text-[#3E4234]`}>
+        {/* Texto a la izquierda */}
+        <div className="space-y-6 px-6 md:px-12 text-center md:text-left">
+          {/* Ramita decorativa arriba del título */}
+          <img
+            src="/Images/ramita.png"
+            alt="Decoración ramita"
+            className="w-16 h-16 mb-0 mx-auto md:mx-0"
+          />
+
+          <h2
+            className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}
+          >
             Detalles que<br /> hacen la diferencia
           </h2>
-          <hr className="w-16 border-t-2 border-[#3E4234]" />
-          <p className="text-lg text-[#6B705C]">
+
+          <div className="flex items-center justify-center md:justify-start gap-3">
+            <hr className="w-16 border-t-2 border-[#3E4234]" />
+            <span className="w-2 h-2 rounded-full bg-[#3E4234]"></span>
+          </div>
+
+          <p className="text-base md:text-lg text-[#6B705C]">
             Todo lo que necesitas para<br /> crear el hogar que amas.
           </p>
-          <div className="flex gap-6">
+
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
             <button className="bg-[#3E4234] text-white px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] transition">
               VER CATEGORÍAS
             </button>
@@ -33,7 +49,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative w-full h-full">
+        {/* Imagen a la derecha */}
+        <div className="relative w-full h-64 sm:h-80 md:h-full">
           <img
             src="/Images/ComedorVerde.png"
             alt="Comedor acogedor eNova Home"
@@ -44,43 +61,47 @@ export default function Home() {
       </section>
 
       {/* Beneficios */}
-      <section className="grid md:grid-cols-4 gap-8 px-8 py-12 bg-[#E7E7E5] text-center">
-        <div className="flex flex-col items-center space-y-3 border-r border-[#3E4234] last:border-r-0">
-          <img src="/Icons/calidad.png" alt="Calidad" className="w-12 h-12" />
-          {/* Montserrat fuente global */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 md:px-8 py-12 bg-[#E7E7E5] text-center">
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+          <img src="/Images/calidad.png" alt="Calidad" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Productos de calidad
           </h3>
-          <p className="text-[#6B705C]">Seleccionamos lo mejor para<br />tu hogar.</p>
+          <p className="text-[#6B705C]">
+            Seleccionamos lo mejor para<br />tu hogar.
+          </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-3 border-r border-[#3E4234] last:border-r-0">
-          <img src="/Icons/diseno.png" alt="Diseño" className="w-12 h-12" />
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+          <img src="/Images/diseno.png" alt="Diseño" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Diseño que inspira
           </h3>
-          <p className="text-[#6B705C]">Piezas que transforman<br />espacios y crean armonía.</p>
+          <p className="text-[#6B705C]">
+            Piezas que transforman<br />espacios y crean armonía.
+          </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-3 border-r border-[#3E4234] last:border-r-0">
-          <img src="/Icons/seguridad.png" alt="Seguridad" className="w-12 h-12" />
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+          <img src="/Images/seguridad.png" alt="Seguridad" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Compra segura
           </h3>
-          <p className="text-[#6B705C]">Tu información está protegida<br />en cada paso.</p>
+          <p className="text-[#6B705C]">
+            Tu información está protegida<br />en cada paso.
+          </p>
         </div>
 
         <div className="flex flex-col items-center space-y-3">
-          <img src="/Icons/inspiracion.png" alt="Inspiración" className="w-12 h-12" />
+          <img src="/Images/inspiracion.png" alt="Inspiración" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Inspiración para tu hogar
           </h3>
-          <p className="text-[#6B705C]">Ideas y productos para cada<br />rincón de tu vida.</p>
+          <p className="text-[#6B705C]">
+            Ideas y productos para cada<br />rincón de tu vida.
+          </p>
         </div>
       </section>
-
     </div>
   );
 }
-
-
