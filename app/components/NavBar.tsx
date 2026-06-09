@@ -19,7 +19,7 @@ const NavBar = () => {
         <a href="#" className="hover:text-[#6B705C]">Cocina</a>
         <a href="#" className="hover:text-[#6B705C]">Baño</a>
         <a href="#" className="hover:text-[#6B705C]">Recámara</a>
-        <a href="#" className="hover:text-[#6B705C]">Catálogo</a>
+        <a href="/catalogo" className="hover:text-[#6B705C]">Catálogo</a>
         <a href="#" className="hover:text-[#6B705C]">Nosotros</a>
         <a href="#" className="hover:text-[#6B705C]">Contacto</a>
 
