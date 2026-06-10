@@ -1,10 +1,15 @@
 "use client";
 import NavBar from "../components/NavBar";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "700"],
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
 });
 
 export default function CatalogoPage() {
@@ -12,11 +17,9 @@ export default function CatalogoPage() {
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
       {/* Header */}
       <NavBar />
-
-      {/* Layout principal: sidebar y productos */}
-      <div className="flex flex-grow">
+      <div className="flex flex-col md:flex-row flex-grow">
         {/* Sidebar */}
-        <aside className="w-full md:w-1/4 bg-[#E7E7E5] px-14 py-6 flex flex-col justify-center">
+        <aside className="w-full md:w-1/4 bg-[#E7E7E5] px-8 py-6 flex flex-col justify-start">
           <div className="space-y-4 text-left">
             <p className="text-sm font-semibold text-[#6B705C]">EXPLORA NUESTRO CATÁLOGO</p>
             <h1 className={`${playfair.className} text-4xl font-normal text-[#3E4234] leading-tight tracking-wide`}>
@@ -42,8 +45,7 @@ export default function CatalogoPage() {
             <div className="flex flex-col space-y-2">
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  {/* Aquí puedes poner una imagen o SVG */}
-                  <img src="/icons/all.png" alt="Todos" className="w-4 h-4" />
+                  <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
                 </span>
                 <span className="text-sm font-semibold">(18)</span>
@@ -51,7 +53,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="/icons/comedor.png" alt="Comedor" className="w-4 h-4" />
+                  <img src="/icons/plato.png" alt="Plato" className="w-4 h-4" />
                   MESA & COMEDOR
                 </span>
                 <span className="text-sm font-semibold">(4)</span>
@@ -59,7 +61,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="#" alt="Cocina" className="w-4 h-4" />
+                  <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                   COCINA
                 </span>
                 <span className="text-sm font-semibold">(4)</span>
@@ -67,7 +69,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="#" alt="Baño" className="w-4 h-4" />
+                  <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                   BAÑO
                 </span>
                 <span className="text-sm font-semibold">(3)</span>
@@ -75,7 +77,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="#" alt="Recámara" className="w-4 h-4" />
+                  <img src="/icons/cama.png" alt="Recámara" className="w-4 h-4" />
                   RECÁMARA
                 </span>
                 <span className="text-sm font-semibold">(5)</span>
@@ -83,7 +85,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="#" alt="Textiles" className="w-4 h-4" />
+                  <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                   TEXTILES
                 </span>
                 <span className="text-sm font-semibold">(5)</span>
@@ -91,7 +93,7 @@ export default function CatalogoPage() {
 
               <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
                 <span className="flex items-center gap-1.5">
-                  <img src="#" alt="Lifestyle" className="w-4 h-4" />
+                  <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                   LIFESTYLE
                 </span>
                 <span className="text-sm font-semibold">(2)</span>
@@ -99,50 +101,111 @@ export default function CatalogoPage() {
             </div>
 
 
-            <div className="px-8 py-6 rounded-xl bg-[#E7E7E5] text-left space-y-3 shadow-sm border border-[#3E4234]/15">
-              <h3 className={`${playfair.className} text-2xl font-normal text-[#3E4234]`}>
-                ¿Necesitas ayuda?
-              </h3>
-              <p className="text-sm text-[#3E4234]">
-                Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
-              </p>
-              <button className="border border-[#3E4234]/30 text-[#3E4234] px-6 py-2 rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition">
-                Contáctanos
-              </button>
+            <div className="px-8 py-10 rounded-xl bg-[#E7E7E5] shadow-sm border border-[#3E4234]/15 flex items-start gap-4">
+              <img src="/images/ramita.png" alt="Decorativo" className="w-12 h-12 flex-shrink-0" />
+              {/* Texto y botón */}
+              <div className="flex flex-col space-y-3 text-left">
+                <h3 className={`${playfair.className} text-2xl font-normal text-[#3E4234]`}>
+                  ¿Necesitas ayuda?
+                </h3>
+                <p className={`${montserrat.className} text-sm text-[#3E4234]`}>
+                  Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
+                </p>
+                <button className={`${montserrat.className} border border-[#3E4234]/30 text-[#3E4234] px-6 py-2 rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition`}>
+                  Contáctanos
+                </button>
+              </div>
             </div>
-
           </div>
         </aside>
 
-        {/* Contenedor derecho de productos//
-        <main className="flex-grow grid sm:grid-cols-2 lg:grid-cols-3 gap-8 p-8">
+        {/* Contenedor derecho de productos */}
+        <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-6">
           {[
-            { nombre: "Vaso Olivo Texturizado", categoria: "Vasos", img: "/Images/producto1.png" },
-            { nombre: "Yeti Clásico 500 ml", categoria: "Termos", img: "/Images/producto2.png" },
-            { nombre: "Dispensador Vidrio Verde", categoria: "Dispensadores", img: "/Images/producto3.png" },
+            { nombre: `Vaso Olivo\nTexturizado`, categoria: "VASOS", img: "/images/prueba.jpeg" },
+            { nombre: `Plato Llano\nCerámica Arena`, categoria: "PLATOS", img: "/images/prueba.jpeg" },
+            { nombre: `Cubiertos Brisa\nDorado Mate`, categoria: "CUBIERTOS", img: "/images/prueba.jpeg" },
+            { nombre: "Vajilla Aura\n 16 Piezas", categoria: "VAJILLAS", img: "/images/prueba.jpeg" },
+            { nombre: "Termo Térmico\n Acero Inoxidable", categoria: "TERMOS", img: "/images/prueba.jpeg" },
+            { nombre: "Yeti Clásico\n 500 ml", categoria: "YETIS", img: "/images/prueba.jpeg" },
+            { nombre: "Cuchillo Chef\n Acero Alemán", categoria: "CUCHILLOS", img: "/images/prueba.jpeg" },
+            { nombre: "Sartén Antiadherente\n 24 cm", categoria: "SARTENES", img: "/images/prueba.jpeg" },
+            { nombre: "Olla Antiadherente\n 24 cm / 4.5 L", categoria: "OLLAS", img: "/images/prueba.jpeg" },
+            { nombre: "Toalla Premium\n Algodón Egipcio", categoria: "TOALLAS", img: "/images/prueba.jpeg" },
+            { nombre: "Dispensador de\n Vidrio Verde", categoria: "DISPENSADORES", img: "/images/prueba.jpeg" },
+            { nombre: "Sábanas 100%\n Algodón Percal", categoria: "SÁBANAS", img: "/images/prueba.jpeg" },
+            { nombre: "Colcha Acolchada\n Reversible", categoria: "COLCHAS", img: "/images/prueba.jpeg" },
+            { nombre: "Cobija Ligera\n Extra Suave", categoria: "COBIJAS", img: "/images/prueba.jpeg" },
+            { nombre: "Almohada Comfort\n Soporte Medio", categoria: "ALMOHADAS", img: "/images/prueba.jpeg" },
           ].map((p, i) => (
-            <div
-              key={i}
-              className="border p-4 rounded shadow hover:shadow-lg transition flex flex-col items-center text-center"
-            >
-              <img
-                src={p.img}
-                alt={p.nombre}
-                className="w-full h-48 object-cover"
-              />
-              <h2 className="text-lg font-bold mt-4">{p.nombre}</h2>
-              <p className="text-sm text-[#6B705C]">{p.categoria}</p>
-              <button className="mt-2 px-4 py-2 bg-[#6B705C] text-white rounded hover:bg-[#3E4234]">
-                Ver detalle
-              </button>
+
+            <div key={i} className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-md transition px-4 py-3">
+              <img src={p.img} alt={p.nombre} className="w-full h-48 object-cover rounded-lg"/>
+              {/* Nombre con Playfair */}
+              <h2 className={`${playfair.className} text-base font-semibold mt-2 text-[#3E4234] whitespace-pre-line`}>
+                {p.nombre}
+              </h2>
+              {/* Categoría con Montserrat */}
+              <p className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}>
+                {p.categoria}
+              </p>
+              {/* Enlace con Montserrat */}
+              <a href="#"className={`${montserrat.className} mt-2 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center w-full transition`}>
+                <span>Ver detalle</span>
+                <span className="text-lg">→</span>
+              </a>
             </div>
           ))}
-        </main>*/}
+
+          {/* Banner inferior */}
+          <div className="col-span-full mt-12">
+            <div className="bg-[#E7E7E5] px-10 py-10 rounded-xl shadow-sm border border-[#3E4234]/15 
+                  flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
+
+              {/* Texto principal */}
+              <div className="flex items-center gap-3">
+                <img src="/images/ramita.png" alt="Decorativo" className="w-8 h-8 flex-shrink-0" />
+                <p className={`${playfair.className} text-xl font-normal text-[#3E4234] leading-relaxed`}>
+                  Diseño, calidad y armonía<br />en cada detalle de tu hogar.
+                </p>
+              </div>
+
+              {/* Secciones con íconos */}
+              <div className="flex flex-col sm:flex-row gap-6 text-center lg:text-left">
+                <div className="flex flex-col items-center lg:items-start gap-2">
+                  <img src="/icons/vase.png" alt="Productos" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234]`}>
+                    Productos seleccionados<br />con altos estándares.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center lg:items-start gap-2">
+                  <img src="/icons/leaf.png" alt="Diseño" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234]`}>
+                    Diseño que transforma<br />tus espacios.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center lg:items-start gap-2">
+                  <img src="/icons/person.png" alt="Asesoría" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234]`}>
+                    Asesoría personalizada<br />para tu hogar.
+                  </p>
+                </div>
+              </div>
+
+              {/* Botón de acción */}
+              <div className="flex flex-col items-start lg:items-start gap-3 mt-6">
+                <button className={`${montserrat.className} bg-[#6B705C] text-white px-8 py-3 rounded-md 
+                      uppercase tracking-wide font-semibold shadow-md hover:bg-[#3E4234] transition`}>
+                  Solicitar información
+                </button>
+                <p className={`${montserrat.className} text-sm text-[#3E4234] text-left leading-snug`}>
+                  Te ayudamos a elegir lo mejor<br />para tu hogar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
   );
 }
-
-
-
-
