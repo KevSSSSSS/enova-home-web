@@ -43,7 +43,7 @@ export default function CatalogoPage() {
               FILTRAR POR CATEGORÍA
             </p>
             <div className="flex flex-col space-y-2">
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
@@ -51,7 +51,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(18)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/plato.png" alt="Plato" className="w-4 h-4" />
                   MESA & COMEDOR
@@ -59,7 +59,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(4)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                   COCINA
@@ -67,7 +67,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(4)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                   BAÑO
@@ -75,7 +75,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(3)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cama.png" alt="Recámara" className="w-4 h-4" />
                   RECÁMARA
@@ -83,7 +83,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                   TEXTILES
@@ -91,7 +91,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#6B705C] hover:text-white transition">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                   LIFESTYLE
