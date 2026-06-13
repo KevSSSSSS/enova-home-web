@@ -17,7 +17,7 @@ export default function CatalogoPage() {
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
       {/* Header */}
       <NavBar />
-      <div className="flex flex-col md:flex-row flex-grow">
+      <div className="pt-[150px] flex flex-col md:flex-row flex-grow">
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 bg-[#E7E7E5] px-8 py-6 flex flex-col justify-start">
           <div className="space-y-4 text-left">
@@ -159,49 +159,62 @@ export default function CatalogoPage() {
 
           {/* Banner inferior */}
           <div className="col-span-full mt-12">
-            <div className="bg-[#E7E7E5] px-10 py-10 rounded-xl shadow-sm border border-[#3E4234]/15 
-                  flex flex-col lg:flex-row items-center justify-between gap-8 w-full">
-
+            <div
+              className="bg-[#F5F5F0] border border-[#E2E2DD] rounded-xl px-6 lg:px-8 py-5 flex flex-col lg:flex-row items-center justify-between gap-6 w-full">
               {/* Texto principal */}
-              <div className="flex items-center gap-3">
-                <img src="/images/ramita.png" alt="Decorativo" className="w-8 h-8 flex-shrink-0" />
-                <p className={`${playfair.className} text-xl font-normal text-[#3E4234] leading-relaxed`}>
-                  Diseño, calidad y armonía<br />en cada detalle de tu hogar.
+              <div className="flex items-center gap-4 text-center lg:text-left">
+                <img src="/images/ramita.png" alt="Decorativo" className="w-10 h-10 flex-shrink-0"/>
+
+                <p className={`${playfair.className} text-xl lg:text-2xl leading-tight text-[#3E4234]`}>
+                  Diseño, calidad y armonía
+                  <br />
+                  en cada detalle de tu hogar.
                 </p>
               </div>
 
-              {/* Secciones con íconos */}
-              <div className="flex flex-col sm:flex-row gap-4 text-center lg:text-left">
-                <div className="flex items-center gap-2 pr-4 md:border-r border-[#3E4234]/30">
-                  <img src="/icons/calidad2.png" alt="Productos" className="w-7 h-7 flex-shrink-0" />
-                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234] leading-snug`}>
-                    Productos seleccionados<br />con altos estándares.
+              {/* Beneficios */}
+              <div
+                className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex items-center gap-3 md:pr-6 md:border-r border-[#D6D6CF]">
+                  <img src="/icons/calidad2.png" alt="Productos" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-xs text-[#3E4234] leading-5`}>
+                    Productos seleccionados
+                    <br />
+                    con altos estándares
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 pr-4 md:border-r border-[#3E4234]/30">
-                  <img src="/icons/diseno2.png" alt="Diseño" className="w-7 h-7 flex-shrink-0" />
-                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234] leading-snug`}>
-                    Diseño que transforma<br />tus espacios.
+                <div className="flex items-center gap-3 md:pr-6 md:border-r border-[#D6D6CF]">
+                  <img src="/icons/diseno2.png" alt="Diseño" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-xs text-[#3E4234] leading-5`}>
+                    Diseño que transforma
+                    <br />
+                    tus espacios
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <img src="/icons/asesoria.png" alt="Asesoría" className="w-7 h-7 flex-shrink-0" />
-                  <p className={`${montserrat.className} text-sm font-medium text-[#3E4234] leading-snug`}>
-                    Asesoría personalizada<br />para tu hogar.
+                <div className="flex items-center gap-3">
+                  <img src="/icons/asesoria.png" alt="Asesoría" className="w-8 h-8" />
+                  <p className={`${montserrat.className} text-xs text-[#3E4234] leading-5`}>
+                    Asesoría personalizada
+                    <br />
+                    para tu hogar
                   </p>
                 </div>
               </div>
 
-              {/* Botón de acción */}
-              <div className="flex flex-col items-start lg:items-start gap-3 mt-6">
-                <button className={`${montserrat.className} bg-[#6B705C] text-white px-8 py-3 rounded-md 
-                      uppercase tracking-wide font-semibold shadow-md hover:bg-[#3E4234] transition`}>
-                  Solicitar información
+              {/* Boton derecho */}
+              <div className="flex flex-col items-center lg:items-start">
+                <button
+                  className={`${montserrat.className} bg-[#6B705C] text-white text-xs uppercase tracking-wider 
+                  font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition`}>
+                  SOLICITAR INFORMACIÓN
                 </button>
-                <p className={`${montserrat.className} text-sm text-[#3E4234] text-left leading-snug`}>
-                  Te ayudamos a elegir lo mejor<br />para tu hogar.
+
+                <p className={`${montserrat.className} text-xs text-[#3E4234] mt-2 text-center lg:text-leftleading-4`}>
+                  Te ayudamos a elegir lo mejor
+                  <br />
+                  para tu hogar.
                 </p>
               </div>
             </div>

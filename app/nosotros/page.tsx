@@ -1,4 +1,5 @@
 "use client";
+import NavBar from "../components/NavBar";
 import { Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -9,6 +10,8 @@ const playfair = Playfair_Display({
 export default function NosotrosPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
+      {/* Header */}
+      <NavBar />
 
       {/* Banner */}
       <section className="grid md:grid-cols-2 gap-0 px-0 py-0 bg-[#FFFFFF] flex-grow items-center">
