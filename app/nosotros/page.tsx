@@ -9,7 +9,7 @@ const playfair = Playfair_Display({
 
 export default function NosotrosPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
+    <div className="pt-[140px] min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
       {/* Header */}
       <NavBar />
 
@@ -25,7 +25,9 @@ export default function NosotrosPage() {
           />
 
           <h2 className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}>
-            ¿Por qué elegir<br /> eNova Home?
+            ¿Por qué elegir
+            <br />
+            <span className="text-[#6B705C]">eNova</span> Home?
           </h2>
 
           <div className="flex items-center justify-center md:justify-start gap-3">
@@ -44,9 +46,9 @@ export default function NosotrosPage() {
           <img
             src="/Images/ComedorVerde.png"
             alt="Comedor acogedor eNova Home"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
         </div>
       </section>
 
@@ -55,7 +57,7 @@ export default function NosotrosPage() {
         <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
           <img src="/Images/inspiracion.png" alt="Calidad" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
-            Todo para tu hogar,<br /> en un solo lugar 
+            Todo para tu hogar,<br /> en un solo lugar
           </h3>
           <p className="text-[#6B705C]">
             Encuentra todo lo que necesitas<br />para cada espacio de tu hogar,<br /> sin salir de tu casa.
@@ -92,6 +94,11 @@ export default function NosotrosPage() {
           </p>
         </div>
       </section>
+
+      {/* Imagen decorativa debajo */}
+      <div className="flex justify-center -mt-10 mb-0  bg-[#E7E7E5]">
+        <img src="/Images/footer.png" alt="Decoración final" className="w-full max-w-lg object-contain"/>
+      </div>
     </div>
   );
 }

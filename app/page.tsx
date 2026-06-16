@@ -19,16 +19,11 @@ export default function Home() {
         {/* Texto a la izquierda */}
         <div className="space-y-6 px-6 md:px-12 text-center md:text-left">
           {/* Ramita decorativa arriba del título */}
-          <img
-            src="/Images/ramita.png"
-            alt="Decoración ramita"
-            className="w-16 h-16 mb-0 mx-auto md:mx-0"
-          />
+          <img src="/Images/ramita.png" alt="Decoración ramita" className="w-16 h-16 mb-0 mx-auto md:mx-0" />
 
-          <h2
-            className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}
-          >
-            Detalles que<br /> hacen la diferencia
+          <h2 className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}>
+            Detalles que<br /> hacen la{" "}
+            <span className="text-[#6B705C]">diferencia</span>
           </h2>
 
           <div className="flex items-center justify-center md:justify-start gap-3">
@@ -43,11 +38,11 @@ export default function Home() {
           {/* Botones */}
           <div className="flex flex-col md:flex-row gap-4 md:gap-6">
             <Link href="/categorias">
-              <button className="bg-[#3E4234] text-white px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] transition">
+              <button className="bg-[#3E4234] text-white px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] transition cursor-pointer">
                 VER CATEGORÍAS
               </button>
             </Link>
-            <button className="border border-[#3E4234] text-[#3E4234] px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition">
+            <button className="border border-[#3E4234] text-[#3E4234] px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition cursor-pointer">
               CONTÁCTANOS
             </button>
           </div>
@@ -58,9 +53,9 @@ export default function Home() {
           <img
             src="/Images/ComedorVerde.png"
             alt="Comedor acogedor eNova Home"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
         </div>
       </section>
 

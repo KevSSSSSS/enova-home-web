@@ -7,22 +7,7 @@ const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-<header
-  className="
-  fixed
-  top-0
-  left-0
-  w-full
-  px-6
-  py-4
-  flex
-  items-start
-  bg-[#E7E7E5]
-  shadow-xl
-  shadow-[0_15px_35px_rgba(0,0,0,0.8)]
-  z-50
-  "
->
+<header className="fixed top-0 left-0 w-full px-6 py-4 flex items-start bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
       {/* Logo */}
       <Link href="/" className="flex-shrink-0">
         <Image src="/Images/Logo-eNovaHome-.png" alt="Logo eNova Home" width={150} height={50} priority className="cursor-pointer"/>

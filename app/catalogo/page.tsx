@@ -43,7 +43,7 @@ export default function CatalogoPage() {
               FILTRAR POR CATEGORÍA
             </p>
             <div className="flex flex-col space-y-2">
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
@@ -51,7 +51,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(18)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/plato.png" alt="Plato" className="w-4 h-4" />
                   MESA & COMEDOR
@@ -59,7 +59,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(4)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                   COCINA
@@ -67,7 +67,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(4)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                   BAÑO
@@ -75,7 +75,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(3)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cama.png" alt="Recámara" className="w-4 h-4" />
                   RECÁMARA
@@ -83,7 +83,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                   TEXTILES
@@ -91,7 +91,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB]">
+              <button className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                   LIFESTYLE
@@ -101,17 +101,18 @@ export default function CatalogoPage() {
             </div>
 
 
-            <div className="px-8 py-10 rounded-xl bg-[#E7E7E5] shadow-sm border border-[#3E4234]/15 flex items-start gap-4">
-              <img src="/images/ramita.png" alt="Decorativo" className="w-12 h-12 flex-shrink-0" />
+            <div className="mt-10 px-4 sm:px-6 md:px-8 py-6 md:py-10 rounded-xl bg-[#E7E7E5] shadow-sm border border-[#3E4234]/15 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+              <img src="/images/ramita.png" alt="Decorativo" className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0" />
               {/* Texto y botón */}
-              <div className="flex flex-col space-y-3 text-left">
-                <h3 className={`${playfair.className} text-2xl font-normal text-[#3E4234]`}>
+              <div className="flex flex-col space-y-3 text-center sm:text-left items-center sm:items-start">
+                <h3 className={`${playfair.className} text-xl md:text-2xl font-normal text-[#3E4234]`}>
                   ¿Necesitas ayuda?
                 </h3>
                 <p className={`${montserrat.className} text-sm text-[#3E4234]`}>
                   Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
                 </p>
-                <button className={`${montserrat.className} border border-[#3E4234]/30 text-[#3E4234] px-6 py-2 rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition`}>
+                <button className={`${montserrat.className} border border-[#3E4234]/30 text-[#3E4234] px-6 py-2 rounded-md uppercase tracking-wide 
+                hover:bg-[#6B705C]  hover:text-white transition cursor-pointer w-full sm:w-auto`}>
                   Contáctanos
                 </button>
               </div>
@@ -120,7 +121,7 @@ export default function CatalogoPage() {
         </aside>
 
         {/* Contenedor derecho de productos */}
-        <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 p-6">
+        <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 p-6">
           {[
             { nombre: `Vaso Olivo\nTexturizado`, categoria: "VASOS", img: "/images/Producto1.png" },
             { nombre: `Plato Llano\nCerámica Arena`, categoria: "PLATOS", img: "/images/Producto2.png" },
@@ -139,21 +140,16 @@ export default function CatalogoPage() {
             { nombre: "Almohada Comfort\n Soporte Medio", categoria: "ALMOHADAS", img: "/images/Producto15.png" },
           ].map((p, i) => (
 
-            <div key={i} className="flex flex-col bg-white rounded-xl shadow-sm hover:shadow-md transition px-4 py-3">
-              <img src={p.img} alt={p.nombre} className="w-full h-48 object-cover rounded-lg" />
-              {/* Nombre con Playfair */}
-              <h2 className={`${playfair.className} text-base font-semibold mt-2 text-[#3E4234] whitespace-pre-line`}>
-                {p.nombre}
-              </h2>
-              {/* Categoría con Montserrat */}
-              <p className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}>
-                {p.categoria}
-              </p>
-              {/* Enlace con Montserrat */}
-              <a href="#" className={`${montserrat.className} mt-2 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center w-full transition`}>
-                <span>Ver detalle</span>
-                <span className="text-lg">→</span>
-              </a>
+            <div key={i} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition max-w-[230px] mx-auto">
+              <img src={p.img} alt={p.nombre} className="w-full h-48 object-cover"/>
+              <div className="px-4 py-3">
+                <h2 className={`${playfair.className} text-[1.1rem] font-medium`}>{p.nombre}</h2>
+                <p className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}>{p.categoria}</p>
+                <a href="#" className={`${montserrat.className} mt-2 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center w-full transition`}>
+                  <span>Ver detalle</span>
+                  <span className="text-lg">→</span>
+                </a>
+              </div>
             </div>
           ))}
 
@@ -163,7 +159,7 @@ export default function CatalogoPage() {
               className="bg-[#F5F5F0] border border-[#E2E2DD] rounded-xl px-6 lg:px-8 py-5 flex flex-col lg:flex-row items-center justify-between gap-6 w-full">
               {/* Texto principal */}
               <div className="flex items-center gap-4 text-center lg:text-left">
-                <img src="/images/ramita.png" alt="Decorativo" className="w-10 h-10 flex-shrink-0"/>
+                <img src="/images/ramita.png" alt="Decorativo" className="w-10 h-10 flex-shrink-0" />
 
                 <p className={`${playfair.className} text-xl lg:text-2xl leading-tight text-[#3E4234]`}>
                   Diseño, calidad y armonía
@@ -207,7 +203,7 @@ export default function CatalogoPage() {
               <div className="flex flex-col items-center lg:items-start">
                 <button
                   className={`${montserrat.className} bg-[#6B705C] text-white text-xs uppercase tracking-wider 
-                  font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition`}>
+                  font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
                   SOLICITAR INFORMACIÓN
                 </button>
 
