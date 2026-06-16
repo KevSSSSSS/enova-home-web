@@ -9,7 +9,7 @@ const playfair = Playfair_Display({
 
 export default function NosotrosPage() {
   return (
-    <div className="pt-[140px] min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
+    <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
       {/* Header */}
       <NavBar />
 

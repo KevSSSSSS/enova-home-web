@@ -7,17 +7,14 @@ const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-<header className="fixed top-0 left-0 w-full px-6 py-4 flex items-start bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
+<header className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
       {/* Logo */}
       <Link href="/" className="flex-shrink-0">
         <Image src="/Images/Logo-eNovaHome-.png" alt="Logo eNova Home" width={150} height={50} priority className="cursor-pointer"/>
       </Link>
 
       {/* Botón hamburguesa (solo móvil) */}
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden ml-auto flex flex-col gap-1 mt-2"
-      >
+      <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden ml-auto flex flex-col gap-1 mt-2">
         <span className="w-6 h-[2px] bg-[#3E4234]"></span>
         <span className="w-6 h-[2px] bg-[#3E4234]"></span>
         <span className="w-6 h-[2px] bg-[#3E4234]"></span>
@@ -35,20 +32,12 @@ const NavBar = () => {
 
         {/* Icono de búsqueda */}
         <a href="">
-          <img
-            src="/Images/search-icon.png"
-            alt="Buscar"
-            className="h-5 w-auto"
-          />
+          <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto"/>
         </a>
 
         {/* Icono de carrito */}
         <a href="">
-          <img
-            src="/Images/cart-icon.png"
-            alt="Carrito"
-            className="h-6 w-auto"
-          />
+          <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto"/>
         </a>
       </nav>
 

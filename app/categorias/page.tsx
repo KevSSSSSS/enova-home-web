@@ -16,9 +16,10 @@ const montserrat = Montserrat({
 
 export default function CategoriasPage() {
     return (
-        <main className="bg-[#E7E7E5] min-h-screen px-8 py-10">
+        <main className="bg-[#E7E7E5] min-h-screen px-8 py-10"> 
+            <NavBar />
             {/* Encabezado de Categorías */}
-            <div className="space-y-6 px-6 md:px-12 text-center">
+            <div className="space-y-6 px-6 md:px-12 text-center mt-16">
                 {/* Ramita decorativa arriba del título */}
                 <img src="/Images/ramita.png" alt="Decoración ramita" className="w-16 h-16 mb-0 mx-auto" />
 
@@ -27,10 +28,8 @@ export default function CategoriasPage() {
                     <span className="w-2 h-2 rounded-full bg-[#3E4234]"></span>
                 </div>
 
-                <h2
-                    className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}
-                >
-                    Categorías para<br /> cada espacio
+                <h2 className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}>
+                    Categorías para<br />{" "} <span className="text-[#6B705C]">cada espacio</span>
                 </h2>
 
                 <p className="text-base md:text-lg text-[#6B705C] max-w-2xl mx-auto">
@@ -62,7 +61,7 @@ export default function CategoriasPage() {
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <Link href="/catalogo">
                                 <button className="bg-[#6B705C] text-white h-[46px] w-full sm:w-[320px] rounded-md flex items-center 
-                                justify-center gap-5 text-[13px] tracking-[0.12em] uppercase font-medium  hover:bg-[#5C614E] transition">
+                                justify-center gap-5 text-[13px] tracking-[0.12em] uppercase font-medium  hover:bg-[#5C614E] transition clic cursor-pointer">
                                     <span>VER CATÁLOGO COMPLETO</span>
                                     <span className="text-xl">→</span>
                                 </button>

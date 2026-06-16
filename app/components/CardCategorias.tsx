@@ -22,7 +22,7 @@ export default function CardCategorias() {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div className="p-6 flex flex-col items-center text-center">
                         <Image src="/icons/plato.png" alt="Mesa & Comedor" width={40} height={40} />
-                        <h2 className={`${montserrat.className} text-lg font-semibold text-[#3E4234] mt-2`}>
+                        <h2 className={`${playfair.className} text-lg font-normal text-[#3E4234] mt-2`}>
                             Mesa & Comedor
                         </h2>
                         <p className={`${montserrat.className} text-sm text-[#3E4234]/70 mt-1`}>
@@ -40,7 +40,7 @@ export default function CardCategorias() {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div className="p-6 flex flex-col items-center text-center">
                         <Image src="/icons/cocina.png" alt="Cocina" width={40} height={40} />
-                        <h2 className={`${montserrat.className} text-lg font-semibold text-[#3E4234] mt-2`}>
+                        <h2 className={`${playfair.className} text-lg font-normal text-[#3E4234] mt-2`}>
                             Cocina
                         </h2>
                         <p className={`${montserrat.className} text-sm text-[#3E4234]/70 mt-1`}>
@@ -58,7 +58,7 @@ export default function CardCategorias() {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div className="p-6 flex flex-col items-center text-center">
                         <Image src="/icons/jabon.png" alt="Baño" width={40} height={40} />
-                        <h2 className={`${montserrat.className} text-lg font-semibold text-[#3E4234] mt-2`}>
+                        <h2 className={`${playfair.className} text-lg font-normal text-[#3E4234] mt-2`}>
                             Baño
                         </h2>
                         <p className={`${montserrat.className} text-sm text-[#3E4234]/70 mt-1`}>
@@ -76,7 +76,7 @@ export default function CardCategorias() {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div className="p-6 flex flex-col items-center text-center">
                         <Image src="/icons/cama.png" alt="Recámara" width={40} height={40} />
-                        <h2 className={`${montserrat.className} text-lg font-semibold text-[#3E4234] mt-2`}>
+                        <h2 className={`${playfair.className} text-lg font-normal text-[#3E4234] mt-2`}>
                             Recámara
                         </h2>
                         <p className={`${montserrat.className} text-sm text-[#3E4234]/70 mt-1`}>
@@ -94,7 +94,7 @@ export default function CardCategorias() {
                 <div className="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
                     <div className="p-6 flex flex-col items-center text-center">
                         <Image src="/icons/asesoria.png" alt="Lifestyle" width={40} height={40} />
-                        <h2 className={`${montserrat.className} text-lg font-semibold text-[#3E4234] mt-2`}>
+                        <h2 className={`${playfair.className} text-lg font-normal text-[#3E4234] mt-2`}>
                             Lifestyle
                         </h2>
                         <p className={`${montserrat.className} text-sm text-[#3E4234]/70 mt-1`}>

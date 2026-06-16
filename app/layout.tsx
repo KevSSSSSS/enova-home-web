@@ -20,8 +20,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      {/* Montserrat como fuente global */}
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        <div className="pt-20">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
