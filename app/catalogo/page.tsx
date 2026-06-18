@@ -1,6 +1,5 @@
 "use client";
 import CardCatalogos from "../components/CardCatalogos";
-import NavBar from "../components/NavBar";
 import { Playfair_Display, Montserrat } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -16,8 +15,6 @@ const montserrat = Montserrat({
 export default function CatalogoPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
-      {/* Header */}
-      <NavBar />
       <div className="flex flex-col md:flex-row flex-grow">
         {/* Sidebar */}
         <aside className="w-full md:w-1/4 bg-[#E7E7E5] px-8 pt-12 pb-6 flex flex-col justify-start">

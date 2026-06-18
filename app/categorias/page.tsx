@@ -2,7 +2,6 @@
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Link from "next/link";
 import CardCategorias from "../components/CardCategorias";
-import NavBar from "../components/NavBar";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -17,7 +16,6 @@ const montserrat = Montserrat({
 export default function CategoriasPage() {
     return (
         <main className="bg-[#E7E7E5] min-h-screen px-8 py-10"> 
-            <NavBar />
             {/* Encabezado de Categorías */}
             <div className="space-y-6 px-6 md:px-12 text-center mt-16">
                 {/* Ramita decorativa arriba del título */}

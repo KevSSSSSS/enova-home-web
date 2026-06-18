@@ -1,5 +1,4 @@
 "use client";
-import NavBar from "./components/NavBar";
 import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
 
@@ -11,8 +10,6 @@ const playfair = Playfair_Display({
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
-      {/* Header */}
-      <NavBar />
 
       {/* Banner */}
       <section className="grid md:grid-cols-2 gap-0 px-0 py-0 bg-[#FFFFFF] flex-grow items-center">
@@ -50,11 +47,8 @@ export default function Home() {
 
         {/* Imagen a la derecha */}
         <div className="relative w-full h-64 sm:h-80 md:h-full">
-          <img
-            src="/Images/ComedorVerde.png"
-            alt="Comedor acogedor eNova Home"
-            className="w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"
-          />
+          <img src="/Images/ComedorVerde.png" alt="Comedor acogedor eNova Home" className="w-full h-full 
+          object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"/>
           <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
         </div>
       </section>
