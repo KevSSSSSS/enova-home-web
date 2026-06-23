@@ -33,35 +33,45 @@ interface Props {
 
 export default function CardCatalogos({ productos }: Props) {
   return (
-    <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-3 gap-y-4 p-6 mt-20">
+    <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-10 p-6 mt-20 items-start">
 
       {productos?.map((p) => (
-        <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition max-w-[230px] mx-auto min-h-[290px]">
+        <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition max-w-[230px] mx-auto min-h-[320px]">
 
           {/* Imagen */}
           <img src={p.imagenPrincipal} alt={p.nombre} className="w-full h-48 object-cover" />
 
           {/* Info */}
-          <div className="px-4 pt-3 pb-2">
-            <h2 className={`${playfair.className} text-[1.1rem] font-medium`}>
-              {p.nombre}
-            </h2>
+          <div className="px-4 pt-2 pb-2">
 
-            <p className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}>
-              {p.categoria}
-            </p>
+            <div className="min-h-[80px]">
+              <h2
+                className={`${playfair.className} text-[1.1rem] font-medium leading-tight mb-1`}
+              >
+                {p.nombre}
+              </h2>
 
-            {/* LINK CORRECTO (CLAVE) */}
-            <Link href={`/productos/${p.id}`} className={`${montserrat.className} mt-3 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center transition`}>
+              <p
+                className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}
+              >
+                {p.categoria}
+              </p>
+            </div>
+
+            <Link
+              href={`/productos/${p.id}`}
+              className={`${montserrat.className} mt-1 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center transition`}
+            >
               <span>Ver detalle</span>
               <span className="text-lg">→</span>
             </Link>
+
           </div>
         </div>
       ))}
 
       {/* BANNER INFERIOR */}
-      <div className="col-span-full mt-12">
+      <div className="col-span-full mt-4">
         <div className="bg-[#F5F5F0] border border-[#E2E2DD] rounded-xl px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
 
           {/* Texto */}

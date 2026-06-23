@@ -12,9 +12,9 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 
       {/* Banner */}
-      <section className="grid md:grid-cols-2 gap-0 px-0 py-0 bg-[#FFFFFF] flex-grow items-center">
+      <section className="grid md:grid-cols-2 gap-0 px-0 py-8 md:py-0 bg-[#FFFFFF] flex-grow items-center pt-10">
         {/* Texto a la izquierda */}
-        <div className="space-y-6 px-6 md:px-12 text-center md:text-left">
+        <div className="space-y-6 px-6 md:px-12 text-center md:text-left pt-12 md:pt-0">
           {/* Ramita decorativa arriba del título */}
           <img src="/Images/ramita.png" alt="Decoración ramita" className="w-16 h-16 mb-0 mx-auto md:mx-0" />
 

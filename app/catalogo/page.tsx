@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import CardCatalogos from "../components/CardCatalogos";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import { productos } from "../data/productos";
@@ -16,8 +17,19 @@ const montserrat = Montserrat({
 });
 
 export default function CatalogoPage() {
+  const searchParams = useSearchParams();
+
+
   const [categoriaSeleccionada, setCategoriaSeleccionada] =
     useState("TODOS");
+
+  useEffect(() => {
+    const categoria = searchParams.get("categoria");
+
+    if (categoria) {
+      setCategoriaSeleccionada(categoria);
+    }
+  }, [searchParams]);
 
   const categoriasMap: Record<string, string[]> = {
     "TODOS": [],
@@ -71,7 +83,7 @@ export default function CatalogoPage() {
                   <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
                 </span>
-                <span className="text-sm font-semibold">(18)</span>
+                <span className="text-sm font-semibold">(15)</span>
               </button>
 
               <button onClick={() => setCategoriaSeleccionada("MESA & COMEDOR")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -87,7 +99,7 @@ export default function CatalogoPage() {
                   <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                   COCINA
                 </span>
-                <span className="text-sm font-semibold">(4)</span>
+                <span className="text-sm font-semibold">(5)</span>
               </button>
 
               <button onClick={() => setCategoriaSeleccionada("BAÑO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -111,7 +123,7 @@ export default function CatalogoPage() {
                   <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                   TEXTILES
                 </span>
-                <span className="text-sm font-semibold">(5)</span>
+                <span className="text-sm font-semibold">(0)</span>
               </button>
 
               <button onClick={() => setCategoriaSeleccionada("LIFESTYLE")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -119,7 +131,7 @@ export default function CatalogoPage() {
                   <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                   LIFESTYLE
                 </span>
-                <span className="text-sm font-semibold">(2)</span>
+                <span className="text-sm font-semibold">(0)</span>
               </button>
             </div>
 

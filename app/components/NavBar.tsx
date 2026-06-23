@@ -2,10 +2,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const isActive = (categoria: string) =>
+    pathname === "/catalogo" &&
+    searchParams.get("categoria") === categoria;
 
   return (
     <header className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
@@ -21,15 +27,27 @@ const NavBar = () => {
         <span className="w-6 h-[2px] bg-[#3E4234]"></span>
       </button>
 
-      {/* Menú escritorio (sin cambios visuales) */}
+      {/* Menú */}
       <nav className="hidden md:flex ml-auto flex-row gap-6 text-sm font-[var(--font-montserrat)] items-center mt-20">
-        <a href="/Producto" className="hover:text-[#6B705C]">Mesa & Comedor</a>
-        <a href="#" className="hover:text-[#6B705C]">Cocina</a>
-        <a href="#" className="hover:text-[#6B705C]">Baño</a>
-        <a href="#" className="hover:text-[#6B705C]">Recámara</a>
-        <a href="/catalogo" className="hover:text-[#6B705C]">Catálogo</a>
-        <a href="/nosotros" className="hover:text-[#6B705C]">Nosotros</a>
-        <a href="#" className="hover:text-[#6B705C]">Contacto</a>
+        <Link href="/catalogo?categoria=MESA%20%26%20COMEDOR" className={isActive("MESA%20%26%20COMEDOR") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+          Mesa & Comedor
+        </Link>
+        <Link href="/catalogo?categoria=COCINA" className={isActive("COCINA") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+          Cocina
+        </Link>
+        <Link href="/catalogo?categoria=BAÑO" className={isActive("BAÑO") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+          Baño
+        </Link>
+        <Link href="/catalogo?categoria=RECAMARA" className={isActive("RECAMARA") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+          Recámara
+        </Link>
+        <Link href="/catalogo" className="hover:text-[#6B705C]">
+          Catálogo
+        </Link>
+        <Link href="/nosotros" className="hover:text-[#6B705C]">
+          Nosotros
+        </Link>
+        <Link href="#" className="hover:text-[#6B705C]">Contacto</Link>
 
         {/* Icono de búsqueda */}
         <div className="flex items-center">
@@ -62,10 +80,10 @@ const NavBar = () => {
       {/* Menú móvil desplegable */}
       {menuOpen && (
         <nav className="md:hidden absolute top-full left-0 w-full bg-[#E7E7E5] shadow-lg px-6 py-5 flex flex-col gap-4 z-50">
-          <a href="#" className="hover:text-[#6B705C]">Mesa & Comedor</a>
-          <a href="#" className="hover:text-[#6B705C]">Cocina</a>
-          <a href="#" className="hover:text-[#6B705C]">Baño</a>
-          <a href="#" className="hover:text-[#6B705C]">Recámara</a>
+          <Link href="/catalogo?categoria=MESA%20%26%20COMEDOR">Mesa & Comedor</Link>
+          <Link href="/catalogo?categoria=COCINA">Cocina</Link>
+          <Link href="/catalogo?categoria=BAÑO">Baño</Link>
+          <Link href="/catalogo?categoria=RECAMARA">Recámara</Link>
           <a href="/catalogo" className="hover:text-[#6B705C]">Catálogo</a>
           <a href="/nosotros" className="hover:text-[#6B705C]">Nosotros</a>
           <a href="#" className="hover:text-[#6B705C]">Contacto</a>
@@ -80,24 +98,13 @@ const NavBar = () => {
                 />
               )}
 
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className="cursor-pointer"
-              >
-                <img
-                  src="/Images/search-icon.png"
-                  alt="Buscar"
-                  className="h-5 w-auto"
-                />
+              <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
+                <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto" />
               </button>
             </div>
 
             <a href="">
-              <img
-                src="/Images/cart-icon.png"
-                alt="Carrito"
-                className="h-6 w-auto"
-              />
+              <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto"/>
             </a>
           </div>
         </nav>
