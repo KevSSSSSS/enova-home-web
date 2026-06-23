@@ -12,7 +12,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 
       {/* Banner */}
-      <section className="grid md:grid-cols-2 gap-0 px-0 py-8 md:py-0 bg-[#FFFFFF] flex-grow items-center pt-10">
+      <section className="grid md:grid-cols-2 gap-0 px-0 pt-14 bg-[#FFFFFF] flex-grow items-center">
         {/* Texto a la izquierda */}
         <div className="space-y-6 px-6 md:px-12 text-center md:text-left pt-12 md:pt-0">
           {/* Ramita decorativa arriba del título */}
@@ -33,13 +33,14 @@ export default function Home() {
           </p>
 
           {/* Botones */}
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+          <div className="flex flex-col items-center gap-4 md:flex-row md:justify-start mb-8">
             <Link href="/categorias">
-              <button className="bg-[#3E4234] text-white px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] transition cursor-pointer">
+              <button className="w-[240px] h-[52px] bg-[#3E4234] text-white rounded uppercase tracking-wide hover:bg-[#6B705C] transition cursor-pointer">
                 VER CATEGORÍAS
               </button>
             </Link>
-            <button className="border border-[#3E4234] text-[#3E4234] px-6 py-3 rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition cursor-pointer">
+
+            <button className="w-[240px] h-[52px] border border-[#3E4234] text-[#3E4234] rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition cursor-pointer">
               CONTÁCTANOS
             </button>
           </div>

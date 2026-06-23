@@ -1,5 +1,4 @@
 "use client";
-import NavBar from "../components/NavBar";
 import { Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
@@ -10,19 +9,13 @@ const playfair = Playfair_Display({
 export default function NosotrosPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
-      {/* Header */}
-      <NavBar />
 
       {/* Banner */}
-      <section className="grid md:grid-cols-2 gap-0 px-0 py-0 bg-[#FFFFFF] flex-grow items-center">
+      <section className="grid md:grid-cols-2 gap-0 px-0 pt-14 bg-[#FFFFFF] flex-grow items-center">
         {/* Texto a la izquierda */}
-        <div className="space-y-6 px-6 md:px-12 text-center md:text-left">
+        <div className="space-y-6 px-6 md:px-12 text-center md:text-left pt-12 md:pt-0">
           {/* Ramita decorativa arriba del título */}
-          <img
-            src="/Images/ramita.png"
-            alt="Decoración ramita"
-            className="w-16 h-16 mb-0 mx-auto md:mx-0"
-          />
+          <img src="/Images/ramita.png" alt="Decoración ramita" className="w-16 h-16 mb-0 mx-auto md:mx-0"/>
 
           <h2 className={`${playfair.className} text-4xl md:text-5xl font-normal text-[#3E4234] leading-tight`}>
             ¿Por qué elegir
@@ -42,7 +35,7 @@ export default function NosotrosPage() {
         </div>
 
         {/* Imagen a la derecha */}
-        <div className="relative w-full h-64 sm:h-80 md:h-full">
+        <div className="relative w-full h-64 sm:h-80 md:h-full mt-8 md:mt-0">
           <img
             src="/Images/ComedorVerde.png"
             alt="Comedor acogedor eNova Home"

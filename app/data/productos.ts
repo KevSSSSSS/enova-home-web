@@ -314,7 +314,7 @@ export const productos = [
     {
         id: 10,
         nombre: "Toalla Premium Algodón Egipcio",
-        seccion: "BAÑO",
+        seccion: "BANO",
         categoria: "TOALLAS",
         precio: 499,
         imagenPrincipal: "/images/Producto10.png",
@@ -348,7 +348,7 @@ export const productos = [
     {
         id: 11,
         nombre: "Dispensador de Vidrio Verde",
-        seccion: "BAÑO",
+        seccion: "BANO",
         categoria: "DISPENSADORES",
         precio: 780,
         imagenPrincipal: "/images/Producto11.png",

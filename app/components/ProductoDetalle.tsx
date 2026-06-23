@@ -44,9 +44,7 @@ export default function ProductoDetalle({ producto }: Props) {
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Breadcrumb */}
-                <div
-                    className={`${montserrat.className} text-sm text-[#6B705C] mb-8`}
-                >
+                <div className={`${montserrat.className} text-sm text-[#6B705C] mb-8`}>
                     <Link href="/" className="hover:text-[#3E4234]">
                         Inicio
                     </Link>
@@ -145,16 +143,11 @@ export default function ProductoDetalle({ producto }: Props) {
 
                 {/* Descripción */}
                 <section className="mt-20">
-
-                    <h2
-                        className={`${playfair.className} text-4xl text-[#3E4234] mb-6`}
-                    >
+                    <h2 className={`${playfair.className} text-4xl text-[#3E4234] mb-6`}>
                         Descripción
                     </h2>
 
-                    <p
-                        className={`${montserrat.className} leading-8 text-[#3E4234]`}
-                    >
+                    <p className={`${montserrat.className} leading-8 text-[#3E4234]`}>
                         {producto.descripcion}
                     </p>
 
@@ -162,10 +155,7 @@ export default function ProductoDetalle({ producto }: Props) {
 
                 {/* Especificaciones */}
                 <section className="mt-20">
-
-                    <h2
-                        className={`${playfair.className} text-4xl text-[#3E4234] mb-6`}
-                    >
+                    <h2 className={`${playfair.className} text-4xl text-[#3E4234] mb-6`}>
                         Especificaciones
                     </h2>
 

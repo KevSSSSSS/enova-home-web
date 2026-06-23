@@ -33,9 +33,9 @@ export default function CatalogoPage() {
 
   const categoriasMap: Record<string, string[]> = {
     "TODOS": [],
-    "MESA & COMEDOR": ["VASOS", "PLATOS", "CUBIERTOS", "VAJILLAS"],
+    "MESACOMEDOR": ["VASOS", "PLATOS", "CUBIERTOS", "VAJILLAS"],
     "COCINA": ["TERMOS", "YETIS", "CUCHILLOS", "SARTENES", "OLLAS"],
-    "BAÑO": ["TOALLAS", "DISPENSADORES"],
+    "BANO": ["TOALLAS", "DISPENSADORES"],
     "RECAMARA": ["SÁBANAS", "COLCHAS", "COBIJAS", "ALMOHADAS"],
     "TEXTILES": [],
     "LIFESTYLE": []
@@ -86,7 +86,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(15)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("MESA & COMEDOR")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => setCategoriaSeleccionada("MESACOMEDOR")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/plato.png" alt="Plato" className="w-4 h-4" />
                   MESA & COMEDOR
@@ -102,7 +102,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("BAÑO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => setCategoriaSeleccionada("BANO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                   BAÑO

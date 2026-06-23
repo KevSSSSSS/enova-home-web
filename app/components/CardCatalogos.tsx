@@ -45,23 +45,17 @@ export default function CardCatalogos({ productos }: Props) {
           <div className="px-4 pt-2 pb-2">
 
             <div className="min-h-[80px]">
-              <h2
-                className={`${playfair.className} text-[1.1rem] font-medium leading-tight mb-1`}
-              >
+              <h2 className={`${playfair.className} text-[1.1rem] font-medium leading-tight mb-1`}>
                 {p.nombre}
               </h2>
 
-              <p
-                className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}
-              >
+              <p className={`${montserrat.className} text-sm text-[#6B705C] uppercase tracking-wide`}>
                 {p.categoria}
               </p>
             </div>
 
-            <Link
-              href={`/productos/${p.id}`}
-              className={`${montserrat.className} mt-1 text-sm font-medium text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center transition`}
-            >
+            <Link href={`/productos/${p.id}`} className={`${montserrat.className} mt-1 text-sm font-medium
+            text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center transition`}>
               <span>Ver detalle</span>
               <span className="text-lg">→</span>
             </Link>
