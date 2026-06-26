@@ -49,7 +49,7 @@ const NavBar = () => {
         <Link href="/nosotros" className="hover:text-[#6B705C]">
           Nosotros
         </Link>
-        <Link href="#" className="hover:text-[#6B705C]">Contacto</Link>
+        <Link href="/contacto" className="hover:text-[#6B705C]">Contacto</Link>
 
         {/* Icono de búsqueda */}
         <div className="flex items-center">
@@ -87,7 +87,7 @@ const NavBar = () => {
           </Link>
           <Link href="/catalogo" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Catálogo</Link>
           <Link href="/nosotros" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Nosotros</Link>
-          <Link href="#" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Contacto</Link>
+          <Link href="/contacto" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Contacto</Link>
 
           <div className="flex items-center gap-5 pt-2">
             <div className="flex items-center">
