@@ -40,9 +40,11 @@ export default function Home() {
               </button>
             </Link>
 
-            <button className="w-[240px] h-[52px] border border-[#3E4234] text-[#3E4234] rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition cursor-pointer">
-              CONTÁCTANOS
-            </button>
+            <Link href="/contacto">
+              <button className="w-[240px] h-[52px] border border-[#3E4234] text-[#3E4234] rounded uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition cursor-pointer">
+                CONTÁCTANOS
+              </button>
+            </Link>
           </div>
         </div>
 
