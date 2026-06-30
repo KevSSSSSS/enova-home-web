@@ -113,7 +113,7 @@ export default function CardCatalogos({ productos }: Props) {
           {/* Botón */}
           <div className="flex flex-col items-center lg:items-start">
 
-            <button onClick={() => router.push("/contacto")} className={`${montserrat.className} 
+            <button onClick={() => {router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" });}} className={`${montserrat.className} 
             bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
               SOLICITAR INFORMACIÓN
             </button>

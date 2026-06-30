@@ -1,5 +1,6 @@
 "use client";
 import { Playfair_Display } from "next/font/google";
+import { useEffect } from "react";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -8,6 +9,12 @@ const playfair = Playfair_Display({
 
 
 export default function Contactopage() {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+
     return (
         <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 
@@ -15,7 +22,7 @@ export default function Contactopage() {
             <section className="relative px-0 pt-16 md:pt-14 lg:pt-0 bg-[#FFFFFF]">
                 {/* Imagen */}
                 <div className="relative w-full min-h-[1300px] lg:min-h-screen">
-                    <img src="/Images/ComedorVerde.png" className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"/>
+                    <img src="/Images/ComedorVerde.png" className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]" />
                     <div className="absolute inset-0 flex items-start lg:items-center justify-center px-4 md:px-6 pt-8 md:pt-10 pb-10"></div>
 
                     {/* Tarjetas flotantes */}
@@ -77,7 +84,7 @@ export default function Contactopage() {
                                             <span className="w-2 h-2 rounded-full bg-[#6B705C]" />
                                         </div>
                                     </div>
-                                    <img src="/Images/ramita.png" alt="Decoración ramita"className="w-12 h-12"/>
+                                    <img src="/Images/ramita.png" alt="Decoración ramita" className="w-12 h-12" />
                                 </div>
 
                                 <p className="text-center text-[#6B705C] mb-10">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
+import { CartProvider } from "./context/CartContext";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -22,11 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body className={montserrat.className}>
-      {/* Header */}
-      <NavBar />
-        <div className="pt-20">
-          {children}
-        </div>
+        <CartProvider>
+          {/* Header */}
+          <NavBar />
+          <div className="pt-20">{children}</div>
+        </CartProvider>
       </body>
     </html>
   );

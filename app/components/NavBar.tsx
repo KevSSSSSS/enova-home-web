@@ -3,8 +3,10 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useCart } from "../context/CartContext";
 
 const NavBar = () => {
+  const { cantidadTotal } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
@@ -32,27 +34,27 @@ const NavBar = () => {
 
       {/* Menú */}
       <nav className="hidden md:flex ml-auto flex-row gap-6 text-sm font-[var(--font-montserrat)] items-center mt-20">
-        <Link href="/catalogo?categoria=MESACOMEDOR" className={isActive("MESACOMEDOR") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+        <Link href="/catalogo?categoria=MESACOMEDOR" className={isActive("MESACOMEDOR") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}>
           Mesa & Comedor
         </Link>
-        <Link href="/catalogo?categoria=COCINA" className={isActive("COCINA") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+        <Link href="/catalogo?categoria=COCINA" className={isActive("COCINA") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}>
           Cocina
         </Link>
-        <Link href="/catalogo?categoria=BANO" className={isActive("BANO") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+        <Link href="/catalogo?categoria=BANO" className={isActive("BANO") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}>
           Baño
         </Link>
-        <Link href="/catalogo?categoria=RECAMARA" className={isActive("RECAMARA") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
+        <Link href="/catalogo?categoria=RECAMARA" className={isActive("RECAMARA") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}>
           Recámara
         </Link>
-        <Link href="/catalogo" className={isRouteActive("/catalogo") && !searchParams.get("categoria") ? "text-[#6B705C]" : "hover:text-[#6B705C]"} 
-        onClick={() => setMenuOpen(false)}>
+        <Link href="/catalogo" className={isRouteActive("/catalogo") && !searchParams.get("categoria") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}
+          onClick={() => setMenuOpen(false)}>
           Catálogo
         </Link>
-        <Link href="/nosotros" className={isRouteActive("/nosotros") ? "text-[#6B705C]" : "hover:text-[#6B705C]"} 
-        onClick={() => setMenuOpen(false)}>
+        <Link href="/nosotros" className={isRouteActive("/nosotros") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}
+          onClick={() => setMenuOpen(false)}>
           Nosotros
         </Link>
-        <Link href="/contacto" className={isRouteActive("/contacto") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}
+        <Link href="/contacto" className={isRouteActive("/contacto") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}
           onClick={() => setMenuOpen(false)}>
           Contacto
         </Link>
@@ -69,8 +71,14 @@ const NavBar = () => {
         </div>
 
         {/* Icono de carrito */}
-        <a href="">
+        <a href="" className="relative">
           <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
+
+          {cantidadTotal > 0 && (
+            <span className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {cantidadTotal}
+            </span>
+          )}
         </a>
       </nav>
 
@@ -110,8 +118,14 @@ const NavBar = () => {
               </button>
             </div>
 
-            <a href="">
+            <a href="" className="relative">
               <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
+
+              {cantidadTotal > 0 && (
+                <span className="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {cantidadTotal}
+                </span>
+              )}
             </a>
           </div>
         </nav>

@@ -145,7 +145,8 @@ export default function CatalogoPage() {
                       Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
                     </p>
 
-                    <button onClick={() => router.push("/contacto")} className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
+                    <button   onClick={() => {router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" });}} 
+                    className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
                     text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer`}>
                       Contáctanos
                     </button>
