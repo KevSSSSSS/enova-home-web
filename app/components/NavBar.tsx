@@ -12,6 +12,7 @@ const NavBar = () => {
   const isActive = (categoria: string) =>
     pathname === "/catalogo" &&
     searchParams.get("categoria") === categoria;
+  const isRouteActive = (ruta: string) => pathname === ruta;
 
   return (
     <header className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
@@ -23,9 +24,9 @@ const NavBar = () => {
       {/* Botón hamburguesa (solo móvil) */}
       <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden ml-auto flex flex-col gap-1 mt-2">
         <div className="relative w-6 h-6">
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`}/>
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}/>
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`}/>
+          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
+          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
         </div>
       </button>
 
@@ -43,22 +44,27 @@ const NavBar = () => {
         <Link href="/catalogo?categoria=RECAMARA" className={isActive("RECAMARA") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}>
           Recámara
         </Link>
-        <Link href="/catalogo" className="hover:text-[#6B705C]">
+        <Link href="/catalogo" className={isRouteActive("/catalogo") && !searchParams.get("categoria") ? "text-[#6B705C]" : "hover:text-[#6B705C]"} 
+        onClick={() => setMenuOpen(false)}>
           Catálogo
         </Link>
-        <Link href="/nosotros" className="hover:text-[#6B705C]">
+        <Link href="/nosotros" className={isRouteActive("/nosotros") ? "text-[#6B705C]" : "hover:text-[#6B705C]"} 
+        onClick={() => setMenuOpen(false)}>
           Nosotros
         </Link>
-        <Link href="/contacto" className="hover:text-[#6B705C]">Contacto</Link>
+        <Link href="/contacto" className={isRouteActive("/contacto") ? "text-[#6B705C]" : "hover:text-[#6B705C]"}
+          onClick={() => setMenuOpen(false)}>
+          Contacto
+        </Link>
 
         {/* Icono de búsqueda */}
         <div className="flex items-center">
           {searchOpen && (
-            <input type="text" placeholder="Buscar..." className="w-40 px-2 py-1 mr-2 border border-[#D6D6CF] rounded-md text-sm"/>
+            <input type="text" placeholder="Buscar..." className="w-40 px-2 py-1 mr-2 border border-[#D6D6CF] rounded-md text-sm" />
           )}
 
           <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
-            <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto"/>
+            <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto" />
           </button>
         </div>
 
@@ -71,8 +77,8 @@ const NavBar = () => {
       {/* Menú móvil desplegable */}
       {menuOpen && (
         <nav className="md:hidden absolute top-full left-0 w-full bg-[#E7E7E5] shadow-lg px-6 py-5 flex flex-col gap-4 z-50">
-          <Link href="/catalogo?categoria=MESACOMEDOR" className={isActive("MESACOMEDOR") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"} 
-          onClick={() => setMenuOpen(false)}>Mesa & Comedor</Link>
+          <Link href="/catalogo?categoria=MESACOMEDOR" className={isActive("MESACOMEDOR") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}
+            onClick={() => setMenuOpen(false)}>Mesa & Comedor</Link>
           <Link href="/catalogo?categoria=COCINA" className={isActive("COCINA") ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"}
             onClick={() => setMenuOpen(false)}>
             Cocina

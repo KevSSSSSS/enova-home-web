@@ -1,5 +1,6 @@
 "use client";
-
+//import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import CardCatalogos from "../components/CardCatalogos";
@@ -18,18 +19,11 @@ const montserrat = Montserrat({
 
 export default function CatalogoPage() {
   const searchParams = useSearchParams();
+  const categoriaSeleccionada =
+  searchParams.get("categoria") ?? "TODOS";
 
+  const router = useRouter();
 
-  const [categoriaSeleccionada, setCategoriaSeleccionada] =
-    useState("TODOS");
-
-  useEffect(() => {
-    const categoria = searchParams.get("categoria");
-
-    if (categoria) {
-      setCategoriaSeleccionada(categoria);
-    }
-  }, [searchParams]);
 
   const categoriasMap: Record<string, string[]> = {
     "TODOS": [],
@@ -52,12 +46,12 @@ export default function CatalogoPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
-      <div className="flex flex-col md:flex-row flex-grow">
+      <div className="flex flex-col lg:flex-row flex-grow">
         {/* Sidebar */}
-        <aside className="w-full md:w-1/4 bg-[#E7E7E5] px-8 pt-12 pb-6 flex flex-col justify-start">
+        <aside className="w-full lg:w-[20%] lg:min-w-[300px] xl:min-w-[320px] bg-[#E7E7E5] px-5 sm:px-6 lg:px-8 pt-8 lg:pt-12 pb-6 flex flex-col">
           <div className="space-y-4 text-left mt-15">
             <p className="text-sm font-semibold text-[#6B705C]">EXPLORA NUESTRO CATÁLOGO</p>
-            <h1 className={`${playfair.className} text-4xl font-normal text-[#3E4234] leading-tight tracking-wide`}>
+            <h1 className={`${playfair.className} text-2xl sm:text-3xl lg:text-4xl font-normal text-[#3E4234] leading-tight tracking-wide`}>
               Catálogo<br /> informativo
             </h1>
 
@@ -66,7 +60,7 @@ export default function CatalogoPage() {
               <span className="w-2 h-2 rounded-full bg-[#6B705C]"></span>
             </div>
 
-            <p className="text-[#6B705C] font-montserrat text-base">
+            <p className="text-[#6B705C] font-montserrat text-sm sm:text-base">
               Descubre nuestra selección de<br /> productos pensados para crear<br />
               espacios que inspiran bienestar,<br /> armonía y estilo.
             </p>
@@ -77,8 +71,8 @@ export default function CatalogoPage() {
             <p className="text-sm font-semibold text-[#6B705C] mt-6">
               FILTRAR POR CATEGORÍA
             </p>
-            <div className="flex flex-col space-y-2">
-              <button onClick={() => setCategoriaSeleccionada("TODOS")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+            <div className="flex flex-col space-y-2 sm:space-y-2">
+              <button onClick={() => router.push("/catalogo")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
@@ -86,7 +80,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(15)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("MESACOMEDOR")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=MESACOMEDOR")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/plato.png" alt="Plato" className="w-4 h-4" />
                   MESA & COMEDOR
@@ -94,7 +88,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(4)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("COCINA")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=COCINA")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                   COCINA
@@ -102,7 +96,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("BANO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=BANO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                   BAÑO
@@ -110,7 +104,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(3)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("RECAMARA")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=RECAMARA")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cama.png" alt="Recámara" className="w-4 h-4" />
                   RECÁMARA
@@ -118,7 +112,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(5)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("TEXTILES")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=TEXTILES")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                   TEXTILES
@@ -126,7 +120,7 @@ export default function CatalogoPage() {
                 <span className="text-sm font-semibold">(0)</span>
               </button>
 
-              <button onClick={() => setCategoriaSeleccionada("LIFESTYLE")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=LIFESTYLE")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                   LIFESTYLE
@@ -135,21 +129,33 @@ export default function CatalogoPage() {
               </button>
             </div>
 
+            <div className="mt-10 flex justify-center lg:justify-start">
+              <div className="w-full max-w-[300px] bg-[#E7E7E5] border border-[#3E4234]/15 rounded-xl shadow-sm py-5 sm:py-6 pl-4 sm:pl-5 pr-3">
+                <div className="flex items-start gap-3 sm:gap-4">
+                  {/* Ramita */}
+                  <img src="/images/ramita.png" alt="Decorativo" className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0 mt-0.5" />
 
-            <div className="mt-10 px-4 sm:px-6 md:px-8 py-6 md:py-10 rounded-xl bg-[#E7E7E5] shadow-sm border border-[#3E4234]/15 flex flex-col sm:flex-row items-center sm:items-start gap-4">
-              <img src="/images/ramita.png" alt="Decorativo" className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0" />
-              {/* Texto y botón */}
-              <div className="flex flex-col space-y-3 text-center sm:text-left items-center sm:items-start">
-                <h3 className={`${playfair.className} text-xl md:text-2xl font-normal text-[#3E4234]`}>
-                  ¿Necesitas ayuda?
-                </h3>
-                <p className={`${montserrat.className} text-sm text-[#3E4234]`}>
-                  Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
-                </p>
-                <button className={`${montserrat.className} border border-[#3E4234]/30 text-[#3E4234] px-6 py-2 rounded-md uppercase tracking-wide 
-                hover:bg-[#6B705C]  hover:text-white transition cursor-pointer w-full sm:w-auto`}>
-                  Contáctanos
-                </button>
+                  {/* Contenido */}
+                  <div className="flex flex-col items-start w-full">
+                    <h3 className={`${playfair.className} text-lg sm:text-xl md:text-2xl font-normal leading-tight text-[#3E4234]`}>
+                      ¿Necesitas ayuda?
+                    </h3>
+
+                    <p className={`${montserrat.className} mt-2 sm:mt-3 text-xs sm:text-sm leading-6 text-[#3E4234]`}>
+                      Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
+                    </p>
+
+                    <button onClick={() => router.push("/contacto")} className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
+                    text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer`}>
+                      Contáctanos
+                    </button>
+                    {/**
+                    <Link href="/contacto" className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
+                    text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer text-center`}>
+                      Contáctanos
+                    </Link>*/}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

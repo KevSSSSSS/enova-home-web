@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Link from "next/link";
 
@@ -32,6 +32,7 @@ interface Props {
 }
 
 export default function CardCatalogos({ productos }: Props) {
+  const router = useRouter();
   return (
     <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-10 p-6 mt-20 items-start">
 
@@ -65,7 +66,7 @@ export default function CardCatalogos({ productos }: Props) {
       ))}
 
       {/* BANNER INFERIOR */}
-      <div className="col-span-full mt-4">
+      <div className="col-span-full mt-4 px-6">
         <div className="bg-[#F5F5F0] border border-[#E2E2DD] rounded-xl px-6 lg:px-8 py-6 flex flex-col lg:flex-row items-center justify-between gap-6">
 
           {/* Texto */}
@@ -111,9 +112,16 @@ export default function CardCatalogos({ productos }: Props) {
 
           {/* Botón */}
           <div className="flex flex-col items-center lg:items-start">
-            <button className={`${montserrat.className} bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition`}>
+
+            <button onClick={() => router.push("/contacto")} className={`${montserrat.className} 
+            bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
               SOLICITAR INFORMACIÓN
             </button>
+
+            {/** 
+            <Link href="/contacto" className={`${montserrat.className} inline-flex items-center justify-center bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
+              SOLICITAR INFORMACIÓN
+            </Link>*/}
 
             <p className={`${montserrat.className} text-xs text-[#3E4234] mt-2`}>
               Te ayudamos a elegir lo mejor

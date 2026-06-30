@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import BotonRegresar from "./BotonRegresar";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -41,7 +42,9 @@ export default function ProductoDetalle({ producto }: Props) {
         <main className="bg-[#E7E7E5] min-h-screen pt-36 pb-16">
 
             {/* Contenedor principal */}
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-6 relative">
+
+                <BotonRegresar />
 
                 {/* Breadcrumb */}
                 <div className={`${montserrat.className} text-sm text-[#6B705C] mb-8`}>
