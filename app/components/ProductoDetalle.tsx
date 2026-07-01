@@ -131,7 +131,7 @@ export default function ProductoDetalle({ producto }: Props) {
                         {/* Botón */}
                         <button
                             onClick={() => agregarAlCarrito(cantidad)}
-                            className="mt-8 md:mt-10 w-full sm:w-auto bg-[#6B705C] text-white h-[52px] px-12 rounded-md"
+                            className="mt-8 md:mt-10 w-full sm:w-auto bg-[#6B705C] text-white h-[52px] px-12 rounded-md hover:bg-[#3E4234] transition cursor-pointer"
                         >
                             Agregar al carrito
                         </button>

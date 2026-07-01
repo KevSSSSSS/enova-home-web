@@ -17,7 +17,7 @@ const NavBar = () => {
   const isRouteActive = (ruta: string) => pathname === ruta;
 
   return (
-    <header className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
+    <header id="navbar" className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
       {/* Logo */}
       <Link href="/" className="flex-shrink-0" onClick={() => setMenuOpen(false)}>
         <Image src="/Images/Logo-eNovaHome-.png" alt="Logo eNova Home" width={150} height={50} priority className="cursor-pointer" />
@@ -60,9 +60,13 @@ const NavBar = () => {
         </Link>
 
         {/* Icono de búsqueda */}
-        <div className="flex items-center">
+        <div className="flex items-center flex-1">
           {searchOpen && (
-            <input type="text" placeholder="Buscar..." className="w-40 px-2 py-1 mr-2 border border-[#D6D6CF] rounded-md text-sm" />
+            <input
+              type="text"
+              placeholder="Buscar..."
+              className="flex-1 px-4 py-2.5 mr-2 border border-[#D6D6CF] rounded-md text-base"
+            />
           )}
 
           <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
@@ -75,7 +79,8 @@ const NavBar = () => {
           <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
 
           {cantidadTotal > 0 && (
-            <span className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-red-500 text-white 
+            text-xs w-5 h-5 flex items-center justify-center rounded-full">
               {cantidadTotal}
             </span>
           )}
@@ -99,17 +104,26 @@ const NavBar = () => {
             onClick={() => setMenuOpen(false)}>
             Recámara
           </Link>
-          <Link href="/catalogo" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Catálogo</Link>
-          <Link href="/nosotros" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Nosotros</Link>
-          <Link href="/contacto" className="hover:text-[#6B705C]" onClick={() => setMenuOpen(false)}>Contacto</Link>
+          <Link href="/catalogo" className={isRouteActive("/catalogo") && !searchParams.get("categoria")
+            ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"} onClick={() => setMenuOpen(false)}>
+            Catálogo
+          </Link>
+          <Link href="/nosotros" className={isRouteActive("/nosotros")
+            ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"} onClick={() => setMenuOpen(false)}>
+            Nosotros
+          </Link>
+          <Link href="/contacto" className={isRouteActive("/contacto")
+            ? "text-[#6B705C] font-semibold" : "hover:text-[#6B705C]"} onClick={() => setMenuOpen(false)}>
+            Contacto
+          </Link>
 
-          <div className="flex items-center gap-5 pt-2">
-            <div className="flex items-center">
+          <div className="flex items-center pt-2">
+            <div className="flex items-center flex-1">
               {searchOpen && (
                 <input
                   type="text"
                   placeholder="Buscar..."
-                  className="w-32 px-2 py-1 mr-2 border border-[#D6D6CF] rounded-md text-sm"
+                  className="flex-1 min-w-0 px-4 py-2 border border-[#D6D6CF] rounded-md text-base mr-3"
                 />
               )}
 
@@ -118,9 +132,8 @@ const NavBar = () => {
               </button>
             </div>
 
-            <a href="" className="relative">
+            <a href="" className="relative ml-3">
               <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
-
               {cantidadTotal > 0 && (
                 <span className="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   {cantidadTotal}

@@ -34,7 +34,9 @@ interface Props {
 export default function CardCatalogos({ productos }: Props) {
   const router = useRouter();
   return (
-    <main className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-10 p-6 mt-20 items-start">
+    <main
+      id="productos-catalogo"
+      className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-10 p-6 mt-20 items-start">
 
       {productos?.map((p) => (
         <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition max-w-[230px] mx-auto min-h-[320px]">
@@ -112,8 +114,7 @@ export default function CardCatalogos({ productos }: Props) {
 
           {/* Botón */}
           <div className="flex flex-col items-center lg:items-start">
-
-            <button onClick={() => {router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" });}} className={`${montserrat.className} 
+            <button onClick={() => { router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" }); }} className={`${montserrat.className} 
             bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
               SOLICITAR INFORMACIÓN
             </button>

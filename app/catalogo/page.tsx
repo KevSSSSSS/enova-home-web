@@ -1,7 +1,7 @@
 "use client";
 //import Link from "next/link";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import CardCatalogos from "../components/CardCatalogos";
 import { Playfair_Display, Montserrat } from "next/font/google";
@@ -20,7 +20,8 @@ const montserrat = Montserrat({
 export default function CatalogoPage() {
   const searchParams = useSearchParams();
   const categoriaSeleccionada =
-  searchParams.get("categoria") ?? "TODOS";
+    searchParams.get("categoria") ?? "TODOS";
+  const tieneCategoria = searchParams.has("categoria");
 
   const router = useRouter();
 
@@ -43,6 +44,31 @@ export default function CatalogoPage() {
     return categorias.includes(producto.categoria);
   });
 
+  useEffect(() => {
+    if (!tieneCategoria) return;
+
+    const contenedor = document.getElementById("productos-catalogo");
+    const navbar = document.getElementById("navbar");
+
+    if (!contenedor) return;
+
+    const timer = setTimeout(() => {
+      const navbarHeight = navbar?.offsetHeight ?? 90;
+
+      const y =
+        contenedor.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight -
+        16;
+
+      window.scrollTo({
+        top: y,
+        behavior: "smooth",
+      });
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [categoriaSeleccionada, tieneCategoria]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
@@ -72,7 +98,7 @@ export default function CatalogoPage() {
               FILTRAR POR CATEGORÍA
             </p>
             <div className="flex flex-col space-y-2 sm:space-y-2">
-              <button onClick={() => router.push("/catalogo")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
+              <button onClick={() => router.push("/catalogo?categoria=TODOS")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
                 <span className="flex items-center gap-1.5">
                   <img src="/icons/cuadricula.png" alt="Todos" className="w-4 h-4" />
                   TODOS LOS PRODUCTOS
@@ -145,8 +171,8 @@ export default function CatalogoPage() {
                       Estamos aquí para asesorarte<br /> y ayudarte a elegir lo mejor<br /> para tu hogar.
                     </p>
 
-                    <button   onClick={() => {router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" });}} 
-                    className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
+                    <button onClick={() => { router.push("/contacto"); window.scrollTo({ top: 0, behavior: "instant" }); }}
+                      className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
                     text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer`}>
                       Contáctanos
                     </button>
