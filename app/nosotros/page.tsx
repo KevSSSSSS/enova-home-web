@@ -47,7 +47,7 @@ export default function NosotrosPage() {
 
       {/* Beneficios */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 md:px-8 py-12 bg-[#E7E7E5] text-center">
-        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#C8C8C8] last:md:border-r-0">
           <img src="/Images/inspiracion.png" alt="Calidad" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Todo para tu hogar,<br /> en un solo lugar
@@ -57,7 +57,7 @@ export default function NosotrosPage() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#C8C8C8] last:md:border-r-0">
           <img src="/Images/calidad.png" alt="Diseño" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Productos de calidad<br /> y diseño
@@ -67,7 +67,7 @@ export default function NosotrosPage() {
           </p>
         </div>
 
-        <div className="flex flex-col items-center space-y-3 md:border-r border-[#3E4234] last:md:border-r-0">
+        <div className="flex flex-col items-center space-y-3 md:border-r border-[#C8C8C8] last:md:border-r-0">
           <img src="/Images/bolso.png" alt="Seguridad" className="w-12 h-12" />
           <h3 className="font-semibold text-lg text-[#3E4234]">
             Compra fácil, segura<br /> y confiable
