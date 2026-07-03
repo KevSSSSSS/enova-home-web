@@ -3,7 +3,7 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { CartProvider } from "./context/CartContext";
-import TransitionOverlay from "./components/TransitionOverlay";
+//import TransitionOverlay from "./components/TransitionOverlay";
 import LoaderProvider from "./components/LoaderProvider";
 
 
@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={montserrat.className}>
         <LoaderProvider />
 
-        <TransitionOverlay />
+        {/*<TransitionOverlay />*/}
 
         <CartProvider>
           {/* Header */}

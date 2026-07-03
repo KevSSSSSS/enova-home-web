@@ -4,17 +4,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useCart } from "../context/CartContext";
+import CartDropdown from "./CartDropdown";
+import { useRef, useEffect } from "react";
 
 const NavBar = () => {
   const { cantidadTotal } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  const cartRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isActive = (categoria: string) =>
     pathname === "/catalogo" &&
     searchParams.get("categoria") === categoria;
   const isRouteActive = (ruta: string) => pathname === ruta;
+
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        cartRef.current &&
+        !cartRef.current.contains(event.target as Node)
+      ) {
+        setCartOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header id="navbar" className="fixed top-0 left-0 w-full px-6 py-4 flex items-center bg-[#E7E7E5] shadow-xl shadow-[0_15px_35px_rgba(0,0,0,0.8)] z-50">
@@ -75,16 +98,30 @@ const NavBar = () => {
         </div>
 
         {/* Icono de carrito */}
-        <a href="" className="relative">
-          <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
+        <div className="relative" ref={cartRef}>
+          <button
+            onClick={() => setCartOpen(!cartOpen)}
+            className="relative cursor-pointer"
+          >
+            <img
+              src="/Images/cart-icon.png"
+              alt="Carrito"
+              className="h-6 w-auto"
+            />
 
-          {cantidadTotal > 0 && (
-            <span className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-red-500 text-white 
-            text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              {cantidadTotal}
-            </span>
-          )}
-        </a>
+            {cantidadTotal > 0 && (
+              <span
+                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2
+        bg-red-500 text-white text-xs
+        w-5 h-5 flex items-center justify-center rounded-full"
+              >
+                {cantidadTotal}
+              </span>
+            )}
+          </button>
+
+          <CartDropdown abierto={cartOpen} />
+        </div>
       </nav>
 
       {/* Menú móvil desplegable */}
