@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import { CartProvider } from "./context/CartContext";
 //import TransitionOverlay from "./components/TransitionOverlay";
 import LoaderProvider from "./components/LoaderProvider";
+import { Suspense } from "react";
 
 
 const playfair = Playfair_Display({
@@ -31,8 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/*<TransitionOverlay />*/}
 
         <CartProvider>
-          {/* Header */}
-          <NavBar />
+          <Suspense fallback={null}>
+            {/* Header */ }
+            <NavBar />
+          </Suspense>
+
           <div className="pt-20">{children}</div>
         </CartProvider>
       </body>

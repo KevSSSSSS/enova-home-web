@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Link from "next/link";
+import ImagePlaceholder from "./ImagePlaceholder";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -36,19 +37,19 @@ export default function CardCatalogos({ productos }: Props) {
   return (
     <main
       id="productos-catalogo"
-      className="flex-grow grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-10 p-6 mt-20 items-start">
+      className="flex-grow grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-6 p-4 sm:p-6 mt-20 items-start">
 
       {productos?.map((p) => (
-        <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition max-w-[230px] mx-auto min-h-[320px]">
+        <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition w-full max-w-[230px] mx-auto min-h-[300px] sm:min-h-[320px]">
 
           {/* Imagen */}
-          <img src={p.imagenPrincipal} alt={p.nombre} className="w-full h-48 object-cover" />
+          <ImagePlaceholder src={p.imagenPrincipal} alt={p.nombre} className="w-full h-36 sm:h-48"/>
 
           {/* Info */}
-          <div className="px-4 pt-2 pb-2">
+          <div className="px-3 sm:px-4 pt-2 pb-3 flex flex-col justify-between h-full">
 
             <div className="min-h-[80px]">
-              <h2 className={`${playfair.className} text-[1.1rem] font-medium leading-tight mb-1`}>
+              <h2 className={`${playfair.className} text-[1rem] sm:text-[1.1rem] font-medium leading-tight mb-1 line-clamp-2`}>
                 {p.nombre}
               </h2>
 
