@@ -180,11 +180,6 @@ export default function CatalogoClient({
                                             text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer`}>
                                             Contáctanos
                                         </button>
-                                        {/**
-                    <Link href="/contacto" className={`${montserrat.className} mt-4 sm:mt-5 w-full max-w-[170px] py-2 border border-[#3E4234]/30 
-                    text-[#3E4234] rounded-md uppercase tracking-wide hover:bg-[#6B705C] hover:text-white transition self-start cursor-pointer text-center`}>
-                      Contáctanos
-                    </Link>*/}
                                     </div>
                                 </div>
                             </div>

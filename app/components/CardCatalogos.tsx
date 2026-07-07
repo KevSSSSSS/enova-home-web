@@ -119,12 +119,6 @@ export default function CardCatalogos({ productos }: Props) {
             bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
               SOLICITAR INFORMACIÓN
             </button>
-
-            {/** 
-            <Link href="/contacto" className={`${montserrat.className} inline-flex items-center justify-center bg-[#6B705C] text-white text-xs uppercase tracking-wider font-medium px-8 h-[42px] rounded-md hover:bg-[#5C614E] transition cursor-pointer`}>
-              SOLICITAR INFORMACIÓN
-            </Link>*/}
-
             <p className={`${montserrat.className} text-xs text-[#3E4234] mt-2`}>
               Te ayudamos a elegir lo mejor
               <br />

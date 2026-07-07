@@ -76,12 +76,6 @@ export default function ProductoDetalle({ producto }: Props) {
                     <div>
                         {/* Imagen principal */}
                         <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-                            {/*<img
-                                src={producto.imagenPrincipal}
-                                alt="Producto"
-                                className="w-full h-[520px] object-cover"
-                            />*/}
-                            {/**<img src={imagenSeleccionada} alt={producto.nombre} className="w-full h-[520px] object-cover" />*/}
                             <img src={imagenSeleccionada} alt={producto.nombre}
                                 onClick={() => {
                                     const indice = producto.imagenes.findIndex((img) => img === imagenSeleccionada);
