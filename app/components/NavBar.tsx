@@ -13,7 +13,8 @@ const NavBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
 
-  const cartRef = useRef<HTMLDivElement>(null);
+  const cartDesktopRef = useRef<HTMLDivElement>(null);
+  const cartMobileRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const isActive = (categoria: string) =>
@@ -24,10 +25,17 @@ const NavBar = () => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        cartRef.current &&
-        !cartRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+
+      const clickDentroDesktop =
+        cartDesktopRef.current &&
+        cartDesktopRef.current.contains(target);
+
+      const clickDentroMobile =
+        cartMobileRef.current &&
+        cartMobileRef.current.contains(target);
+
+      if (!clickDentroDesktop && !clickDentroMobile) {
         setCartOpen(false);
       }
     }
@@ -46,14 +54,33 @@ const NavBar = () => {
         <Image src="/Images/Logo-eNovaHome-.png" alt="Logo eNova Home" width={150} height={50} priority className="cursor-pointer" />
       </Link>
 
-      {/* Botón hamburguesa (solo móvil) */}
-      <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden ml-auto flex flex-col gap-1 mt-2">
-        <div className="relative w-6 h-6">
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
+      {/* Contenedor móvil */}
+      <div className="md:hidden ml-auto flex items-center gap-4 h-10">
+        {/* Botón hamburguesa */}
+        <button onClick={() => setMenuOpen(!menuOpen)} className="flex flex-col justify-center gap-1">
+          <div className="relative w-6 h-6">
+            <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "rotate-45" : "-translate-y-2"}`} />
+            <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`absolute top-1/2 left-0 w-6 h-[2px] bg-[#3E4234] transition-all duration-300 ${menuOpen ? "-rotate-45" : "translate-y-2"}`} />
+          </div>
+        </button>
+
+        {/* Carrito móvil */}
+        <div className="relative" ref={cartMobileRef}>
+          <button onClick={() => setCartOpen(!cartOpen)}
+            className="relative cursor-pointer">
+            <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto relative top-[4px]"/>
+
+            {cantidadTotal > 0 && (
+              <span className="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cantidadTotal}
+              </span>
+            )}
+          </button>
+
+          <CartDropdown abierto={cartOpen} />
         </div>
-      </button>
+      </div>
 
       {/* Menú */}
       <nav className="hidden md:flex ml-auto flex-row gap-6 text-sm font-[var(--font-montserrat)] items-center mt-20">
@@ -85,11 +112,7 @@ const NavBar = () => {
         {/* Icono de búsqueda */}
         <div className="flex items-center flex-1">
           {searchOpen && (
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="flex-1 px-4 py-2.5 mr-2 border border-[#D6D6CF] rounded-md text-base"
-            />
+            <input type="text" placeholder="Buscar..." className="flex-1 px-4 py-2.5 mr-2 border border-[#D6D6CF] rounded-md text-base"/>
           )}
 
           <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
@@ -98,23 +121,12 @@ const NavBar = () => {
         </div>
 
         {/* Icono de carrito */}
-        <div className="relative" ref={cartRef}>
-          <button
-            onClick={() => setCartOpen(!cartOpen)}
-            className="relative cursor-pointer"
-          >
-            <img
-              src="/Images/cart-icon.png"
-              alt="Carrito"
-              className="h-6 w-auto"
-            />
+        <div className="relative" ref={cartDesktopRef}>
+          <button onClick={() => setCartOpen(!cartOpen)} className="relative cursor-pointer">
+            <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto"/>
 
             {cantidadTotal > 0 && (
-              <span
-                className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2
-        bg-red-500 text-white text-xs
-        w-5 h-5 flex items-center justify-center rounded-full"
-              >
+              <span className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                 {cantidadTotal}
               </span>
             )}
@@ -157,26 +169,13 @@ const NavBar = () => {
           <div className="flex items-center pt-2">
             <div className="flex items-center flex-1">
               {searchOpen && (
-                <input
-                  type="text"
-                  placeholder="Buscar..."
-                  className="flex-1 min-w-0 px-4 py-2 border border-[#D6D6CF] rounded-md text-base mr-3"
-                />
+                <input type="text" placeholder="Buscar..." className="flex-1 min-w-0 px-4 py-2 border border-[#D6D6CF] rounded-md text-base mr-3"/>
               )}
 
               <button onClick={() => setSearchOpen(!searchOpen)} className="cursor-pointer">
                 <img src="/Images/search-icon.png" alt="Buscar" className="h-5 w-auto" />
               </button>
             </div>
-
-            <a href="" className="relative ml-3">
-              <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto" />
-              {cantidadTotal > 0 && (
-                <span className="absolute -bottom-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                  {cantidadTotal}
-                </span>
-              )}
-            </a>
           </div>
         </nav>
       )}

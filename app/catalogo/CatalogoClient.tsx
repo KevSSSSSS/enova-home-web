@@ -33,11 +33,11 @@ export default function CatalogoClient({
     const categoriasMap: Record<string, string[]> = {
         "TODOS": [],
         "MESACOMEDOR": ["VASOS", "PLATOS", "CUBIERTOS", "VAJILLAS"],
-        "COCINA": ["TERMOS", "YETIS", "CUCHILLOS", "SARTENES", "OLLAS"],
+        "COCINA": ["CUCHILLOS", "SARTENES", "OLLAS"],
         "BANO": ["TOALLAS", "DISPENSADORES"],
-        "RECAMARA": ["SÁBANAS", "COLCHAS", "COBIJAS", "ALMOHADAS"],
-        "TEXTILES": [],
-        "LIFESTYLE": []
+        "RECAMARA": ["COLCHAS", "ALMOHADAS"],
+        "TEXTILES": ["SÁBANAS", "COBIJAS"],
+        "LIFESTYLE": ["TERMOS", "YETIS"]
     };
 
     const productosFiltrados = productos.filter((producto) => {
@@ -123,7 +123,7 @@ export default function CatalogoClient({
                                     <img src="/icons/cocina.png" alt="Cocina" className="w-4 h-4" />
                                     COCINA
                                 </span>
-                                <span className="text-sm font-semibold">(5)</span>
+                                <span className="text-sm font-semibold">(3)</span>
                             </button>
 
                             <button onClick={() => router.push("/catalogo?categoria=BANO")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -131,7 +131,7 @@ export default function CatalogoClient({
                                     <img src="/icons/jabon.png" alt="Baño" className="w-4 h-4" />
                                     BAÑO
                                 </span>
-                                <span className="text-sm font-semibold">(3)</span>
+                                <span className="text-sm font-semibold">(2)</span>
                             </button>
 
                             <button onClick={() => router.push("/catalogo?categoria=RECAMARA")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -139,7 +139,7 @@ export default function CatalogoClient({
                                     <img src="/icons/cama.png" alt="Recámara" className="w-4 h-4" />
                                     RECÁMARA
                                 </span>
-                                <span className="text-sm font-semibold">(5)</span>
+                                <span className="text-sm font-semibold">(2)</span>
                             </button>
 
                             <button onClick={() => router.push("/catalogo?categoria=TEXTILES")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -147,7 +147,7 @@ export default function CatalogoClient({
                                     <img src="/icons/textil.png" alt="Textiles" className="w-4 h-4" />
                                     TEXTILES
                                 </span>
-                                <span className="text-sm font-semibold">(0)</span>
+                                <span className="text-sm font-semibold">(2)</span>
                             </button>
 
                             <button onClick={() => router.push("/catalogo?categoria=LIFESTYLE")} className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-[#E7E7E5] text-[#3E4234] hover:bg-[#B2B5AB] cursor-pointer">
@@ -155,7 +155,7 @@ export default function CatalogoClient({
                                     <img src="/icons/regalo.png" alt="Lifestyle" className="w-4 h-4" />
                                     LIFESTYLE
                                 </span>
-                                <span className="text-sm font-semibold">(0)</span>
+                                <span className="text-sm font-semibold">(2)</span>
                             </button>
                         </div>
 

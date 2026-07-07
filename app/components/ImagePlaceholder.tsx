@@ -36,18 +36,9 @@ export default function ImagePlaceholder({
                 <div className="absolute inset-0 bg-[#E7E7E5] animate-pulse z-10" />
             )}
 
-            <img
-                ref={imgRef}
-                src={src}
-                alt={alt}
-                onLoad={() => {
-                    setTimeout(() => {
-                        setLoaded(true);
-                    }, 450);
-                }}
-                className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"
-                    }`}
-            />
+            <img ref={imgRef} src={src} alt={alt}
+                onLoad={() => {setTimeout(() => { setLoaded(true);}, 700);}}
+                className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}/>
         </div>
     );
 }

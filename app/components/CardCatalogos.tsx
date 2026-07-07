@@ -40,10 +40,12 @@ export default function CardCatalogos({ productos }: Props) {
       className="flex-grow grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-6 p-4 sm:p-6 mt-20 items-start">
 
       {productos?.map((p) => (
-        <div key={p.id} className="flex flex-col bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition w-full max-w-[230px] mx-auto min-h-[300px] sm:min-h-[320px]">
-
+        <div
+          key={p.id}
+          className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl w-full max-w-[230px] mx-auto"
+        >
           {/* Imagen */}
-          <ImagePlaceholder src={p.imagenPrincipal} alt={p.nombre} className="w-full h-36 sm:h-48"/>
+          <ImagePlaceholder src={p.imagenPrincipal} alt={p.nombre} className="transition-transform duration-500 group-hover:scale-105" />
 
           {/* Info */}
           <div className="px-3 sm:px-4 pt-2 pb-3 flex flex-col justify-between h-full">

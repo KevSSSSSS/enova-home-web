@@ -8,8 +8,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto1.png",
         imagenes: [
             "/images/Producto1.png",
-            "/images/Producto1.png",
-            "/images/Producto1.png",
+            "/images/Producto1.1.png",
+            "/images/Producto1.2.png",
         ],
         descripcion:
             "Vaso decorativo de vidrio texturizado ideal para mesas elegantes.",
@@ -43,8 +43,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto2.png",
         imagenes: [
             "/images/Producto2.png",
-            "/images/Producto2.png",
-            "/images/Producto2.png",
+            "/images/Producto2.1.png",
+            "/images/Producto2.2.png",
         ],
         descripcion:
             "Plato de cerámica con acabado artesanal en tono arena.",
@@ -78,8 +78,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto3.png",
         imagenes: [
             "/images/Producto3.png",
-            "/images/Producto3.png",
-            "/images/Producto3.png",
+            "/images/Producto3.1.png",
+            "/images/Producto3.2.png",
         ],
         descripcion:
             "Juego de cubiertos con acabado dorado mate.",
@@ -87,19 +87,19 @@ export const productos = [
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Acero Inoxidable",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Dorado Mate",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "28 cm x 5 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -113,8 +113,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto4.png",
         imagenes: [
             "/images/Producto4.png",
-            "/images/Producto4.png",
-            "/images/Producto4.png",
+            "/images/Producto4.1.png",
+            "/images/Producto4.2.png",
         ],
         descripcion:
             "Juego de vajillas con acabado artesanal en tono arena.",
@@ -130,7 +130,7 @@ export const productos = [
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "32 cm x 40 cm",
             },
             {
                 nombre: "Apto para microondas",
@@ -148,8 +148,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto5.png",
         imagenes: [
             "/images/Producto5.png",
-            "/images/Producto5.png",
-            "/images/Producto5.png",
+            "/images/Producto5.1.png",
+            "/images/Producto5.2.png",
         ],
         descripcion:
             "Termo de aluminio con acabado verde mate.",
@@ -157,19 +157,19 @@ export const productos = [
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Aluminio",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Mate",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "6.9 cm x 24.5 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -183,8 +183,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto6.png",
         imagenes: [
             "/images/Producto6.png",
-            "/images/Producto6.png",
-            "/images/Producto6.png",
+            "/images/Producto6.1.png",
+            "/images/Producto6.2.png",
         ],
         descripcion:
             "Yeti de aluminio con acabado verde mate.",
@@ -192,19 +192,19 @@ export const productos = [
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Aluminio",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Mate",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "7 cm x 17.5 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -218,27 +218,27 @@ export const productos = [
         imagenPrincipal: "/images/Producto7.png",
         imagenes: [
             "/images/Producto7.png",
-            "/images/Producto7.png",
-            "/images/Producto7.png",
+            "/images/Producto7.1.png",
+            "/images/Producto7.2.png",
         ],
         descripcion:
             "Cuchillo chef de acero inoxidable.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Acero Inoxidable",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Gris",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "34 cm x 4.7 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -252,27 +252,27 @@ export const productos = [
         imagenPrincipal: "/images/Producto8.png",
         imagenes: [
             "/images/Producto8.png",
-            "/images/Producto8.png",
-            "/images/Producto8.png",
+            "/images/Producto8.1.png",
+            "/images/Producto8.2.png",
         ],
         descripcion:
             "Sarten Antiadherente negro con acabado de piedra",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Antiadherente",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Negro Piedra",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "24 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -286,27 +286,27 @@ export const productos = [
         imagenPrincipal: "/images/Producto9.png",
         imagenes: [
             "/images/Producto9.png",
-            "/images/Producto9.png",
-            "/images/Producto9.png",
+            "/images/Producto9.1.png",
+            "/images/Producto9.2.png",
         ],
         descripcion:
             "Olla antiadherente con acabado verde mate.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "antiadherente",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Mate",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "17 cm x 37 cm",
             },
             {
                 nombre: "Apto para microondas",
-                valor: "Sí",
+                valor: "No",
             },
         ],
     },
@@ -320,15 +320,15 @@ export const productos = [
         imagenPrincipal: "/images/Producto10.png",
         imagenes: [
             "/images/Producto10.png",
-            "/images/Producto10.png",
-            "/images/Producto10.png",
+            "/images/Producto10.1.png",
+            "/images/Producto10.2.png",
         ],
         descripcion:
             "Toalla Premium de Algodón y bordados de calidad.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Algodón",
             },
             {
                 nombre: "Color",
@@ -336,10 +336,10 @@ export const productos = [
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "140 cm x 79",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para Baño",
                 valor: "Sí",
             },
         ],
@@ -354,26 +354,26 @@ export const productos = [
         imagenPrincipal: "/images/Producto11.png",
         imagenes: [
             "/images/Producto11.png",
-            "/images/Producto11.png",
-            "/images/Producto11.png",
+            "/images/Producto11.1.png",
+            "/images/Producto11.2.png",
         ],
         descripcion:
             "Dispensador de vidrio texturizado ideal para tu tocador.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Vidrio",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Olivo",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "17 cm x 8.5 cm",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para baño",
                 valor: "Sí",
             },
         ],
@@ -388,26 +388,26 @@ export const productos = [
         imagenPrincipal: "/images/Producto12.png",
         imagenes: [
             "/images/Producto12.png",
-            "/images/Producto12.png",
-            "/images/Producto12.png",
+            "/images/Producto12.1.png",
+            "/images/Producto12.2.png",
         ],
         descripcion:
             "Sábanas de Algodón en color verde ideal para tu recámara.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Algodón",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Olivo",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "42 cm x 20 cm",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para recámara",
                 valor: "Sí",
             },
         ],
@@ -422,15 +422,15 @@ export const productos = [
         imagenPrincipal: "/images/Producto13.png",
         imagenes: [
             "/images/Producto13.png",
-            "/images/Producto13.png",
-            "/images/Producto13.png",
+            "/images/Producto13.1.png",
+            "/images/Producto13.2.png",
         ],
         descripcion:
             "Colcha acolchada reversible de calidad ideal para tu recámara.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Poliester",
             },
             {
                 nombre: "Color",
@@ -438,10 +438,10 @@ export const productos = [
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "190 cm x 135 cm",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para recámara",
                 valor: "Sí",
             },
         ],
@@ -456,26 +456,26 @@ export const productos = [
         imagenPrincipal: "/images/Producto14.png",
         imagenes: [
             "/images/Producto14.png",
-            "/images/Producto14.png",
-            "/images/Producto14.png",
+            "/images/Producto14.1.png",
+            "/images/Producto14.2.png",
         ],
         descripcion:
             "Cobija Ligera verde olivo con extra suavidad ideal para tu recámara.",
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Algodón",
             },
             {
                 nombre: "Color",
-                valor: "Arena",
+                valor: "Verde Olivo",
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "190 cm x 135 cm",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para recámara",
                 valor: "Sí",
             },
         ],
@@ -490,8 +490,8 @@ export const productos = [
         imagenPrincipal: "/images/Producto15.png",
         imagenes: [
             "/images/Producto15.png",
-            "/images/Producto15.png",
-            "/images/Producto15.png",
+            "/images/Producto15.1.png",
+            "/images/Producto15.2.png",
         ],
         descripcion:
             "Almohada de algodon con Comfort Soporte Medio, ideal para tu recámara.",
@@ -499,7 +499,7 @@ export const productos = [
         especificaciones: [
             {
                 nombre: "Material",
-                valor: "Cerámica",
+                valor: "Algodón",
             },
             {
                 nombre: "Color",
@@ -507,10 +507,10 @@ export const productos = [
             },
             {
                 nombre: "Diámetro",
-                valor: "28 cm",
+                valor: "50 cm x 90 cm",
             },
             {
-                nombre: "Apto para microondas",
+                nombre: "Apto para recámara",
                 valor: "Sí",
             },
         ],
