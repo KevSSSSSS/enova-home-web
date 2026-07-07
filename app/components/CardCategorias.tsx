@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Link from "next/link";
+import ImagePlaceholder from "./ImagePlaceholder";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -34,7 +35,7 @@ export default function CardCategorias() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E4234]"></span>
                             </div>
                         </div>
-                        <Image src="/images/categoria1.png" alt="Mesa & Comedor" width={400} height={300} className="w-full h-[220px] object-cover mt-auto transition-transform duration-500 group-hover:scale-105" />
+                        <ImagePlaceholder src="/images/categoria1.png" alt="Mesa & Comedor" className="w-full h-[220px] mt-auto transition-transform duration-500 group-hover:scale-105"/>
                     </div>
                 </Link>
 
@@ -54,7 +55,7 @@ export default function CardCategorias() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E4234]"></span>
                             </div>
                         </div>
-                        <Image src="/images/categoria2.png" alt="Cocina" width={400} height={300} className="w-full h-[220px] object-cover mt-auto transition-transform duration-500 group-hover:scale-105" />
+                        <ImagePlaceholder src="/images/categoria2.png" alt="Cocina" className="w-full h-[220px] mt-auto transition-transform duration-500 group-hover:scale-105"/>
                     </div>
                 </Link>
 
@@ -74,7 +75,7 @@ export default function CardCategorias() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E4234]"></span>
                             </div>
                         </div>
-                        <Image src="/images/categoria3.png" alt="Baño" width={400} height={300} className="w-full h-[220px] object-cover mt-auto transition-transform duration-500 group-hover:scale-105" />
+                        <ImagePlaceholder src="/images/categoria3.png" alt="Baño" className="w-full h-[220px] mt-auto transition-transform duration-500 group-hover:scale-105"/>
                     </div>
                 </Link>
 
@@ -94,7 +95,7 @@ export default function CardCategorias() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E4234]"></span>
                             </div>
                         </div>
-                        <Image src="/images/categoria4.png" alt="Recámara" width={400} height={300} className="w-full h-[220px] object-cover mt-auto transition-transform duration-500 group-hover:scale-105" />
+                        <ImagePlaceholder src="/images/categoria4.png" alt="Recámara" className="w-full h-[220px] mt-auto transition-transform duration-500 group-hover:scale-105"/>
                     </div>
                 </Link>
 
@@ -115,7 +116,7 @@ export default function CardCategorias() {
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#3E4234]"></span>
                             </div>
                         </div>
-                        <Image src="/images/categoria.png" alt="Lifestyle" width={400} height={300} className="w-full h-[220px] object-cover mt-auto transition-transform duration-500 group-hover:scale-105" />
+                        <ImagePlaceholder src="/images/categoria.png" alt="Lifestyle" className="w-full h-[220px] mt-auto transition-transform duration-500 group-hover:scale-105"/>
                     </div>
                 </Link>
             </div>

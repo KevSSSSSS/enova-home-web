@@ -336,7 +336,7 @@ export const productos = [
             },
             {
                 nombre: "Diámetro",
-                valor: "140 cm x 79",
+                valor: "140 cm x 79 cm",
             },
             {
                 nombre: "Apto para Baño",
