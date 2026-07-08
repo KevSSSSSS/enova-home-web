@@ -18,7 +18,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "eNova Home",
+  title: {
+    default: "eNova Home - Inicio",
+    template: "eNova Home - %s",
+  },
   description: "Sitio oficial eNova Home",
 };
 

@@ -1,6 +1,7 @@
 "use client";
 import { Playfair_Display } from "next/font/google";
 import { useEffect } from "react";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -9,6 +10,8 @@ const playfair = Playfair_Display({
 
 
 export default function Contactopage() {
+
+    usePageTitle("Contacto");
 
     useEffect(() => {
         window.scrollTo(0, 0);

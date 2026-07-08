@@ -2,6 +2,7 @@
 import { Playfair_Display, Montserrat } from "next/font/google";
 import Link from "next/link";
 import CardCategorias from "../components/CardCategorias";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -14,6 +15,7 @@ const montserrat = Montserrat({
 });
 
 export default function CategoriasPage() {
+    usePageTitle("Categorías");
     return (
         <main className="bg-[#E7E7E5] min-h-screen px-8 py-10"> 
             {/* Encabezado de Categorías */}

@@ -1,5 +1,6 @@
 "use client";
 import { Playfair_Display } from "next/font/google";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -7,6 +8,7 @@ const playfair = Playfair_Display({
 });
 
 export default function NosotrosPage() {
+  usePageTitle("Nosotros");
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 

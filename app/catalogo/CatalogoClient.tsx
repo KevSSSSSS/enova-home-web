@@ -1,10 +1,10 @@
 "use client";
-//import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import CardCatalogos from "../components/CardCatalogos";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import { productos } from "../data/productos";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 interface CatalogoClientProps {
     categoriaSeleccionada: string;
@@ -26,9 +26,13 @@ export default function CatalogoClient({
     tieneCategoria,
 }: CatalogoClientProps) {
 
+    usePageTitle("Catálogo");
+
+    useEffect(() => {
+    document.title = "eNova Home - Catálogo";
+}, [categoriaSeleccionada]);
 
     const router = useRouter();
-
 
     const categoriasMap: Record<string, string[]> = {
         "TODOS": [],

@@ -12,7 +12,7 @@ export default function CartDropdown({ abierto }: Props) {
     if (!abierto) return null;
 
     return (
-        <div className="absolute top-full -right-2 mt-4 w-[calc(100vw-2rem)] max-w-[380px] bg-white rounded-lg shadow-2xl border border-gray-200 z-50">
+        <div className="absolute top-full -right-2 mt-4 w-[calc(100vw-2rem)] max-w-[380px] bg-white rounded-lg shadow-2xl border border-gray-200 z-[100]">
             {/* Flecha */}
             <div className="absolute -top-2 right-8 w-4 h-4 bg-white border-l border-t border-gray-200 rotate-45" />
 
@@ -62,11 +62,11 @@ export default function CartDropdown({ abierto }: Props) {
             </div>
 
             {/* Botón */}
-            <div className="p-4">
+            {/**<div className="p-4">
                 <button className="w-full h-12 rounded-md bg-[#6B705C] text-white hover:bg-[#3E4234] transition">
                     Ver carrito
                 </button>
-            </div>
+            </div>**/}
         </div>
     );
 }

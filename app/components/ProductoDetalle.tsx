@@ -5,6 +5,7 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import BotonRegresar from "./BotonRegresar";
 import GaleriaModal from "./GaleriaModal";
 import { useCart } from "../context/CartContext";
+import { usePageTitle } from "../hooks/usePageTitle";
 
 const playfair = Playfair_Display({
     subsets: ["latin"],
@@ -36,6 +37,7 @@ interface Props {
 }
 
 export default function ProductoDetalle({ producto }: Props) {
+    usePageTitle(producto.nombre);
     const { agregarAlCarrito } = useCart();
     const [imagenSeleccionada, setImagenSeleccionada] = useState(
         producto.imagenPrincipal

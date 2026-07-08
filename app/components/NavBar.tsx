@@ -121,7 +121,7 @@ const NavBar = () => {
         </div>
 
         {/* Icono de carrito */}
-        <div className="relative" ref={cartDesktopRef}>
+        <div className="relative z-[100]" ref={cartDesktopRef}>
           <button onClick={() => setCartOpen(!cartOpen)} className="relative cursor-pointer">
             <img src="/Images/cart-icon.png" alt="Carrito" className="h-6 w-auto"/>
 
