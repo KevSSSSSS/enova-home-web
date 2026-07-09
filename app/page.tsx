@@ -1,6 +1,7 @@
 "use client";
 import { Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -8,6 +9,25 @@ const playfair = Playfair_Display({
 });
 
 export default function Home() {
+  const imagenesCarrusel = [
+    "/Images/ComedorVerde.png",
+    "/Images/Categoria1.png",
+    "/Images/Categoria2.png",
+    "/Images/Categoria3.png",
+    "/Images/Categoria4.png",
+  ];
+
+  const [imagenActual, setImagenActual] = useState(0);
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setImagenActual((prev) =>
+        prev === imagenesCarrusel.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(intervalo);
+  }, []);
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 
@@ -48,11 +68,35 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Imagen a la derecha */}
-        <div className="relative w-full h-64 sm:h-80 md:h-full">
-          <img src="/Images/ComedorVerde.png" alt="Comedor acogedor eNova Home" className="w-full h-full 
-          object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"/>
+        {/* Carrusel de imágenes a la derecha */}
+        <div className="relative w-full h-64 sm:h-80 md:h-full overflow-hidden group">
+          <img src={imagenesCarrusel[imagenActual]} alt="Comedor acogedor eNova Home"
+            className="w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08] transition-opacity duration-700"
+          />
+
           <div className="absolute inset-0 bg-gradient-to-r from-white/80 to-transparent"></div>
+
+          {/* Flecha izquierda */}
+          <button onClick={() => setImagenActual((prev) => prev === 0 ? imagenesCarrusel.length - 1 : prev - 1)}
+            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 text-white text-6xl hover:scale-110 transition 
+            cursor-pointer select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            ‹
+          </button>
+
+          {/* Flecha derecha */}
+          <button onClick={() => setImagenActual((prev) => prev === imagenesCarrusel.length - 1 ? 0 : prev + 1)}
+            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 text-white text-6xl hover:scale-110 transition
+            cursor-pointer select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            ›
+          </button>
+
+          {/* Indicadores */}
+          <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+            {imagenesCarrusel.map((_, index) => (
+              <button key={index} onClick={() => setImagenActual(index)} className={`w-3 h-3 rounded-full transition ${imagenActual === index
+                  ? "bg-[#3E4234] scale-110" : "bg-white/80 hover:bg-white"}`}/>
+            ))}
+          </div>
         </div>
       </section>
 
