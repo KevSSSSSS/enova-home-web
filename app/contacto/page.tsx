@@ -24,13 +24,13 @@ export default function Contactopage() {
             {/* Banner */}
             <section className="relative px-0 pt-16 md:pt-14 lg:pt-0 bg-[#FFFFFF]">
                 {/* Imagen */}
-                <div className="relative w-full min-h-[1350px] min-[1400px]:min-h-[850px] 2xl:min-h-screen">
+                <div className="relative w-full min-h-[1300px] lg:min-h-screen">
                     <img src="/Images/ComedorVerde.png" className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]" />
                     <div className="absolute inset-0 flex items-start lg:items-center justify-center px-4 md:px-6 pt-8 md:pt-10 pb-10"></div>
 
                     {/* Tarjetas flotantes */}
-                    <div className="absolute inset-0 flex items-start min-[1400px]:items-center justify-center px-4 md:px-6 py-10">
-                        <div className="max-w-7xl w-full grid grid-cols-1 min-[1400px]:grid-cols-2 gap-8 min-[1400px]:gap-12">
+                    <div className="absolute inset-0 flex items-start lg:items-center justify-center px-4 md:px-6 py-10">
+                        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                             {/* FORMULARIO */}
                             <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-6 md:p-10">
 
