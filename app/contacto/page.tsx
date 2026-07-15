@@ -22,15 +22,21 @@ export default function Contactopage() {
         <div className="min-h-screen flex flex-col bg-[#FFFFFF] text-[#3E4234]">
 
             {/* Banner */}
-            <section className="relative px-0 pt-16 md:pt-14 lg:pt-0 bg-[#FFFFFF]">
-                {/* Imagen */}
-                <div className="relative w-full min-h-[1300px] lg:min-h-screen">
-                    <img src="/Images/ComedorVerde.png" className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]" />
-                    <div className="absolute inset-0 flex items-start lg:items-center justify-center px-4 md:px-6 pt-8 md:pt-10 pb-10"></div>
+            <section className="relative px-0 bg-[#FFFFFF]">
+
+                {/* Contenedor general */}
+                <div className="relative w-full min-h-screen overflow-hidden">
+
+                    {/* Imagen de fondo */}
+                    <img src="/Images/ComedorVerde.png" alt="Comedor eNova Home" 
+                    className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"/>
 
                     {/* Tarjetas flotantes */}
-                    <div className="absolute inset-0 flex items-start lg:items-center justify-center px-4 md:px-6 py-10">
-                        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    <div className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-8 pt-[110px] sm:pt-[120px] md:pt-[125px] lg:pt-24 xl:pt-28
+                    pb-10 sm:pb-12 lg:pb-20 2xl:min-h-screen 2xl:items-center">
+
+                        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-7 sm:gap-8 lg:gap-8 xl:gap-12">
+
                             {/* FORMULARIO */}
                             <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-6 md:p-10">
 
