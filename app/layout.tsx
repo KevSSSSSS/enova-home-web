@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/NavBar";
+import ConditionalNavBar from "./components/ConditionalNavBar";
 import { CartProvider } from "./context/CartContext";
 import LoaderProvider from "./components/LoaderProvider";
+import { AuthProvider } from "./context/AuthContext";
 import { Suspense } from "react";
-
+import ConditionalLayout from "./components/ConditionalLayout";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -30,15 +31,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className={montserrat.className}>
         <LoaderProvider />
+        <AuthProvider>
+          <CartProvider>
+            <Suspense fallback={null}>
+              {/* Header */}
+              <ConditionalNavBar />
+            </Suspense>
 
-        <CartProvider>
-          <Suspense fallback={null}>
-            {/* Header */ }
-            <NavBar />
-          </Suspense>
-
-          <div className="pt-20">{children}</div>
-        </CartProvider>
+            <ConditionalLayout>
+              {children}
+            </ConditionalLayout>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );
