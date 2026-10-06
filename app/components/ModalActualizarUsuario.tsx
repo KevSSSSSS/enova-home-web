@@ -400,6 +400,7 @@ return (
                                     activo: event.target.value === "activo"
                                 })
                             }
+                            disabled={true}
                             className="w-full px-4 py-3 rounded-md border border-[#D6D6CF] bg-white text-[#3E4234] outline-none focus:border-[#6B705C]"
                         >
                             <option value="activo">Activo</option>

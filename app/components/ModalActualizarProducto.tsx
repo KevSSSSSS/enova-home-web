@@ -2251,7 +2251,8 @@ export default function ModalActualizarProducto({
                                             e.target.checked
                                         )
                                     }
-                                    disabled={guardando}
+                                    //disabled={guardando}
+                                    disabled={true}
                                     className="
                                         w-4
                                         h-4

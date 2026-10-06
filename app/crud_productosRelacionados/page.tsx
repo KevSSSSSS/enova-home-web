@@ -642,6 +642,14 @@ const abrirModalEliminar = (
 
             </div>
 
+            <ModalRegistrarProductoRelacionado
+                abierto={modalRegistroAbierto}
+                productoParaRelacion={productoParaRelacion}
+                productosRelacionados={productosRelacionados}
+                onCerrar={() => setModalRegistroAbierto(false)}
+                onRegistrado={obtenerProductosRelacionados}
+            />
+
             <ModalActualizarProductoRelacionado
                 abierto={modalActualizarAbierto}
                 relacion={relacionSeleccionada}
