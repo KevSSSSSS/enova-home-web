@@ -443,6 +443,7 @@ export default function SidebarAdministrador() {
                     {/* Pedidos */}
                     <button
                         type="button"
+                        onClick={() => router.push("/crud_pedidos")}
                         className="
                             w-full
                             flex
