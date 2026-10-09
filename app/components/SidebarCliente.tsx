@@ -164,7 +164,7 @@ export default function SidebarCliente() {
 
                 <nav className="py-4">
 
-                    {/* Central de vendedores */}
+                    {/* Central de vendedores
                     <button
                         type="button"
                         className="
@@ -196,7 +196,7 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Central de vendedores
                         </span>
-                    </button>
+                    </button>*/}
 
 
                     {/* Compras */}
@@ -228,6 +228,77 @@ export default function SidebarCliente() {
 
                         <span className="text-[13px]">
                             Compras
+                        </span>
+                    </button>
+
+                    {/* Carritos Abandonados */}
+                    <button
+                        type="button"
+                        className="
+                            w-full
+                            flex
+                            items-center
+                            gap-4
+                            px-5
+                            py-3.5
+                            text-left
+                            text-[#666666]
+                            hover:bg-[#F5F5F5]
+                            transition-colors
+                        "
+                    >
+                        <svg
+                            className="w-6 h-6 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                        >
+                            <circle cx="9" cy="21" r="1" />
+                            <circle cx="19" cy="21" r="1" />
+                            <path d="M2 3h2l2.5 12h12.8l2-9H5" />
+                            <path d="M12 8v3" />
+                            <path d="M12 13.5v.1" />
+                        </svg>
+
+                        <span className="text-[13px]">
+                            Carritos Abandonados
+                        </span>
+                    </button>
+
+
+                    {/* Pedidos */}
+                    <button
+                        type="button"
+                        //onClick={() => router.push("/crud_pedidos")}
+                        className="
+                            w-full
+                            flex
+                            items-center
+                            gap-4
+                            px-5
+                            py-3.5
+                            text-left
+                            text-[#666666]
+                            hover:bg-[#F5F5F5]
+                            transition-colors
+                        "
+                    >
+                        <svg
+                            className="w-6 h-6 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                        >
+                            <path d="M5 4h14v16H5z" />
+                            <path d="M8 8h8" />
+                            <path d="M8 12h8" />
+                            <path d="M8 16h5" />
+                        </svg>
+
+                        <span className="text-[13px]">
+                            Pedidos
                         </span>
                     </button>
 
@@ -328,7 +399,7 @@ export default function SidebarCliente() {
                     </button>
 
 
-                    {/* Tiendas */}
+                    {/* Tiendas
                     <button
                         type="button"
                         className="
@@ -359,10 +430,10 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Tiendas que sigo
                         </span>
-                    </button>
+                    </button>*/}
 
 
-                    {/* Vehículos */}
+                    {/* Vehículos
                     <button
                         type="button"
                         className="
@@ -394,10 +465,10 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Vehículos de interés
                         </span>
-                    </button>
+                    </button>*/}
 
 
-                    {/* Inmuebles */}
+                    {/* Inmuebles
                     <button
                         type="button"
                         className="
@@ -428,7 +499,7 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Inmuebles de interés
                         </span>
-                    </button>
+                    </button>*/}
 
 
                     {/* Búsquedas */}
@@ -464,7 +535,7 @@ export default function SidebarCliente() {
                     </button>
 
 
-                    {/* Créditos */}
+                    {/* Monedero */}
                     <button
                         type="button"
                         className="
@@ -493,12 +564,12 @@ export default function SidebarCliente() {
                         </svg>
 
                         <span className="text-[13px]">
-                            Créditos
+                            Monedero
                         </span>
                     </button>
 
 
-                    {/* Suscripciones */}
+                    {/* Suscripciones
                     <button
                         type="button"
                         className="
@@ -529,8 +600,41 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Suscripciones
                         </span>
-                    </button>
+                    </button>´*/}
 
+                     
+                    {/* Métodos de pago */}
+                    <button
+                        type="button"
+                        className="
+                            w-full
+                            flex
+                            items-center
+                            gap-4
+                            px-5
+                            py-3.5
+                            text-left
+                            text-[#666666]
+                            hover:bg-[#F5F5F5]
+                            transition-colors
+                        "
+                    >
+                        <svg
+                            className="w-6 h-6 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                        >
+                            <rect x="3" y="5" width="18" height="14" rx="2" />
+                            <path d="M3 10h18" />
+                            <path d="M7 15h4" />
+                        </svg>
+
+                        <span className="text-[13px]">
+                            Métodos de pago
+                        </span>
+                    </button>
 
                     {/* Facturación */}
                     <button

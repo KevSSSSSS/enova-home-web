@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
-/*import SidebarCliente from "../components/SidebarCliente";*/
+import SidebarCliente from "../components/SidebarCliente";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 
 export default function PerfilPage() {
@@ -45,7 +45,11 @@ export default function PerfilPage() {
                 ====================================================== */}
 
                 {/*<SidebarCliente />*/}
-                <SidebarAdministrador />
+                {rol?.nombre_rol === "CLIENTE" ? (
+                    <SidebarCliente />
+                ) : (
+                    <SidebarAdministrador />
+                )}
 
                 {/* =====================================================
                     CONTENIDO ORIGINAL
