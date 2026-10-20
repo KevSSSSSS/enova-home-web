@@ -1046,7 +1046,7 @@ export default function ModalActualizarProducto({
      * ========================================================
      */
 
-    const validarFormulario = (): string | null => {
+    const validarFormulario = async (): Promise<string | null> => {
 
         if (!idSubcategoria) {
 
@@ -1058,6 +1058,90 @@ export default function ModalActualizarProducto({
         if (!nombre.trim()) {
 
             return "El nombre del producto es obligatorio.";
+
+        }
+
+
+        const palabrasPermitidasCortas = [
+            "de",
+            "la",
+            "el",
+            "y",
+            "da",
+            "do",
+            "di",
+            "van",
+            "von"
+        ];
+
+
+        const palabrasNombre =
+            nombre
+                .trim()
+                .split(/\s+/);
+
+
+        for (
+            const palabra
+            of palabrasNombre
+        ) {
+
+            const letras =
+                palabra.replace(
+                    /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                    ""
+                );
+
+
+            if (
+                letras.length < 3 &&
+                !palabrasPermitidasCortas.includes(
+                    letras.toLowerCase()
+                )
+            ) {
+
+                return "El nombre del producto contiene una palabra incompleta.";
+
+            }
+
+        }
+
+
+        if (!marca.trim()) {
+
+            return "La marca del producto es obligatoria.";
+
+        }
+
+
+        const palabrasMarca =
+            marca
+                .trim()
+                .split(/\s+/);
+
+
+        for (
+            const palabra
+            of palabrasMarca
+        ) {
+
+            const letras =
+                palabra.replace(
+                    /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                    ""
+                );
+
+
+            if (
+                letras.length < 3 &&
+                !palabrasPermitidasCortas.includes(
+                    letras.toLowerCase()
+                )
+            ) {
+
+                return "La marca del producto contiene una palabra incompleta.";
+
+            }
 
         }
 
@@ -1079,9 +1163,38 @@ export default function ModalActualizarProducto({
                 variantes[indice];
 
 
-            if (!variante.sku.trim()) {
+            const sku =
+                variante.sku.trim();
+
+
+            if (!sku) {
 
                 return `La variante ${indice + 1} debe tener un SKU.`;
+
+            }
+
+
+            if (sku.length < 3) {
+
+                return `El SKU de la variante ${indice + 1} está incompleto.`;
+
+            }
+
+            if (
+                variante.codigoBarras.trim() !== ""
+            ) {
+
+                const codigoBarras =
+                    variante.codigoBarras.trim();
+
+
+                if (
+                    !/^\d{13}$/.test(codigoBarras)
+                ) {
+
+                    return `El código de barras de la variante ${indice + 1} debe contener exactamente 13 dígitos.`;
+
+                }
 
             }
 
@@ -1091,6 +1204,25 @@ export default function ModalActualizarProducto({
             ) {
 
                 return `La variante ${indice + 1} debe tener un precio normal.`;
+
+            }
+
+            if (
+                variante.precioNormal.trim() === ""
+            ) {
+
+                return `La variante ${indice + 1} debe tener un precio normal.`;
+
+            }
+
+
+            if (
+                !/^\d+(\.\d+)?$/.test(
+                    variante.precioNormal.trim()
+                )
+            ) {
+
+                return `El precio normal de la variante ${indice + 1} está incompleto o no es válido.`;
 
             }
 
@@ -1114,6 +1246,17 @@ export default function ModalActualizarProducto({
             if (
                 variante.precioOferta.trim() !== ""
             ) {
+
+                if (
+                    !/^\d+(\.\d+)?$/.test(
+                        variante.precioOferta.trim()
+                    )
+                ) {
+
+                    return `El precio de oferta de la variante ${indice + 1} está incompleto o no es válido.`;
+
+                }
+
 
                 const precioOferta =
                     Number(
@@ -1141,7 +1284,6 @@ export default function ModalActualizarProducto({
 
             }
 
-
             for (
                 let indiceValor = 0;
                 indiceValor < variante.valores.length;
@@ -1151,12 +1293,95 @@ export default function ModalActualizarProducto({
                 const valorVariante =
                     variante.valores[indiceValor];
 
+
                 if (!valorVariante.tipoVariante.trim()) {
+
                     return `El valor ${indiceValor + 1} de la variante ${indice + 1} debe tener un tipo de variante.`;
+
                 }
 
+
                 if (!valorVariante.valor.trim()) {
+
                     return `El valor ${indiceValor + 1} de la variante ${indice + 1} no puede estar vacío.`;
+
+                }
+
+
+                const palabrasPermitidasCortasValores = [
+                    "de",
+                    "la",
+                    "el",
+                    "y",
+                    "da",
+                    "do",
+                    "di",
+                    "van",
+                    "von"
+                ];
+
+
+                const palabrasTipo =
+                    valorVariante.tipoVariante
+                        .trim()
+                        .split(/\s+/);
+
+
+                for (
+                    const palabra
+                    of palabrasTipo
+                ) {
+
+                    const letras =
+                        palabra.replace(
+                            /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                            ""
+                        );
+
+
+                    if (
+                        letras.length < 3 &&
+                        !palabrasPermitidasCortasValores.includes(
+                            letras.toLowerCase()
+                        )
+                    ) {
+
+                        return `El tipo de variante del valor ${indiceValor + 1} de la variante ${indice + 1} contiene una palabra incompleta.`;
+
+                    }
+
+                }
+
+
+                const palabrasValor =
+                    valorVariante.valor
+                        .trim()
+                        .split(/\s+/);
+
+
+                for (
+                    const palabra
+                    of palabrasValor
+                ) {
+
+                    const letras =
+                        palabra.replace(
+                            /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                            ""
+                        );
+
+
+                    if (
+                        letras.length < 3 &&
+                        !palabrasPermitidasCortasValores.includes(
+                            letras.toLowerCase()
+                        )
+                    ) {
+
+                        return `El valor ${indiceValor + 1} de la variante ${indice + 1} contiene una palabra incompleta.`;
+
+                    }
+
                 }
 
             }
@@ -1183,8 +1408,91 @@ export default function ModalActualizarProducto({
 
             }
 
+
+            const palabrasPermitidasCortasEspecificaciones = [
+                "de",
+                "la",
+                "el",
+                "y",
+                "da",
+                "do",
+                "di",
+                "van",
+                "von"
+            ];
+
+
+            const palabrasNombre =
+                especificacion.nombre
+                    .trim()
+                    .split(/\s+/);
+
+
+            for (
+                const palabra
+                of palabrasNombre
+            ) {
+
+                const letras =
+                    palabra.replace(
+                        /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                        ""
+                    );
+
+
+                if (
+                    letras.length < 3 &&
+                    !palabrasPermitidasCortasEspecificaciones.includes(
+                        letras.toLowerCase()
+                    )
+                ) {
+
+                    return `El nombre de la especificación ${indice + 1} contiene una palabra incompleta.`;
+
+                }
+
+            }
+
+
+            const palabrasValor =
+                especificacion.valor
+                    .trim()
+                    .split(/\s+/);
+
+
+            for (
+                const palabra
+                of palabrasValor
+            ) {
+
+                const letras =
+                    palabra.replace(
+                        /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                        ""
+                    );
+
+
+                if (
+                    letras.length < 3 &&
+                    !palabrasPermitidasCortasEspecificaciones.includes(
+                        letras.toLowerCase()
+                    )
+                ) {
+
+                    return `El valor de la especificación ${indice + 1} contiene una palabra incompleta.`;
+
+                }
+
+            }
+
         }
 
+        if (imagenes.length === 0) {
+            return "El producto debe tener al menos una imagen.";
+        }
+        if (imagenes.length > 6) {
+            return "El producto no puede tener más de 6 imágenes.";
+        }
 
         for (
             let indice = 0;
@@ -1199,6 +1507,81 @@ export default function ModalActualizarProducto({
                 !imagen.archivo
             ) {
                 return `La imagen ${indice + 1} debe tener un archivo seleccionado.`;
+            }
+        }
+
+        /*
+ * Validar imágenes duplicadas.
+ * Se compara el contenido real de los archivos nuevos.
+ */
+
+        for (
+            let indice = 0;
+            indice < imagenes.length;
+            indice++
+        ) {
+
+            const archivoActual =
+                imagenes[indice].archivo;
+
+            if (!archivoActual) {
+                continue;
+            }
+
+            const contenidoActual =
+                new Uint8Array(
+                    await archivoActual.arrayBuffer()
+                );
+
+            for (
+                let indiceComparacion = indice + 1;
+                indiceComparacion < imagenes.length;
+                indiceComparacion++
+            ) {
+
+                const archivoComparacion =
+                    imagenes[indiceComparacion].archivo;
+
+                if (!archivoComparacion) {
+                    continue;
+                }
+
+                if (
+                    archivoActual.size !==
+                    archivoComparacion.size
+                ) {
+                    continue;
+                }
+
+                const contenidoComparacion =
+                    new Uint8Array(
+                        await archivoComparacion.arrayBuffer()
+                    );
+
+                let archivosIguales = true;
+
+                for (
+                    let indiceByte = 0;
+                    indiceByte < contenidoActual.length;
+                    indiceByte++
+                ) {
+
+                    if (
+                        contenidoActual[indiceByte] !==
+                        contenidoComparacion[indiceByte]
+                    ) {
+
+                        archivosIguales = false;
+
+                        break;
+                    }
+                }
+
+                if (archivosIguales) {
+
+                    return "No puede haber imágenes duplicadas.";
+
+                }
             }
         }
 
@@ -1247,7 +1630,7 @@ export default function ModalActualizarProducto({
         }
 
         const errorValidacion =
-            validarFormulario();
+            await validarFormulario();
 
         if (errorValidacion) {
             setError(errorValidacion);
@@ -2574,6 +2957,7 @@ export default function ModalActualizarProducto({
                             </div>
 
 
+                            {imagenes.length < 6 && (
                             <button
                                 type="button"
                                 onClick={agregarImagen}
@@ -2592,6 +2976,7 @@ export default function ModalActualizarProducto({
                             >
                                 + Agregar imagen
                             </button>
+                            )}
 
                         </div>
 
@@ -2738,7 +3123,7 @@ export default function ModalActualizarProducto({
                                                             />
                                                         ) : (
                                                             <span
-                                                                    className="
+                                                                className="
                                                                         whitespace-nowrap
                                                                         text-sm
                                                                         text-gray-600
@@ -3095,7 +3480,8 @@ export default function ModalActualizarProducto({
 
 
                                                 <input
-                                                    type="number"
+                                                    type="text"
+                                                    inputMode="decimal"
                                                     min="0"
                                                     step="0.01"
                                                     value={
@@ -3147,7 +3533,8 @@ export default function ModalActualizarProducto({
 
 
                                                 <input
-                                                    type="number"
+                                                    type="text"
+                                                    inputMode="decimal"
                                                     min="0"
                                                     step="0.01"
                                                     value={

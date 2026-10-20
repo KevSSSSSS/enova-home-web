@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function SidebarAdministrador() {
 
     const router = useRouter();
+    const pathname = usePathname();
 
     const [sidebarAbierto, setSidebarAbierto] = useState(false);
 
@@ -204,7 +205,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/usuarios")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -212,10 +213,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/usuarios"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -240,7 +245,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/clientes")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -248,10 +253,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/clientes"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -308,7 +317,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/crud_roles_permisos")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -316,10 +325,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/crud_roles_permisos"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -341,7 +354,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/crud_productos")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -349,10 +362,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/crud_productos"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -375,7 +392,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/crud_productosRelacionados")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -383,10 +400,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/crud_productosRelacionados"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -410,7 +431,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/crud_categorias")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -418,10 +439,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/crud_categorias"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -444,7 +469,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/crud_pedidos")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -452,10 +477,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/crud_pedidos"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -512,7 +541,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/formulario_facturacion")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -520,10 +549,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/formulario_facturacion"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -546,7 +579,8 @@ export default function SidebarAdministrador() {
                     {/* Reportes */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => router.push("/dashboard_ventas")}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -554,10 +588,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/dashboard_ventas"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -617,7 +655,7 @@ export default function SidebarAdministrador() {
                     <button
                         type="button"
                         onClick={() => router.push("/perfil")}
-                        className="
+                        className={`
                             w-full
                             flex
                             items-center
@@ -625,10 +663,14 @@ export default function SidebarAdministrador() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#6B705C]
-                            bg-[#F1F1EF]
-                            font-medium
-                        "
+                            cursor-pointer
+                            ${
+                                pathname === "/perfil"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
+                            transition-colors
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"

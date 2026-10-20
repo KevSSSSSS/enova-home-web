@@ -529,39 +529,39 @@ export default function ModalRegistrarProducto({
 
     };
 
-/*
- * ========================================================
- * SELECCIONAR IMAGEN
- * ========================================================
- */
+    /*
+     * ========================================================
+     * SELECCIONAR IMAGEN
+     * ========================================================
+     */
 
-const seleccionarImagen = (
-    indice: number,
-    archivo: File | null
-) => {
+    const seleccionarImagen = (
+        indice: number,
+        archivo: File | null
+    ) => {
 
-    if (!archivo) {
-        return;
-    }
+        if (!archivo) {
+            return;
+        }
 
-    setImagenes(
-        imagenes.map(
-            (imagen, index) => {
+        setImagenes(
+            imagenes.map(
+                (imagen, index) => {
 
-                if (index !== indice) {
-                    return imagen;
+                    if (index !== indice) {
+                        return imagen;
+                    }
+
+                    return {
+                        ...imagen,
+                        archivo,
+                    };
+
                 }
+            )
+        );
 
-                return {
-                    ...imagen,
-                    archivo,
-                };
-
-            }
-        )
-    );
-
-};
+    };
 
     /*
      * ========================================================
@@ -890,7 +890,7 @@ const seleccionarImagen = (
      * ========================================================
      */
 
-    const validarFormulario = (): string | null => {
+    const validarFormulario = async (): Promise<string | null> => {
 
         if (!idSubcategoria) {
 
@@ -902,6 +902,202 @@ const seleccionarImagen = (
         if (!nombre.trim()) {
 
             return "El nombre del producto es obligatorio.";
+
+        }
+
+
+        /*
+         * Validar que las palabras del nombre
+         * no estén incompletas.
+         */
+
+        const palabrasPermitidasCortas = [
+            "de",
+            "la",
+            "el",
+            "y",
+            "da",
+            "do",
+            "di",
+            "van",
+            "von"
+        ];
+
+
+        const palabrasNombre =
+            nombre
+                .trim()
+                .split(/\s+/);
+
+
+        for (
+            const palabra
+            of palabrasNombre
+        ) {
+
+            const letras =
+                palabra.replace(
+                    /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                    ""
+                );
+
+
+            if (
+                letras.length < 3 &&
+                !palabrasPermitidasCortas.includes(
+                    letras.toLowerCase()
+                )
+            ) {
+
+                return "El nombre del producto contiene una palabra incompleta.";
+
+            }
+
+        }
+
+        if (!marca.trim()) {
+
+            return "La marca del producto es obligatoria.";
+
+        }
+
+
+        /*
+         * Validar que las palabras de la marca
+         * no estén incompletas.
+         */
+
+        const palabrasMarca =
+            marca
+                .trim()
+                .split(/\s+/);
+
+
+        for (
+            const palabra
+            of palabrasMarca
+        ) {
+
+            const letras =
+                palabra.replace(
+                    /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                    ""
+                );
+
+
+            if (
+                letras.length < 3 &&
+                !palabrasPermitidasCortas.includes(
+                    letras.toLowerCase()
+                )
+            ) {
+
+                return "La marca del producto contiene una palabra incompleta.";
+
+            }
+
+        }
+
+        /*
+ * Validar especificaciones.
+ * Las especificaciones son opcionales,
+ * pero si se agrega una, debe estar completa.
+ */
+
+        for (
+            let indice = 0;
+            indice < especificaciones.length;
+            indice++
+        ) {
+
+            const especificacion =
+                especificaciones[indice];
+
+            const nombreEspecificacion =
+                especificacion.nombre.trim();
+
+            const valorEspecificacion =
+                especificacion.valor.trim();
+
+
+            if (!nombreEspecificacion) {
+
+                return `La especificación ${indice + 1} debe tener un nombre.`;
+
+            }
+
+
+            if (!valorEspecificacion) {
+
+                return `La especificación ${indice + 1} debe tener un valor.`;
+
+            }
+
+
+            /*
+             * Validar palabras del nombre
+             * de la especificación.
+             */
+
+            const palabrasNombreEspecificacion =
+                nombreEspecificacion.split(/\s+/);
+
+            for (
+                const palabra
+                of palabrasNombreEspecificacion
+            ) {
+
+                const letras =
+                    palabra.replace(
+                        /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                        ""
+                    );
+
+                if (
+                    letras.length < 3 &&
+                    !palabrasPermitidasCortas.includes(
+                        letras.toLowerCase()
+                    )
+                ) {
+
+                    return `El nombre de la especificación ${indice + 1} contiene una palabra incompleta.`;
+
+                }
+
+            }
+
+
+            /*
+             * Validar palabras del valor
+             * de la especificación.
+             */
+
+            const palabrasValorEspecificacion =
+                valorEspecificacion.split(/\s+/);
+
+            for (
+                const palabra
+                of palabrasValorEspecificacion
+            ) {
+
+                const letras =
+                    palabra.replace(
+                        /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                        ""
+                    );
+
+                if (
+                    letras.length < 3 &&
+                    !palabrasPermitidasCortas.includes(
+                        letras.toLowerCase()
+                    )
+                ) {
+
+                    return `El valor de la especificación ${indice + 1} contiene una palabra incompleta.`;
+
+                }
+
+            }
 
         }
 
@@ -923,9 +1119,38 @@ const seleccionarImagen = (
                 variantes[indice];
 
 
-            if (!variante.sku.trim()) {
+            const sku =
+                variante.sku.trim();
+
+
+            if (!sku) {
 
                 return `La variante ${indice + 1} debe tener un SKU.`;
+
+            }
+
+            if (
+                variante.codigoBarras.trim() !== ""
+            ) {
+
+                const codigoBarras =
+                    variante.codigoBarras.trim();
+
+
+                if (
+                    !/^\d{13}$/.test(codigoBarras)
+                ) {
+
+                    return `El código de barras de la variante ${indice + 1} debe contener exactamente 13 dígitos.`;
+
+                }
+
+            }
+
+
+            if (sku.length < 3) {
+
+                return `El SKU de la variante ${indice + 1} está incompleto.`;
 
             }
 
@@ -935,6 +1160,16 @@ const seleccionarImagen = (
             ) {
 
                 return `La variante ${indice + 1} debe tener un precio normal.`;
+
+            }
+
+            if (
+                !/^\d+(\.\d+)?$/.test(
+                    variante.precioNormal.trim()
+                )
+            ) {
+
+                return `El precio normal de la variante ${indice + 1} está incompleto o no es válido.`;
 
             }
 
@@ -958,6 +1193,16 @@ const seleccionarImagen = (
             if (
                 variante.precioOferta.trim() !== ""
             ) {
+
+                if (
+                    !/^\d+(\.\d+)?$/.test(
+                        variante.precioOferta.trim()
+                    )
+                ) {
+
+                    return `El precio de oferta de la variante ${indice + 1} está incompleto o no es válido.`;
+
+                }
 
                 const precioOferta =
                     Number(
@@ -995,12 +1240,72 @@ const seleccionarImagen = (
                 const valorVariante =
                     variante.valores[indiceValor];
 
-                if (!valorVariante.tipoVariante.trim()) {
-                    return `El valor ${indiceValor + 1} de la variante ${indice + 1} debe tener un tipo de variante.`;
+                const tipoVariante =
+                    valorVariante.tipoVariante.trim();
+
+                const valor =
+                    valorVariante.valor.trim();
+
+
+                /*
+                 * Si el registro de valor está completamente vacío,
+                 * se permite porque los valores de variante son opcionales.
+                 */
+
+                if (
+                    !tipoVariante &&
+                    !valor
+                ) {
+                    continue;
                 }
 
-                if (!valorVariante.valor.trim()) {
+
+                /*
+                 * Si se comenzó a llenar el registro,
+                 * ambos campos son obligatorios.
+                 */
+
+                if (!tipoVariante) {
+
+                    return `El valor ${indiceValor + 1} de la variante ${indice + 1} debe tener un tipo de variante.`;
+
+                }
+
+
+                if (!valor) {
+
                     return `El valor ${indiceValor + 1} de la variante ${indice + 1} no puede estar vacío.`;
+
+                }
+
+
+                /*
+                 * Ninguna palabra del valor puede tener
+                 * menos de 3 letras.
+                 */
+
+                const palabrasValor =
+                    valor.split(/\s+/);
+
+                for (
+                    const palabra
+                    of palabrasValor
+                ) {
+
+                    const letras =
+                        palabra.replace(
+                            /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü]/g,
+                            ""
+                        );
+
+                    if (
+                        letras.length < 3
+                    ) {
+
+                        return `El valor ${indiceValor + 1} de la variante ${indice + 1} contiene una palabra incompleta.`;
+
+                    }
+
                 }
 
             }
@@ -1008,19 +1313,24 @@ const seleccionarImagen = (
         }
 
 
-for (
-    let indice = 0;
-    indice < imagenes.length;
-    indice++
-) {
+        /*
+         * Validar imágenes.
+         * El producto debe tener al menos una imagen.
+         */
 
-    if (!imagenes[indice].archivo) {
+        if (imagenes.length === 0) {
 
-        return `La imagen ${indice + 1} debe tener un archivo seleccionado.`;
+            return "El producto debe tener al menos una imagen.";
 
-    }
+        }
 
-}
+
+        if (imagenes.length > 6) {
+
+            return "El producto no puede tener más de 6 imágenes.";
+
+        }
+
 
         for (
             let indice = 0;
@@ -1036,6 +1346,94 @@ for (
 
         }
 
+
+        /*
+         * Validar imágenes duplicadas.
+         * Se compara el contenido real de los archivos.
+         */
+
+        for (
+            let indice = 0;
+            indice < imagenes.length;
+            indice++
+        ) {
+
+            const archivoActual =
+                imagenes[indice].archivo;
+
+            if (!archivoActual) {
+                continue;
+            }
+
+
+            const contenidoActual =
+                new Uint8Array(
+                    await archivoActual.arrayBuffer()
+                );
+
+
+            for (
+                let indiceComparacion = indice + 1;
+                indiceComparacion < imagenes.length;
+                indiceComparacion++
+            ) {
+
+                const archivoComparacion =
+                    imagenes[indiceComparacion].archivo;
+
+                if (!archivoComparacion) {
+                    continue;
+                }
+
+
+                if (
+                    archivoActual.size !==
+                    archivoComparacion.size
+                ) {
+
+                    continue;
+
+                }
+
+
+                const contenidoComparacion =
+                    new Uint8Array(
+                        await archivoComparacion.arrayBuffer()
+                    );
+
+
+                let archivosIguales = true;
+
+
+                for (
+                    let indiceByte = 0;
+                    indiceByte < contenidoActual.length;
+                    indiceByte++
+                ) {
+
+                    if (
+                        contenidoActual[indiceByte] !==
+                        contenidoComparacion[indiceByte]
+                    ) {
+
+                        archivosIguales = false;
+
+                        break;
+
+                    }
+
+                }
+
+
+                if (archivosIguales) {
+
+                    return "No puede haber imágenes duplicadas.";
+
+                }
+
+            }
+
+        }
 
         /*
          * Validar SKU duplicados.
@@ -1076,7 +1474,7 @@ for (
         setMensaje("");
 
         const errorValidacion =
-            validarFormulario();
+            await validarFormulario();
 
         if (errorValidacion) {
             setError(errorValidacion);
@@ -1312,83 +1710,83 @@ for (
                     })
                 );
 
-                const formulario = new FormData();
+            const formulario = new FormData();
 
-formulario.append(
-    "idSubcategoria",
-    String(Number(idSubcategoria))
-);
+            formulario.append(
+                "idSubcategoria",
+                String(Number(idSubcategoria))
+            );
 
-formulario.append(
-    "nombre",
-    nombre.trim()
-);
+            formulario.append(
+                "nombre",
+                nombre.trim()
+            );
 
-formulario.append(
-    "marca",
-    marca.trim()
-);
+            formulario.append(
+                "marca",
+                marca.trim()
+            );
 
-formulario.append(
-    "descripcionCorta",
-    descripcionCorta.trim()
-);
+            formulario.append(
+                "descripcionCorta",
+                descripcionCorta.trim()
+            );
 
-formulario.append(
-    "descripcion",
-    descripcion.trim()
-);
+            formulario.append(
+                "descripcion",
+                descripcion.trim()
+            );
 
-formulario.append(
-    "destacado",
-    String(destacado)
-);
+            formulario.append(
+                "destacado",
+                String(destacado)
+            );
 
-formulario.append(
-    "publicado",
-    String(publicado)
-);
+            formulario.append(
+                "publicado",
+                String(publicado)
+            );
 
-formulario.append(
-    "especificaciones",
-    JSON.stringify(
-        especificacionesBackend
-    )
-);
+            formulario.append(
+                "especificaciones",
+                JSON.stringify(
+                    especificacionesBackend
+                )
+            );
 
-formulario.append(
-    "variantes",
-    JSON.stringify(
-        variantesBackend
-    )
-);
+            formulario.append(
+                "variantes",
+                JSON.stringify(
+                    variantesBackend
+                )
+            );
 
-/*
- * Agregar las imágenes reales.
- */
-imagenes.forEach((imagen) => {
+            /*
+             * Agregar las imágenes reales.
+             */
+            imagenes.forEach((imagen) => {
 
-    if (imagen.archivo) {
+                if (imagen.archivo) {
 
-        formulario.append(
-            "imagenes",
-            imagen.archivo
-        );
+                    formulario.append(
+                        "imagenes",
+                        imagen.archivo
+                    );
 
-    }
+                }
 
-});
+            });
 
             const respuesta = await fetch(
-    `${API_URL}/productos/completo`,
-    {
-        method: "POST",
+                `${API_URL}/productos/completo`,
+                {
+                    method: "POST",
 
-        credentials: "include",
+                    credentials: "include",
 
-        body: formulario,
-    }
-);
+                    body: formulario,
+                }
+            );
 
             const datos =
                 await respuesta.json();
@@ -2300,25 +2698,26 @@ imagenes.forEach((imagen) => {
 
                             </div>
 
-
-                            <button
-                                type="button"
-                                onClick={agregarImagen}
-                                disabled={guardando}
-                                className="
-                                    px-3
-                                    py-2
-                                    text-sm
-                                    rounded
-                                    border
-                                    border-[#6B705C]
-                                    text-[#6B705C]
-                                    hover:bg-[#E7E7E5]
-                                    transition-colors
-                                "
-                            >
-                                + Agregar imagen
-                            </button>
+                            {imagenes.length < 6 && (
+                                <button
+                                    type="button"
+                                    onClick={agregarImagen}
+                                    disabled={guardando}
+                                    className="
+                                        px-3
+                                        py-2
+                                        text-sm
+                                        rounded
+                                        border
+                                        border-[#6B705C]
+                                        text-[#6B705C]
+                                        hover:bg-[#E7E7E5]
+                                        transition-colors
+                                    "
+                                >
+                                    + Agregar imagen
+                                </button>
+                            )}
 
                         </div>
 
@@ -2390,68 +2789,76 @@ imagenes.forEach((imagen) => {
                                                 </label>
 
 
-<div
-    className="
-        flex
-        items-center
-        gap-2
-    "
->
+                                                <div
+                                                    className="
+                                                        flex
+                                                        items-center
+                                                        gap-2
+                                                    "
+                                                >
 
-    <input
-        ref={inputImagenRef}
-        type="file"
-        accept="image/jpeg,image/png,image/webp"
-        className="hidden"
-        onChange={(e) =>
-            seleccionarImagen(
-                indice,
-                e.target.files?.[0] || null
-            )
-        }
-        disabled={guardando}
-    />
+                                                    <input
+                                                        ref={inputImagenRef}
+                                                        type="file"
+                                                        accept="image/jpeg,image/png,image/webp"
+                                                        className="hidden"
+                                                        onChange={(e) =>
+                                                            seleccionarImagen(
+                                                                indice,
+                                                                e.target.files?.[0] || null
+                                                            )
+                                                        }
+                                                        disabled={guardando}
+                                                    />
 
-    <div
-        className="
-            flex-1
-            rounded
-            border
-            border-[#D6D6CF]
-            px-3
-            py-2
-            text-sm
-            bg-white
-            text-gray-600
-        "
-    >
-        {imagen.archivo
-            ? imagen.archivo.name
-            : "Ninguna imagen seleccionada"}
-    </div>
+                                                    <div
+                                                        className="
+                                                            flex-1
+                                                            rounded
+                                                            border
+                                                            border-[#D6D6CF]
+                                                            px-3
+                                                            py-2
+                                                            text-sm
+                                                            bg-white
+                                                            text-gray-600
+                                                        "
+                                                    >
+                                                        {imagen.archivo
+                                                            ? imagen.archivo.name
+                                                            : "Ninguna imagen seleccionada"}
+                                                    </div>
 
-    <button
-        type="button"
-        onClick={() =>
-            inputImagenRef.current?.click()
-        }
-        disabled={guardando}
-        className="
-            px-3
-            py-2
-            text-sm
-            rounded
-            border
-            border-[#6B705C]
-            text-[#6B705C]
-            hover:bg-[#E7E7E5]
-            transition-colors
-        "
-    >
-        Examinar
-    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
 
-</div>
+                                                            if (inputImagenRef.current) {
+
+                                                                inputImagenRef.current.value = "";
+
+                                                                inputImagenRef.current.click();
+
+                                                            }
+
+                                                        }}
+                                                        disabled={guardando}
+                                                        className="
+                                                            px-3
+                                                            py-2
+                                                            text-sm
+                                                            rounded
+                                                            border
+                                                            border-[#6B705C]
+                                                            text-[#6B705C]
+                                                            hover:bg-[#E7E7E5]
+                                                            transition-colors
+                                                        "
+                                                    >
+                                                        Examinar
+                                                    </button>
+
+                                                </div>
 
                                             </div>
 
@@ -2772,7 +3179,8 @@ imagenes.forEach((imagen) => {
 
 
                                                 <input
-                                                    type="number"
+                                                    type="text"
+                                                    inputMode="decimal"
                                                     min="0"
                                                     step="0.01"
                                                     value={
@@ -2824,7 +3232,8 @@ imagenes.forEach((imagen) => {
 
 
                                                 <input
-                                                    type="number"
+                                                    type="text"
+                                                    inputMode="decimal"
                                                     min="0"
                                                     step="0.01"
                                                     value={
