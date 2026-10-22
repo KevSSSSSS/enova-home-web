@@ -1,10 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function SidebarCliente() {
 
     const [sidebarAbierto, setSidebarAbierto] = useState(false);
+
+    const pathname = usePathname();
+    const router = useRouter();
 
     return (
         <>
@@ -31,6 +35,7 @@ export default function SidebarCliente() {
                     rounded-md
                     shadow-sm
                     text-[#3E4234]
+                    cursor-pointer
                     md:hidden
                 "
                 aria-label="Abrir menú"
@@ -65,6 +70,7 @@ export default function SidebarCliente() {
                         right-0
                         z-40
                         bg-black/20
+                        cursor-pointer
                         md:hidden
                     "
                     aria-label="Cerrar menú"
@@ -129,6 +135,7 @@ export default function SidebarCliente() {
                             text-[#666666]
                             hover:text-[#3E4234]
                             transition-colors
+                            cursor-pointer
                         "
                         aria-label="Cerrar menú"
                     >
@@ -202,7 +209,11 @@ export default function SidebarCliente() {
                     {/* Compras */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/compras");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -210,10 +221,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/compras"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -234,7 +249,11 @@ export default function SidebarCliente() {
                     {/* Carritos Abandonados */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/carritos-abandonados");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -242,10 +261,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/carritos-abandonados"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -267,11 +290,15 @@ export default function SidebarCliente() {
                     </button>
 
 
-                    {/* Pedidos */}
+                    {/* Mis envios */}
                     <button
                         type="button"
                         //onClick={() => router.push("/crud_pedidos")}
-                        className="
+                        onClick={() => {
+                            router.push("/mis-envios");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -279,10 +306,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/mis-envios"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -291,19 +322,21 @@ export default function SidebarCliente() {
                             stroke="currentColor"
                             strokeWidth="1.7"
                         >
-                            <path d="M5 4h14v16H5z" />
-                            <path d="M8 8h8" />
-                            <path d="M8 12h8" />
-                            <path d="M8 16h5" />
+                            <path d="M1 6h13v12H1z" />
+<path d="M14 10h4l4 4v4h-8z" />
+<circle cx="5" cy="19" r="2" />
+<circle cx="18" cy="19" r="2" />
+<path d="M3 19h0" />
+<path d="M14 14h7" />
                         </svg>
 
                         <span className="text-[13px]">
-                            Pedidos
+                            Mis Envíos
                         </span>
                     </button>
 
 
-                    {/* Preguntas */}
+                    {/* Preguntas 
                     <button
                         type="button"
                         className="
@@ -332,10 +365,10 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Preguntas
                         </span>
-                    </button>
+                    </button>*/}
 
 
-                    {/* Opiniones */}
+                    {/* Opiniones 
                     <button
                         type="button"
                         className="
@@ -364,10 +397,10 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Opiniones
                         </span>
-                    </button>
+                    </button>*/}
 
 
-                    {/* Favoritos */}
+                    {/* Favoritos 
                     <button
                         type="button"
                         className="
@@ -396,7 +429,7 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Favoritos
                         </span>
-                    </button>
+                    </button>*/}
 
 
                     {/* Tiendas
@@ -502,43 +535,14 @@ export default function SidebarCliente() {
                     </button>*/}
 
 
-                    {/* Búsquedas */}
-                    <button
-                        type="button"
-                        className="
-                            w-full
-                            flex
-                            items-center
-                            gap-4
-                            px-5
-                            py-3.5
-                            text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
-                            transition-colors
-                        "
-                    >
-                        <svg
-                            className="w-6 h-6 shrink-0"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.7"
-                        >
-                            <circle cx="10.5" cy="10.5" r="6.5" />
-                            <path d="M16 16l5 5" />
-                        </svg>
-
-                        <span className="text-[13px]">
-                            Búsquedas guardadas
-                        </span>
-                    </button>
-
-
                     {/* Monedero */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/monedero");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -546,11 +550,15 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
-                            transition-colors
-                        "
-                    >
+                            cursor-pointer
+                            ${
+                                pathname === "/monedero"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                                }
+                                transition-colors
+                            `}
+                        >
                         <svg
                             className="w-6 h-6 shrink-0"
                             viewBox="0 0 24 24"
@@ -567,6 +575,47 @@ export default function SidebarCliente() {
                             Monedero
                         </span>
                     </button>
+
+
+                    {/* Mis direcciones */}
+<button
+    type="button"
+    onClick={() => {
+        router.push("/mis-direcciones");
+        setSidebarAbierto(false);
+    }}
+    className={`
+        w-full
+        flex
+        items-center
+        gap-4
+        px-5
+        py-3.5
+        text-left
+        cursor-pointer
+        ${
+            pathname === "/mis-direcciones"
+                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                : "text-[#666666] hover:bg-[#F5F5F5]"
+        }
+        transition-colors
+    `}
+>
+    <svg
+        className="w-6 h-6 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+    >
+        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1116 0z" />
+        <circle cx="12" cy="10" r="2.5" />
+    </svg>
+
+    <span className="text-[13px]">
+        Mis direcciones
+    </span>
+</button>
 
 
                     {/* Suscripciones
@@ -602,11 +651,15 @@ export default function SidebarCliente() {
                         </span>
                     </button>´*/}
 
-                     
+
                     {/* Métodos de pago */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/metodos-pago");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -614,10 +667,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/metodos-pago"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -639,7 +696,11 @@ export default function SidebarCliente() {
                     {/* Facturación */}
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/facturar-compras");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -647,10 +708,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#666666]
-                            hover:bg-[#F5F5F5]
+                            cursor-pointer
+                            ${
+                                pathname === "/formulario_facturacion"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                             transition-colors
-                        "
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
@@ -683,7 +748,11 @@ export default function SidebarCliente() {
 
                     <button
                         type="button"
-                        className="
+                        onClick={() => {
+                            router.push("/perfil");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
                             w-full
                             flex
                             items-center
@@ -691,10 +760,14 @@ export default function SidebarCliente() {
                             px-5
                             py-3.5
                             text-left
-                            text-[#6B705C]
-                            bg-[#F1F1EF]
-                            font-medium
-                        "
+                            cursor-pointer
+                            ${
+                                pathname === "/perfil"
+                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
+                            transition-colors
+                        `}
                     >
                         <svg
                             className="w-6 h-6 shrink-0"
