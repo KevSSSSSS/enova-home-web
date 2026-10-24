@@ -56,12 +56,7 @@ export default function RegistroPage() {
             return;
         }
 
-        /*
-         * Determinar el rol
-         *
-         * CLIENTE = 5
-         */
-        const idRol = 5;
+
 
         setCargando(true);
 
@@ -70,8 +65,9 @@ export default function RegistroPage() {
             /*
              * Registrar usuario
              */
+
             const respuesta = await fetch(
-                `${API_URL}/registro`,
+                `${API_URL}/registro-cliente`,
                 {
                     method: "POST",
                     headers: {
@@ -84,10 +80,10 @@ export default function RegistroPage() {
                         email,
                         password,
                         telefono,
-                        idRol,
                     }),
                 }
             );
+
 
             const datos = await respuesta.json();
 
