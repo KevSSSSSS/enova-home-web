@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 import ModalRegistrarCliente from "../components/ModalRegistrarCliente";
 import ModalActualizarCliente from "../components/ModalActualizarCliente";
@@ -49,6 +50,11 @@ interface Cliente {
  */
 
 export default function ClientesPage() {
+
+    const {
+        usuario: usuarioAutenticado,
+        autenticado,
+    } = useAuth();
 
     const [modalRegistro, setModalRegistro] = useState(false);
 
@@ -203,6 +209,26 @@ export default function ClientesPage() {
 
     }, [API_URL]);
 
+
+        /*
+     * Protección temporal de la página Clientes.
+     * Se utiliza el mismo comportamiento que en Mi Perfil.
+     */
+    if (!autenticado || !usuarioAutenticado) {
+        return (
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold text-[#3E4234]">
+                        No hay una sesión activa
+                    </h1>
+
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta página.
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
     /*
      * ============================================================

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 import ModalRegistrarCategoria from "../components/ModalRegistrarCategoria";
 import ModalActualizarCategoria from "../components/ModalActualizarCategoria";
@@ -34,6 +35,11 @@ interface Categoria {
  */
 
 export default function CrudCategoriasPage() {
+
+    const {
+        usuario: usuarioAutenticado,
+        autenticado,
+    } = useAuth();
 
     const [modalActualizarAbierto, setModalActualizarAbierto] =
         useState(false);
@@ -141,6 +147,26 @@ export default function CrudCategoriasPage() {
      * RENDER
      * ============================================================
      */
+
+    /*
+     * Protección temporal de la página.
+     * Se utiliza el mismo comportamiento que en Mi Perfil.
+     */
+    if (!autenticado || !usuarioAutenticado) {
+        return (
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold text-[#3E4234]">
+                        No hay una sesión activa
+                    </h1>
+
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta página.
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
     return (
 

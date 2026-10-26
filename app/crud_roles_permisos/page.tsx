@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 
 /*
@@ -34,6 +35,11 @@ interface Rol {
  */
 
 export default function CrudRolesPermisosPage() {
+
+    const {
+        usuario: usuarioAutenticado,
+        autenticado,
+    } = useAuth();
 
     const API_URL =
         process.env.NEXT_PUBLIC_API_URL;
@@ -885,6 +891,27 @@ export default function CrudRolesPermisosPage() {
             setProcesando(false);
         }
     };
+
+
+    /*
+     * Protección temporal de la página Roles y Permisos.
+     * Se utiliza el mismo comportamiento que en Mi Perfil.
+     */
+    if (!autenticado || !usuarioAutenticado) {
+        return (
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold text-[#3E4234]">
+                        No hay una sesión activa
+                    </h1>
+
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta página.
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
 
     /*

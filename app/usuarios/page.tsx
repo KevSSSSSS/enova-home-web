@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/AuthContext";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 import ModalActualizarUsuario from "../components/ModalActualizarUsuario";
 import ModalEliminarUsuario from "../components/ModalEliminarUsuario";
@@ -31,6 +32,11 @@ interface Usuario {
 export default function UsuariosPage() {
 
     const router = useRouter();
+
+    const {
+        usuario: usuarioAutenticado,
+        autenticado,
+    } = useAuth();
 
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [cargando, setCargando] = useState(true);
@@ -136,6 +142,26 @@ export default function UsuariosPage() {
         obtenerRoles();
 
     }, [API_URL]);
+
+        /*
+     * Protección temporal de la página.
+     * Se utiliza el mismo comportamiento que en Mi Perfil.
+     */
+    if (!autenticado || !usuarioAutenticado) {
+        return (
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold text-[#3E4234]">
+                        No hay una sesión activa
+                    </h1>
+
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta pagina.
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
     return (
         <main className="min-h-screen px-4 sm:px-6 pt-32 pb-8 sm:pb-12">

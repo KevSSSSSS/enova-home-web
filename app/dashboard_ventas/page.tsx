@@ -145,26 +145,30 @@ function TarjetaIndicador({
 }
 
 export default function DashboardVentasPage() {
-    const { usuario, rol, autenticado } = useAuth();
+    //const { usuario, rol, autenticado } = useAuth();
+        const {
+        usuario: usuarioAutenticado,
+        rol,
+        autenticado,
+    } = useAuth();
 
     const nombreRol = rol?.nombre_rol?.trim().toUpperCase();
     const esAdministrador = nombreRol === "ADMINISTRADOR";
 
-    if (!autenticado || !usuario) {
+    /*
+     * Protección temporal de la página.
+     * Se utiliza el mismo comportamiento que en las demás páginas.
+     */
+    if (!autenticado || !usuarioAutenticado) {
         return (
-            <main className="min-h-screen flex items-center justify-center px-6 pt-32 pb-12">
-                <div className="max-w-md w-full text-center bg-white border border-[#D6D6CF] rounded-xl p-8 shadow-sm">
-                    <div className="mx-auto mb-5 flex items-center justify-center w-14 h-14 rounded-full bg-[#F1F1EF] text-[#6B705C]">
-                        <Icono tipo="ventas" />
-                    </div>
-
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
                     <h1 className="text-2xl font-semibold text-[#3E4234]">
-                        Acceso restringido
+                        No hay una sesión activa
                     </h1>
 
-                    <p className="mt-3 text-sm leading-6 text-gray-600">
-                        Inicia sesión con una cuenta autorizada para consultar
-                        el Dashboard de Ventas.
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta página.
                     </p>
                 </div>
             </main>

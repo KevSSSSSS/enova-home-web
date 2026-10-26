@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import SidebarAdministrador from "../components/SidebarAdministrador";
 import ModalAgregarPedido from "../components/ModalAgregarPedido";
 import ModalActualizarPedido from "../components/ModalActualizarPedido";
@@ -50,6 +51,11 @@ interface Pedido {
  */
 
 export default function PedidosPage() {
+
+    const {
+        usuario: usuarioAutenticado,
+        autenticado,
+    } = useAuth();
 
     const [pedidos, setPedidos] = useState<Pedido[]>([]);
     const [cargando, setCargando] = useState(true);
@@ -235,6 +241,26 @@ useEffect(() => {
      * RENDER
      * ============================================================
      */
+
+    /*
+     * Protección temporal de la página.
+     * Se utiliza el mismo comportamiento que en Mi Perfil.
+     */
+    if (!autenticado || !usuarioAutenticado) {
+        return (
+            <main className="min-h-screen flex items-center justify-center px-6">
+                <div className="text-center">
+                    <h1 className="text-2xl font-semibold text-[#3E4234]">
+                        No hay una sesión activa
+                    </h1>
+
+                    <p className="mt-2 text-gray-600">
+                        Inicia sesión para consultar esta página.
+                    </p>
+                </div>
+            </main>
+        );
+    }
 
     return (
 
