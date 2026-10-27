@@ -40,10 +40,17 @@ export default function CardCatalogos({ productos }: Props) {
       className="flex-grow grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-2 gap-y-6 p-4 sm:p-6 mt-20 items-start">
 
       {productos?.map((p) => (
-        <div key={p.id}
-          className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl w-full max-w-[230px] mx-auto">
+        <Link
+          key={p.id}
+          href={`/productos/${p.id}`}
+          className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl w-full max-w-[230px] mx-auto"
+        >
           {/* Imagen */}
-          <ImagePlaceholder src={p.imagenPrincipal} alt={p.nombre} className="transition-transform duration-500 group-hover:scale-105" />
+          <ImagePlaceholder
+            src={p.imagenPrincipal}
+            alt={p.nombre}
+            className="transition-transform duration-500 group-hover:scale-105"
+          />
 
           {/* Info */}
           <div className="px-3 sm:px-4 pt-2 pb-3 flex flex-col justify-between h-full">
@@ -58,14 +65,15 @@ export default function CardCatalogos({ productos }: Props) {
               </p>
             </div>
 
-            <Link href={`/productos/${p.id}`} className={`${montserrat.className} mt-1 text-sm font-medium
-            text-[#6B705C] hover:text-[#3E4234] flex justify-between items-center transition`}>
+            <div
+              className={`${montserrat.className} mt-1 text-sm font-medium text-[#6B705C] group-hover:text-[#3E4234] flex justify-between items-center transition`}
+            >
               <span>Ver detalle</span>
               <span className="text-lg">→</span>
-            </Link>
+            </div>
 
           </div>
-        </div>
+        </Link>
       ))}
 
       {/* BANNER INFERIOR */}

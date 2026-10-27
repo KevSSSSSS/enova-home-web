@@ -9,7 +9,7 @@ import CartDropdown from "./CartDropdown";
 import { useRef, useEffect } from "react";
 
 const NavBar = () => {
-    const { cantidadTotal } = useCart();
+    const { cantidadTotal, ultimaActualizacionCarrito } = useCart();
 
     const { usuario, rol, autenticado, cerrarSesion, } = useAuth();
 
@@ -40,6 +40,12 @@ const NavBar = () => {
      * Detectar montaje en cliente
      */
     useEffect(() => { setMounted(true); }, []);
+
+    useEffect(() => {
+        if (ultimaActualizacionCarrito > 0) {
+            setCartOpen(true);
+        }
+    }, [ultimaActualizacionCarrito]);
 
     const isActive = (categoria: string) =>
         pathname === "/catalogo" &&

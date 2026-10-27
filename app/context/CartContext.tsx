@@ -17,35 +17,52 @@ interface CartContextType {
 
     agregarAlCarrito: (producto: CartItem) => void;
     eliminarDelCarrito: (id: number) => void;
+    actualizarCantidad: (id: number, cantidad: number) => void;
+    ultimaActualizacionCarrito: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
     const [items, setItems] = useState<CartItem[]>([]);
+    const [ultimaActualizacionCarrito, setUltimaActualizacionCarrito] = useState(0);
 
-    const agregarAlCarrito = (producto: CartItem) => {
-        setItems((prev) => {
-            const existe = prev.find((item) => item.id === producto.id);
+const agregarAlCarrito = (producto: CartItem) => {
+    setItems((prev) => {
+        const existe = prev.find((item) => item.id === producto.id);
 
-            if (existe) {
-                return prev.map((item) =>
-                    item.id === producto.id
-                        ? {
-                            ...item,
-                            cantidad: item.cantidad + producto.cantidad,
-                        }
-                        : item
-                );
-            }
+        if (existe) {
+            return prev.map((item) =>
+                item.id === producto.id
+                    ? {
+                        ...item,
+                        cantidad: item.cantidad + producto.cantidad,
+                    }
+                    : item
+            );
+        }
 
-            return [...prev, producto];
-        });
-    };
+        return [...prev, producto];
+    });
+
+    setUltimaActualizacionCarrito((prev) => prev + 1);
+};
 
     const eliminarDelCarrito = (id: number) => {
         setItems((prev) => prev.filter((item) => item.id !== id));
     };
+
+    const actualizarCantidad = (id: number, cantidad: number) => {
+    if (cantidad < 1) return;
+
+    setItems((prev) =>
+        prev.map((item) =>
+            item.id === id
+                ? { ...item, cantidad }
+                : item
+        )
+    );
+};
 
     const cantidadTotal = items.reduce(
         (acc, item) => acc + item.cantidad,
@@ -65,6 +82,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
                 total,
                 agregarAlCarrito,
                 eliminarDelCarrito,
+                actualizarCantidad,
+                ultimaActualizacionCarrito,
             }}
         >
             {children}

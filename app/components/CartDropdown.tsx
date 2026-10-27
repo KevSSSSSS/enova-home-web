@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function CartDropdown({ abierto }: Props) {
-    const { items, total, eliminarDelCarrito } = useCart();
+    const { items, total, eliminarDelCarrito, actualizarCantidad } = useCart();
 
     if (!abierto) return null;
 
@@ -25,20 +25,47 @@ export default function CartDropdown({ abierto }: Props) {
                 ) : (
                     items.map((item) => (
                         <div key={item.id} className="flex gap-4 px-5 py-4 border-b">
-                            <img src={item.imagen} alt={item.nombre} className="w-20 h-20 object-cover rounded"/>
+                            <img src={item.imagen} alt={item.nombre} className="w-20 h-20 object-cover rounded" />
                             <div className="flex-1">
                                 <p className="font-medium text-[#3E4234]">
                                     {item.nombre}
                                 </p>
-                                <p className="text-sm text-gray-500 mt-2">
-                                    Cantidad: {item.cantidad}
-                                </p>
+                                <div className="flex items-center gap-3 mt-2">
+                                    <span className="text-sm text-gray-500">Cantidad:</span>
+
+                                    <div className="flex items-center border border-gray-300 rounded">
+                                        <button
+                                            onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
+                                            disabled={item.cantidad <= 1}
+                                            className="w-8 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
+                                            aria-label={`Disminuir cantidad de ${item.nombre}`}
+                                        >
+                                            −
+                                        </button>
+
+                                        <span className="w-8 text-center text-sm">
+                                            {item.cantidad}
+                                        </span>
+
+                                        <button
+                                            onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
+                                            className="w-8 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                                            aria-label={`Aumentar cantidad de ${item.nombre}`}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+
                                 <p className="mt-2 text-[#6B705C] font-semibold">
-                                    {item.precio.toLocaleString("es-MX", {style: "currency", currency: "MXN",})}
+                                    {(item.precio * item.cantidad).toLocaleString("es-MX", {
+                                        style: "currency",
+                                        currency: "MXN",
+                                    })}
                                 </p>
                             </div>
-                            <button onClick={() => eliminarDelCarrito(item.id)} 
-                            className="text-gray-400 hover:text-red-500 text-3xl leading-none transition cursor-pointer">
+                            <button onClick={() => eliminarDelCarrito(item.id)}
+                                className="text-gray-400 hover:text-red-500 text-3xl leading-none transition cursor-pointer">
                                 ×
                             </button>
                         </div>
