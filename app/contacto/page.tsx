@@ -1,6 +1,6 @@
 "use client";
 import { Playfair_Display } from "next/font/google";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { usePageTitle } from "../hooks/usePageTitle";
 
 const playfair = Playfair_Display({
@@ -12,6 +12,71 @@ const playfair = Playfair_Display({
 export default function Contactopage() {
 
     usePageTitle("Contacto");
+
+    const [nombre, setNombre] = useState("");
+    const [email, setEmail] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [mensaje, setMensaje] = useState("");
+
+    const [enviando, setEnviando] = useState(false);
+    const [respuesta, setRespuesta] = useState("");
+    const [envioExitoso, setEnvioExitoso] = useState(false);
+
+    const handleEnviarMensaje = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setEnviando(true);
+    setRespuesta("");
+    setEnvioExitoso(false);
+
+    try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+        if (!API_URL) {
+            throw new Error("No se encuentra configurada la dirección del servidor.");
+        }
+
+        const response = await fetch(`${API_URL}/contacto`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nombre,
+                email,
+                telefono,
+                mensaje,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(
+                data.response || "No fue posible enviar tu mensaje."
+            );
+        }
+
+        setEnvioExitoso(true);
+        setRespuesta(data.response);
+        setNombre("");
+        setEmail("");
+        setTelefono("");
+        setMensaje("");
+
+    } catch (error) {
+        console.error("Error al enviar el mensaje:", error);
+
+        setRespuesta(
+            error instanceof Error
+                ? error.message
+                : "Ocurrió un error al enviar tu mensaje. Inténtalo nuevamente."
+        );
+
+    } finally {
+        setEnviando(false);
+    }
+};
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -59,24 +124,69 @@ export default function Contactopage() {
                                     formulario y con gusto nos pondremos en contacto contigo.
                                 </p>
 
-                                <form className="space-y-5">
-                                    <input type="text" placeholder="Nombre"
-                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]" />
+                                <form onSubmit={handleEnviarMensaje} className="space-y-5">
+                                    <input
+    type="text"
+    placeholder="Nombre"
+    value={nombre}
+    onChange={(e) => setNombre(e.target.value)}
+    required
+    maxLength={100}
+    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+/>
 
-                                    <input type="email" placeholder="Correo electrónico"
-                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]" />
+                                    <input
+    type="email"
+    placeholder="Correo electrónico"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    required
+    maxLength={254}
+    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+/>
 
-                                    <input type="text" placeholder="Teléfono"
-                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]" />
+                                    <input
+    type="tel"
+    placeholder="Teléfono"
+    value={telefono}
+    onChange={(e) => setTelefono(e.target.value)}
+    maxLength={30}
+    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+/>
 
-                                    <textarea rows={4} placeholder="Mensaje..."
-                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 resize-none outline-none 
-                                        focus:border-[#6B705C]"/>
+                                    <textarea
+    rows={4}
+    placeholder="Mensaje..."
+    value={mensaje}
+    onChange={(e) => setMensaje(e.target.value)}
+    required
+    maxLength={5000}
+    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 resize-none outline-none focus:border-[#6B705C]"
+/>
 
-                                    <button className="w-full sm:w-auto bg-[#6B705C] hover:bg-[#5C614E] 
-                                    transition text-white uppercase tracking-wider px-8 h-[50px] rounded-md cursor-pointer">
-                                        Enviar mensaje
-                                    </button>
+                                    <button
+    type="submit"
+    disabled={enviando}
+    className="w-full sm:w-auto bg-[#6B705C] hover:bg-[#5C614E] 
+    transition text-white uppercase tracking-wider px-8 h-[50px] rounded-md cursor-pointer
+    disabled:opacity-60 disabled:cursor-not-allowed"
+>
+    {enviando ? "Enviando..." : "Enviar mensaje"}
+</button>
+
+
+{respuesta && (
+    <p
+        role="status"
+        className={`text-sm mt-3 ${
+            envioExitoso ? "text-green-700" : "text-red-600"
+        }`}
+    >
+        {respuesta}
+    </p>
+)}
+
+
                                 </form>
                             </div>
 
