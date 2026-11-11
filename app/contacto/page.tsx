@@ -23,60 +23,60 @@ export default function Contactopage() {
     const [envioExitoso, setEnvioExitoso] = useState(false);
 
     const handleEnviarMensaje = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    setEnviando(true);
-    setRespuesta("");
-    setEnvioExitoso(false);
+        setEnviando(true);
+        setRespuesta("");
+        setEnvioExitoso(false);
 
-    try {
-        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-        if (!API_URL) {
-            throw new Error("No se encuentra configurada la dirección del servidor.");
-        }
+            if (!API_URL) {
+                throw new Error("No se encuentra configurada la dirección del servidor.");
+            }
 
-        const response = await fetch(`${API_URL}/contacto`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                nombre,
-                email,
-                telefono,
-                mensaje,
-            }),
-        });
+            const response = await fetch(`${API_URL}/contacto`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nombre,
+                    email,
+                    telefono,
+                    mensaje,
+                }),
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        if (!response.ok || !data.success) {
-            throw new Error(
-                data.response || "No fue posible enviar tu mensaje."
+            if (!response.ok || !data.success) {
+                throw new Error(
+                    data.response || "No fue posible enviar tu mensaje."
+                );
+            }
+
+            setEnvioExitoso(true);
+            setRespuesta(data.response);
+            setNombre("");
+            setEmail("");
+            setTelefono("");
+            setMensaje("");
+
+        } catch (error) {
+            console.error("Error al enviar el mensaje:", error);
+
+            setRespuesta(
+                error instanceof Error
+                    ? error.message
+                    : "Ocurrió un error al enviar tu mensaje. Inténtalo nuevamente."
             );
+
+        } finally {
+            setEnviando(false);
         }
-
-        setEnvioExitoso(true);
-        setRespuesta(data.response);
-        setNombre("");
-        setEmail("");
-        setTelefono("");
-        setMensaje("");
-
-    } catch (error) {
-        console.error("Error al enviar el mensaje:", error);
-
-        setRespuesta(
-            error instanceof Error
-                ? error.message
-                : "Ocurrió un error al enviar tu mensaje. Inténtalo nuevamente."
-        );
-
-    } finally {
-        setEnviando(false);
-    }
-};
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -93,8 +93,8 @@ export default function Contactopage() {
                 <div className="relative w-full min-h-screen overflow-hidden">
 
                     {/* Imagen de fondo */}
-                    <img src="/Images/ComedorVerde.png" alt="Comedor eNova Home" 
-                    className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]"/>
+                    <img src="/Images/ComedorVerde.png" alt="Comedor eNova Home"
+                        className="absolute inset-0 w-full h-full object-cover brightness-110 contrast-105 saturate-115 sepia-[0.08]" />
 
                     {/* Tarjetas flotantes */}
                     <div className="relative z-10 flex justify-center px-4 sm:px-6 lg:px-8 pt-[110px] sm:pt-[120px] md:pt-[125px] lg:pt-24 xl:pt-28
@@ -126,65 +126,64 @@ export default function Contactopage() {
 
                                 <form onSubmit={handleEnviarMensaje} className="space-y-5">
                                     <input
-    type="text"
-    placeholder="Nombre"
-    value={nombre}
-    onChange={(e) => setNombre(e.target.value)}
-    required
-    maxLength={100}
-    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
-/>
+                                        type="text"
+                                        placeholder="Nombre"
+                                        value={nombre}
+                                        onChange={(e) => setNombre(e.target.value)}
+                                        required
+                                        maxLength={100}
+                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+                                    />
 
                                     <input
-    type="email"
-    placeholder="Correo electrónico"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    required
-    maxLength={254}
-    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
-/>
+                                        type="email"
+                                        placeholder="Correo electrónico"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                        maxLength={254}
+                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+                                    />
 
                                     <input
-    type="tel"
-    placeholder="Teléfono"
-    value={telefono}
-    onChange={(e) => setTelefono(e.target.value)}
-    maxLength={30}
-    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
-/>
+                                        type="tel"
+                                        placeholder="Teléfono"
+                                        value={telefono}
+                                        onChange={(e) => setTelefono(e.target.value)}
+                                        maxLength={30}
+                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 outline-none focus:border-[#6B705C]"
+                                    />
 
                                     <textarea
-    rows={4}
-    placeholder="Mensaje..."
-    value={mensaje}
-    onChange={(e) => setMensaje(e.target.value)}
-    required
-    maxLength={5000}
-    className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 resize-none outline-none focus:border-[#6B705C]"
-/>
+                                        rows={4}
+                                        placeholder="Mensaje..."
+                                        value={mensaje}
+                                        onChange={(e) => setMensaje(e.target.value)}
+                                        required
+                                        maxLength={5000}
+                                        className="w-full rounded-md border border-[#D6D6CF] px-4 py-3 resize-none outline-none focus:border-[#6B705C]"
+                                    />
 
                                     <button
-    type="submit"
-    disabled={enviando}
-    className="w-full sm:w-auto bg-[#6B705C] hover:bg-[#5C614E] 
-    transition text-white uppercase tracking-wider px-8 h-[50px] rounded-md cursor-pointer
-    disabled:opacity-60 disabled:cursor-not-allowed"
->
-    {enviando ? "Enviando..." : "Enviar mensaje"}
-</button>
+                                        type="submit"
+                                        disabled={enviando}
+                                        className="w-full sm:w-auto bg-[#6B705C] hover:bg-[#5C614E] 
+                                                    transition text-white uppercase tracking-wider px-8 h-[50px] rounded-md cursor-pointer
+                                                    disabled:opacity-60 disabled:cursor-not-allowed"
+                                    >
+                                        {enviando ? "Enviando..." : "Enviar mensaje"}
+                                    </button>
 
 
-{respuesta && (
-    <p
-        role="status"
-        className={`text-sm mt-3 ${
-            envioExitoso ? "text-green-700" : "text-red-600"
-        }`}
-    >
-        {respuesta}
-    </p>
-)}
+                                    {respuesta && (
+                                        <p
+                                            role="status"
+                                            className={`text-sm mt-3 ${envioExitoso ? "text-green-700" : "text-red-600"
+                                                }`}
+                                        >
+                                            {respuesta}
+                                        </p>
+                                    )}
 
 
                                 </form>

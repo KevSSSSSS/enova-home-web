@@ -13,6 +13,8 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [mostrarPassword, setMostrarPassword] = useState(false);
+
     const [error, setError] = useState("");
     const [cargando, setCargando] = useState(false);
 
@@ -159,8 +161,39 @@ export default function LoginPage() {
                             Contraseña
                         </label>
 
-                        <input id="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Ingresa tu contraseña" required disabled={cargando}
-                            className="w-full px-4 py-3 border border-[#D6D6CF] rounded-md bg-white text-[#3E4234] outline-none focus:border-[#6B705C]" />
+                        <div className="relative">
+                            <input
+                                id="password"
+                                type={mostrarPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                                placeholder="Ingresa tu contraseña"
+                                required
+                                disabled={cargando}
+                                className="w-full px-4 py-3 pr-12 border border-[#D6D6CF] rounded-md bg-white text-[#3E4234] outline-none focus:border-[#6B705C]"
+                            />
+
+                            <button
+                                type="button"
+                                onClick={() => setMostrarPassword(!mostrarPassword)}
+                                className="absolute inset-y-0 right-0 flex items-center px-4 text-[#6B705C] hover:text-[#3E4234] cursor-pointer"
+                                aria-label={mostrarPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                            >
+                                {mostrarPassword ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                                        <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c5 0 9 7 9 7a13.16 13.16 0 0 1-2.16 2.57" />
+                                        <path d="M6.61 6.61C3.87 8.18 2 12 2 12s4 7 10 7a9.77 9.77 0 0 0 5.39-1.61" />
+                                        <line x1="2" y1="2" x2="22" y2="22" />
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" />
+                                        <circle cx="12" cy="12" r="3" />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
                     </div>
 
                     {/* Mensaje de error */}

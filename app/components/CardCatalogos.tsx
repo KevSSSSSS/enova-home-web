@@ -43,7 +43,7 @@ export default function CardCatalogos({ productos }: Props) {
         <Link
           key={p.id}
           href={`/productos/${p.id}`}
-          className="group flex flex-col bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl w-full max-w-[230px] mx-auto"
+          className="group flex flex-col h-[310px] sm:h-[338px] bg-white rounded-xl overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl w-full max-w-[230px] mx-auto"
         >
           {/* Imagen */}
           <ImagePlaceholder
@@ -53,7 +53,7 @@ export default function CardCatalogos({ productos }: Props) {
           />
 
           {/* Info */}
-          <div className="px-3 sm:px-4 pt-2 pb-3 flex flex-col justify-between h-full">
+          <div className="px-3 sm:px-4 pt-2 pb-3 flex flex-col justify-between flex-1 min-h-0">
 
             <div className="min-h-[80px]">
               <h2 className={`${playfair.className} text-[1rem] sm:text-[1.1rem] font-medium leading-tight mb-1 line-clamp-2`}>

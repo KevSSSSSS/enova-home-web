@@ -31,7 +31,7 @@ export default function ImagePlaceholder({
     }, [src]);
 
     return (
-        <div className={`relative overflow-hidden ${className}`}>
+        <div className={`relative overflow-hidden w-full h-36 sm:h-48 ${className}`}>
             {!loaded && (
                 <div className="absolute inset-0 bg-[#E7E7E5] animate-pulse z-10" />
             )}

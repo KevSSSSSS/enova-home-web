@@ -30,6 +30,23 @@ type Producto = {
         nombre: string;
         valor: string;
     }[];
+
+    variantes: {
+        idVariante: number;
+        sku: string;
+        codigoBarras: string | null;
+        precioNormal: number;
+        precioOferta: number | null;
+        activo: boolean;
+        valores: {
+            idValorVariante: number;
+            valor: string;
+            tipoVariante: {
+                idTipoVariante: number;
+                nombre: string;
+            };
+        }[];
+    }[];
 };
 
 interface Props {
@@ -46,6 +63,19 @@ export default function ProductoDetalle({ producto }: Props) {
     const [modalAbierto, setModalAbierto] = useState(false);
     const [indiceActual, setIndiceActual] = useState(0);
     const [cantidad, setCantidad] = useState(1);
+
+    // Variantes activas del producto
+    const variantesActivas = producto.variantes.filter(
+        (variante) => variante.activo
+    );
+
+    // Primera variante activa
+    const variantePrincipal = variantesActivas[0];
+
+    // Variantes adicionales
+    const variantesAdicionales = variantesActivas.slice(1);
+
+
     return (
         <main className="bg-[#E7E7E5] min-h-screen pt-28 md:pt-32 lg:pt-36 pb-12 md:pb-16">
             {/* Contenedor principal */}
@@ -102,9 +132,40 @@ export default function ProductoDetalle({ producto }: Props) {
                         <h1 className={`${playfair.className} text-3xl sm:text-4xl lg:text-5xl text-[#3E4234] mt-3`}>
                             {producto.nombre}
                         </h1>
-                        <p className={`${montserrat.className} text-2xl sm:text-3xl lg:text-4xl text-[#6B705C] mt-8`}>
-                            {producto.precio.toLocaleString("es-MX", { style: "currency", currency: "MXN", })}
-                        </p>
+                        {/* SKU de la variante principal */}
+                        {variantePrincipal && (
+                            <p className={`${montserrat.className} text-xs sm:text-sm text-[#6B705C] mt-6`}>
+                                SKU: {variantePrincipal.sku}
+                            </p>
+                        )}
+
+                        {/* Precio de la variante principal */}
+                        <div className="mt-4">
+                            {variantePrincipal?.precioOferta != null ? (
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <span className={`${montserrat.className} text-lg text-gray-500 line-through`}>
+                                        {Number(variantePrincipal.precioNormal).toLocaleString("es-MX", {
+                                            style: "currency",
+                                            currency: "MXN",
+                                        })}
+                                    </span>
+
+                                    <span className={`${montserrat.className} text-2xl sm:text-3xl lg:text-4xl text-[#6B705C]`}>
+                                        {Number(variantePrincipal.precioOferta).toLocaleString("es-MX", {
+                                            style: "currency",
+                                            currency: "MXN",
+                                        })}
+                                    </span>
+                                </div>
+                            ) : (
+                                <p className={`${montserrat.className} text-2xl sm:text-3xl lg:text-4xl text-[#6B705C]`}>
+                                    {Number(variantePrincipal?.precioNormal ?? producto.precio).toLocaleString("es-MX", {
+                                        style: "currency",
+                                        currency: "MXN",
+                                    })}
+                                </p>
+                            )}
+                        </div>
                         <p className={`${montserrat.className} text-[#3E4234] text-sm sm:text-base leading-7 sm:leading-8 mt-8`}>
                             {producto.descripcion}
                         </p>
@@ -142,6 +203,62 @@ export default function ProductoDetalle({ producto }: Props) {
                     </div>
                 </section>
 
+                {/* Variantes adicionales */}
+                {variantesAdicionales.length > 0 && (
+                    <section className="mt-16">
+                        <h2 className={`${playfair.className} text-2xl sm:text-3xl lg:text-4xl text-[#3E4234] mb-6`}>
+                            Otras variantes disponibles
+                        </h2>
+
+                        <div className="bg-white rounded-xl overflow-hidden shadow-sm">
+                            <div className="overflow-x-auto">
+                                <table className={`${montserrat.className} w-full text-sm text-left text-[#3E4234]`}>
+                                    <thead className="bg-[#6B705C] text-white">
+                                        <tr>
+                                            <th className="p-4 font-medium">SKU</th>
+                                            <th className="p-4 font-medium">Variante</th>
+                                            <th className="p-4 font-medium">Precio normal</th>
+                                            <th className="p-4 font-medium">Precio de oferta</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {variantesAdicionales.map((variante) => (
+                                            <tr key={variante.idVariante} className="border-b last:border-b-0 border-gray-200">
+                                                <td className="p-4">{variante.sku}</td>
+
+                                                <td className="p-4">
+                                                    {variante.valores.map((valor) => (
+                                                        <span key={valor.idValorVariante} className="block">
+                                                            {valor.tipoVariante.nombre}: {valor.valor}
+                                                        </span>
+                                                    ))}
+                                                </td>
+
+                                                <td className="p-4">
+                                                    {Number(variante.precioNormal).toLocaleString("es-MX", {
+                                                        style: "currency",
+                                                        currency: "MXN",
+                                                    })}
+                                                </td>
+
+                                                <td className="p-4">
+                                                    {variante.precioOferta != null
+                                                        ? Number(variante.precioOferta).toLocaleString("es-MX", {
+                                                            style: "currency",
+                                                            currency: "MXN",
+                                                        })
+                                                        : "Sin oferta"}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 {/* Descripción */}
                 <section className="mt-20">
                     <h2 className={`${playfair.className} text-4xl text-[#3E4234] mb-6`}>
@@ -171,6 +288,26 @@ export default function ProductoDetalle({ producto }: Props) {
                                 </span>
                             </div>
                         ))}
+
+                        {/* Variantes */}
+                        {variantePrincipal && variantePrincipal.valores.length > 0 && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 p-4 sm:p-5 border-t border-black">
+                                <span className="font-semibold">
+                                    Variantes
+                                </span>
+
+                                <div className={`${montserrat.className} flex flex-wrap gap-2`}>
+                                    {variantePrincipal.valores.map((valor) => (
+                                        <span
+                                            key={valor.idValorVariante}
+                                            className="bg-[#E7E7E5] text-[#3E4234] px-3 py-1.5 rounded-md text-sm"
+                                        >
+                                            {valor.tipoVariante.nombre}: {valor.valor}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </section>
             </div>

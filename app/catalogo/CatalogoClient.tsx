@@ -1,14 +1,55 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import CardCatalogos from "../components/CardCatalogos";
 import { Playfair_Display, Montserrat } from "next/font/google";
-import { productos } from "../data/productos";
 import { usePageTitle } from "../hooks/usePageTitle";
 
 interface CatalogoClientProps {
     categoriaSeleccionada: string;
     tieneCategoria: boolean;
+}
+
+interface ProductoAPI {
+    id_producto: number;
+    nombre: string;
+    descripcion_corta: string | null;
+    descripcion: string | null;
+    subcategoria: {
+        idSubcategoria: number;
+        nombre: string;
+        categoria: {
+            idCategoria: number;
+            nombre: string;
+        };
+    };
+    especificaciones: {
+        idEspecificacion: number;
+        nombre: string;
+        valor: string;
+        orden: number;
+    }[];
+    imagenes: {
+        idImagen: number;
+    }[];
+    variantes: {
+        precioNormal: number;
+        precioOferta: number | null;
+    }[];
+}
+
+interface ProductoCatalogo {
+    id: number;
+    nombre: string;
+    categoria: string;
+    precio: number;
+    imagenPrincipal: string;
+    imagenes: string[];
+    descripcion: string;
+    especificaciones: {
+        nombre: string;
+        valor: string;
+    }[];
 }
 
 const playfair = Playfair_Display({
@@ -21,10 +62,107 @@ const montserrat = Montserrat({
     weight: ["400", "500", "700"],
 });
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 export default function CatalogoClient({
     categoriaSeleccionada,
     tieneCategoria,
 }: CatalogoClientProps) {
+
+    const [productos, setProductos] = useState<ProductoCatalogo[]>([]);
+    const [cargando, setCargando] = useState(true);
+    const [error, setError] = useState("");
+
+        useEffect(() => {
+
+        const obtenerProductos = async () => {
+
+            try {
+
+                setCargando(true);
+                setError("");
+
+                const respuesta = await fetch(
+                    `${API_URL}/catalogo/productos`,
+                    {
+                        method: "GET",
+                        credentials: "include",
+                    }
+                );
+
+                const datos = await respuesta.json();
+
+                if (!respuesta.ok || !datos.success) {
+                    throw new Error(
+                        datos.response || "No se pudieron obtener los productos"
+                    );
+                }
+
+                const productosAdaptados: ProductoCatalogo[] =
+                    datos.productos.map((producto: ProductoAPI) => {
+
+                        const variante = producto.variantes?.[0];
+
+                        const precio = variante
+                            ? Number(
+                                variante.precioOferta ??
+                                variante.precioNormal
+                            )
+                            : 0;
+
+                        const imagenes = producto.imagenes?.map(
+                            (imagen) =>
+                                `${API_URL}/imagenes-productos/${imagen.idImagen}`
+                        ) ?? [];
+
+                        return {
+                            id: producto.id_producto,
+                            nombre: producto.nombre,
+                            categoria: producto.subcategoria.nombre,
+                            precio,
+                            imagenPrincipal: imagenes[0] ?? "",
+                            imagenes,
+                            descripcion:
+                                producto.descripcion_corta ??
+                                producto.descripcion ??
+                                "",
+                            especificaciones:
+                                producto.especificaciones?.map(
+                                    (especificacion) => ({
+                                        nombre: especificacion.nombre,
+                                        valor: especificacion.valor,
+                                    })
+                                ) ?? [],
+                        };
+
+                    });
+
+                setProductos(productosAdaptados);
+
+            } catch (error) {
+
+                console.error(
+                    "Error al obtener los productos del catálogo:",
+                    error
+                );
+
+                setError(
+                    error instanceof Error
+                        ? error.message
+                        : "Error al obtener los productos"
+                );
+
+            } finally {
+
+                setCargando(false);
+
+            }
+
+        };
+
+        obtenerProductos();
+
+    }, []);
 
     usePageTitle("Catálogo");
 
@@ -192,7 +330,17 @@ export default function CatalogoClient({
                 </aside>
 
                 {/* Contenedor derecho de productos */}
-                <CardCatalogos productos={productosFiltrados} />
+                {cargando ? (
+                    <div className="flex-1 flex items-center justify-center min-h-[400px]">
+                        <p className="text-[#6B705C]">Cargando productos...</p>
+                    </div>
+                ) : error ? (
+                    <div className="flex-1 flex items-center justify-center min-h-[400px]">
+                        <p className="text-red-600">{error}</p>
+                    </div>
+                ) : (
+                    <CardCatalogos productos={productosFiltrados} />
+                )}
             </div>
         </div>
     );
