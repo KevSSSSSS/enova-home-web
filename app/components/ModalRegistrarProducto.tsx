@@ -942,7 +942,14 @@ export default function ModalRegistrarProducto({
                 );
 
 
+            /*if (
+                letras.length < 3 &&
+                !palabrasPermitidasCortas.includes(
+                    letras.toLowerCase()
+                )
+            ) {*/
             if (
+                letras.length > 0 &&
                 letras.length < 3 &&
                 !palabrasPermitidasCortas.includes(
                     letras.toLowerCase()
@@ -1070,7 +1077,7 @@ export default function ModalRegistrarProducto({
             /*
              * Validar palabras del valor
              * de la especificación.
-             */
+             *
 
             const palabrasValorEspecificacion =
                 valorEspecificacion.split(/\s+/);
@@ -1097,7 +1104,7 @@ export default function ModalRegistrarProducto({
 
                 }
 
-            }
+            }*/
 
         }
 

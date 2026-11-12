@@ -1094,7 +1094,9 @@ export default function ModalActualizarProducto({
 
 
             if (
+                letras.length > 0 &&
                 letras.length < 3 &&
+                //letras.length < 3 &&
                 !palabrasPermitidasCortas.includes(
                     letras.toLowerCase()
                 )
@@ -1453,7 +1455,7 @@ export default function ModalActualizarProducto({
 
             }
 
-
+            /*
             const palabrasValor =
                 especificacion.valor
                     .trim()
@@ -1483,7 +1485,7 @@ export default function ModalActualizarProducto({
 
                 }
 
-            }
+            }*/
 
         }
 
