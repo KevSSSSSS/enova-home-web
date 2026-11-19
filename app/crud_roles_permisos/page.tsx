@@ -308,11 +308,10 @@ export default function CrudRolesPermisosPage() {
 
         setRoles(
             rolesCompletos
-                .filter((rol) => rol.activo)
-                .sort(
-                    (a, b) =>
-                        a.idRol - b.idRol
-                )
+            .sort(
+                (a, b) =>
+                    a.idRol - b.idRol
+            )
         );
     };
 
@@ -1219,9 +1218,9 @@ export default function CrudRolesPermisosPage() {
 
                             </div>
 
-                            <label className="flex items-center gap-2 text-sm text-[#3E4234]">
+                            <label className="flex items-center gap-2 text-sm text-[#3E4234] accent-[#6B705C]">
 
-                                <input type="checkbox" checked={activoRolEditar} onChange={(e) => setActivoRolEditar(e.target.checked)} disabled={true}/>
+                                <input type="checkbox" checked={activoRolEditar} onChange={(e) => setActivoRolEditar(e.target.checked)} disabled={false}/>
 
                                 Rol activo
 

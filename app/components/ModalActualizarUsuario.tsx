@@ -86,6 +86,10 @@ export default function ModalActualizarUsuario({
 
     const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+    const esCliente = usuario.roles.some(
+    (rol) => rol.nombreRol === "CLIENTE"
+);
+
     useEffect(() => {
         setUsuarioEditar(usuario);
 
@@ -147,6 +151,7 @@ export default function ModalActualizarUsuario({
             `${API_URL}/usuarios/${usuarioEditar.id_usuario}`,
             {
                 method: "PUT",
+                credentials: "include",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -157,7 +162,8 @@ export default function ModalActualizarUsuario({
                     email: usuarioEditar.email,
                     telefono: usuarioEditar.telefono,
                     activo: usuarioEditar.activo,
-                    roles: rolesSeleccionados,
+                    //roles: rolesSeleccionados,
+                    ...(esCliente ? {} : { roles: rolesSeleccionados }),
                 }),
             }
         );
@@ -400,7 +406,7 @@ return (
                                     activo: event.target.value === "activo"
                                 })
                             }
-                            disabled={true}
+                            //disabled={true}
                             className="w-full px-4 py-3 rounded-md border border-[#D6D6CF] bg-white text-[#3E4234] outline-none focus:border-[#6B705C]"
                         >
                             <option value="activo">Activo</option>
@@ -408,6 +414,8 @@ return (
                         </select>
                     </div>
 
+                    {!esCliente && (
+                    <>
                     {/* Roles */}
                     <div className="md:col-span-2">
 
@@ -469,6 +477,9 @@ return (
                         </div>
 
                     </div>
+
+                        </>
+                    )}
 
                 </div>
 

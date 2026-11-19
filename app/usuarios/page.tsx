@@ -143,10 +143,10 @@ export default function UsuariosPage() {
 
     }, [API_URL]);
 
-        /*
-     * Protección temporal de la página.
-     * Se utiliza el mismo comportamiento que en Mi Perfil.
-     */
+    /*
+ * Protección temporal de la página.
+ * Se utiliza el mismo comportamiento que en Mi Perfil.
+ */
     if (!autenticado || !usuarioAutenticado) {
         return (
             <main className="min-h-screen flex items-center justify-center px-6">
@@ -384,8 +384,8 @@ export default function UsuariosPage() {
 
                                                         <td className="px-4 py-4">
 
-                                                            <div className="flex items-center gap-2">
-
+                                                            {usuario.id_usuario !== usuarioAutenticado.idUsuario && (
+                                                                <div className="flex items-center gap-2">
                                                                 {/* Ver 
                                                                 <button
                                                                     type="button"
@@ -403,21 +403,22 @@ export default function UsuariosPage() {
                                                                     "
                                                                 >
                                                                     Ver
-                                                                </button>
+                                                                </button>*/}
 
-                                                                {/* Editar */}
-                                                                <button type="button" onClick={() => { setUsuarioEditar(usuario); }}
-                                                                    className="px-3 py-1.5 text-xs font-medium rounded bg-[#6B705C] text-white hover:bg-[#5B604E] transition-colors">
-                                                                    Editar
-                                                                </button>
+                                                                    {/* Editar */}
+                                                                    <button type="button" onClick={() => { setUsuarioEditar(usuario); }}
+                                                                        className="px-3 py-1.5 text-xs font-medium rounded bg-[#6B705C] text-white hover:bg-[#5B604E] transition-colors">
+                                                                        Editar
+                                                                    </button>
 
-                                                                {/* Eliminar */}
-                                                                <button type="button" onClick={() => setUsuarioEliminar(usuario)}
-                                                                    className="px-3 py-1.5 text-xs font-medium rounded border border-red-300 text-red-600 hover:bg-red-50 transition-colors">
-                                                                    Eliminar
-                                                                </button>
+                                                                    {/* Eliminar */}
+                                                                    <button type="button" onClick={() => setUsuarioEliminar(usuario)}
+                                                                        className="px-3 py-1.5 text-xs font-medium rounded border border-red-300 text-red-600 hover:bg-red-50 transition-colors">
+                                                                        Eliminar
+                                                                    </button>
 
-                                                            </div>
+                                                                </div>
+                                                            )}
 
                                                         </td>
 

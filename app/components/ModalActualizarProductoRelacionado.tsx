@@ -1003,8 +1003,8 @@ useEffect(() => {
                                         event.target.checked
                                     )
                                 }
-                                //disabled={cargando}
-                                disabled={true}
+                                disabled={cargando}
+                                //disabled={true}
                                 className="
                                     w-4
                                     h-4

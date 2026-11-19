@@ -1298,6 +1298,7 @@ const actualizarCliente = async () => {
                                     )
                                 }
                                 disabled={cargando}
+                                //disabled={true}
                                 className="
                                     w-full
                                     px-3
@@ -2087,8 +2088,8 @@ const actualizarCliente = async () => {
                                                                         e.target.value === "true"
                                                                     )
                                                                 }
-                                                                //disabled={cargando}
-                                                                disabled={true}
+                                                                disabled={cargando}
+                                                                //disabled={true}
                                                                 className="
                                                                     w-full
                                                                     px-3

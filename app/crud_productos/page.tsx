@@ -73,6 +73,7 @@ interface Producto {
     descripcion: string | null;
     destacado: boolean;
     activo: boolean;
+    eliminado: boolean;
     publicado: boolean;
     fecha_registro: string;
     fecha_actualizacion: string;

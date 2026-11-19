@@ -973,6 +973,7 @@ export default function ModalActualizarProducto({
 
                                     return {
                                         ...valorVariante,
+                                        idValorVariante: undefined,
                                         [campo]: valor,
                                     };
 
@@ -1756,7 +1757,9 @@ export default function ModalActualizarProducto({
 
                     if (
                         valorVariante.idValorVariante &&
-                        !valorExistente
+                        !valorExistente &&
+                        valorTexto.trim().toLowerCase() ===
+                        valorVariante.valor.trim().toLowerCase()
                     ) {
                         valorExistente = {
                             idValorVariante:
@@ -2636,8 +2639,8 @@ export default function ModalActualizarProducto({
                                             e.target.checked
                                         )
                                     }
-                                    //disabled={guardando}
-                                    disabled={true}
+                                    disabled={guardando}
+                                    //disabled={true}
                                     className="
                                         w-4
                                         h-4

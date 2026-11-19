@@ -807,11 +807,12 @@ const cerrarModal = () => {
                                             event.target.checked
                                         )
                                     }
-                                    //disabled={cargando}
-                                    disabled={true}
+                                    disabled={cargando}
+                                    //disabled={true}
                                     className="
                                         w-4
                                         h-4
+                                        accent-[#6B705C]
                                     "
                                 />
 
@@ -1062,11 +1063,12 @@ const cerrarModal = () => {
                                                         event.target.checked
                                                     )
                                                 }
-                                                //disabled={cargando}
-                                                disabled={true}
+                                                disabled={cargando}
+                                                //disabled={true}
                                                 className="
                                                     w-4
                                                     h-4
+                                                    accent-[#6B705C]
                                                 "
                                             />
 
