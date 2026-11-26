@@ -15,6 +15,7 @@ interface Rol {
 
 interface Usuario {
     idUsuario: number;
+    idCliente: number | null;
     nombre: string;
     apellidoPaterno: string;
     apellidoMaterno: string | null;
@@ -27,6 +28,7 @@ interface AuthContextType {
     usuario: Usuario | null;
     rol: Rol | null;
     autenticado: boolean;
+    cargando: boolean;
     iniciarSesion: (usuario: Usuario) => void;
     cerrarSesion: () => void;
 }
@@ -37,6 +39,8 @@ const AuthContext = createContext<AuthContextType | undefined>(
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [usuario, setUsuario] = useState<Usuario | null>(null);
+
+    const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
         const verificarSesion = async () => {
@@ -59,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                 setUsuario({
                     idUsuario: datos.usuario.id_usuario,
+                    idCliente: datos.usuario.id_cliente,
                     nombre: datos.usuario.nombre,
                     apellidoPaterno: datos.usuario.apellido_paterno,
                     apellidoMaterno: datos.usuario.apellido_materno,
@@ -68,6 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 });
 
             } catch (error) {
+                
                 console.error(
                     "Error al verificar la sesión:",
                     error
@@ -75,6 +81,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                 localStorage.removeItem("usuario");
                 setUsuario(null);
+            }
+            finally {
+                setCargando(false);
             }
         };
 
@@ -99,6 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 usuario,
                 rol,
                 autenticado: usuario !== null,
+                cargando,
                 iniciarSesion,
                 cerrarSesion,
             }}

@@ -63,18 +63,22 @@ export default function ProductoDetalle({ producto }: Props) {
     const [modalAbierto, setModalAbierto] = useState(false);
     const [indiceActual, setIndiceActual] = useState(0);
     const [cantidad, setCantidad] = useState(1);
+    const [varianteSeleccionadaId, setVarianteSeleccionadaId] = useState<number | null>(
+        producto.variantes.find((variante) => variante.activo)?.idVariante ?? null
+    );
 
     // Variantes activas del producto
     const variantesActivas = producto.variantes.filter(
         (variante) => variante.activo
     );
 
-    // Primera variante activa
-    const variantePrincipal = variantesActivas[0];
+    const varianteSeleccionada = variantesActivas.find(
+        (variante) => variante.idVariante === varianteSeleccionadaId
+    );
 
-    // Variantes adicionales
-    const variantesAdicionales = variantesActivas.slice(1);
-
+    const precioSeleccionado = varianteSeleccionada
+        ? Number(varianteSeleccionada.precioOferta ?? varianteSeleccionada.precioNormal)
+        : Number(producto.precio);
 
     return (
         <main className="bg-[#E7E7E5] min-h-screen pt-28 md:pt-32 lg:pt-36 pb-12 md:pb-16">
@@ -133,25 +137,25 @@ export default function ProductoDetalle({ producto }: Props) {
                             {producto.nombre}
                         </h1>
                         {/* SKU de la variante principal */}
-                        {variantePrincipal && (
+                        {varianteSeleccionada && (
                             <p className={`${montserrat.className} text-xs sm:text-sm text-[#6B705C] mt-6`}>
-                                SKU: {variantePrincipal.sku}
+                                SKU: {varianteSeleccionada.sku}
                             </p>
                         )}
 
-                        {/* Precio de la variante principal */}
+                        {/* Precio de la variante seleccionada */}
                         <div className="mt-4">
-                            {variantePrincipal?.precioOferta != null ? (
+                            {varianteSeleccionada?.precioOferta != null ? (
                                 <div className="flex flex-wrap items-center gap-3">
                                     <span className={`${montserrat.className} text-lg text-gray-500 line-through`}>
-                                        {Number(variantePrincipal.precioNormal).toLocaleString("es-MX", {
+                                        {Number(varianteSeleccionada.precioNormal).toLocaleString("es-MX", {
                                             style: "currency",
                                             currency: "MXN",
                                         })}
                                     </span>
 
                                     <span className={`${montserrat.className} text-2xl sm:text-3xl lg:text-4xl text-[#6B705C]`}>
-                                        {Number(variantePrincipal.precioOferta).toLocaleString("es-MX", {
+                                        {precioSeleccionado.toLocaleString("es-MX", {
                                             style: "currency",
                                             currency: "MXN",
                                         })}
@@ -159,7 +163,7 @@ export default function ProductoDetalle({ producto }: Props) {
                                 </div>
                             ) : (
                                 <p className={`${montserrat.className} text-2xl sm:text-3xl lg:text-4xl text-[#6B705C]`}>
-                                    {Number(variantePrincipal?.precioNormal ?? producto.precio).toLocaleString("es-MX", {
+                                    {precioSeleccionado.toLocaleString("es-MX", {
                                         style: "currency",
                                         currency: "MXN",
                                     })}
@@ -187,15 +191,22 @@ export default function ProductoDetalle({ producto }: Props) {
 
                         {/* Botón */}
                         <button
-                            onClick={() =>
+                            onClick={() => {
+                                if (!varianteSeleccionada) {
+                                    alert("Este producto no tiene variantes disponibles.");
+                                    return;
+                                }
+
                                 agregarAlCarrito({
                                     id: producto.id,
+                                    idVariante: varianteSeleccionada.idVariante,
+                                    sku: varianteSeleccionada.sku,
                                     nombre: producto.nombre,
-                                    precio: producto.precio,
+                                    precio: precioSeleccionado,
                                     imagen: producto.imagenPrincipal,
                                     cantidad,
-                                })
-                            }
+                                });
+                            }}
                             className="mt-8 md:mt-10 w-full sm:w-auto bg-[#6B705C] text-white h-[52px] px-12 rounded-md hover:bg-[#3E4234] transition cursor-pointer"
                         >
                             Agregar al carrito
@@ -203,8 +214,8 @@ export default function ProductoDetalle({ producto }: Props) {
                     </div>
                 </section>
 
-                {/* Variantes adicionales */}
-                {variantesAdicionales.length > 0 && (
+                {/* Variantes disponibles */}
+                {variantesActivas.length > 0 && (
                     <section className="mt-16">
                         <h2 className={`${playfair.className} text-2xl sm:text-3xl lg:text-4xl text-[#3E4234] mb-6`}>
                             Otras variantes disponibles
@@ -215,6 +226,7 @@ export default function ProductoDetalle({ producto }: Props) {
                                 <table className={`${montserrat.className} w-full text-sm text-left text-[#3E4234]`}>
                                     <thead className="bg-[#6B705C] text-white">
                                         <tr>
+                                            <th className="p-4 font-medium">Seleccionar</th>
                                             <th className="p-4 font-medium">SKU</th>
                                             <th className="p-4 font-medium">Variante</th>
                                             <th className="p-4 font-medium">Precio normal</th>
@@ -223,8 +235,17 @@ export default function ProductoDetalle({ producto }: Props) {
                                     </thead>
 
                                     <tbody>
-                                        {variantesAdicionales.map((variante) => (
+                                        {variantesActivas.map((variante) => (
                                             <tr key={variante.idVariante} className="border-b last:border-b-0 border-gray-200">
+                                                <td className="p-4">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={varianteSeleccionadaId === variante.idVariante}
+                                                        onChange={() => setVarianteSeleccionadaId(variante.idVariante)}
+                                                        className="w-4 h-4 accent-[#6B705C] cursor-pointer"
+                                                        aria-label={`Seleccionar variante ${variante.sku}`}
+                                                    />
+                                                </td>
                                                 <td className="p-4">{variante.sku}</td>
 
                                                 <td className="p-4">
@@ -290,14 +311,14 @@ export default function ProductoDetalle({ producto }: Props) {
                         ))}
 
                         {/* Variantes */}
-                        {variantePrincipal && variantePrincipal.valores.length > 0 && (
+                        {varianteSeleccionada && varianteSeleccionada.valores.length > 0 && (
                             <div className="grid grid-cols-1 sm:grid-cols-2 p-4 sm:p-5 border-t border-black">
                                 <span className="font-semibold">
                                     Variantes
                                 </span>
 
                                 <div className={`${montserrat.className} flex flex-wrap gap-2`}>
-                                    {variantePrincipal.valores.map((valor) => (
+                                    {varianteSeleccionada.valores.map((valor) => (
                                         <span
                                             key={valor.idValorVariante}
                                             className="bg-[#E7E7E5] text-[#3E4234] px-3 py-1.5 rounded-md text-sm"

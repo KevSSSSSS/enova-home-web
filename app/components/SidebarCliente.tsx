@@ -222,10 +222,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/compras"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/compras"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}
@@ -246,7 +245,7 @@ export default function SidebarCliente() {
                         </span>
                     </button>
 
-                    {/* Carritos Abandonados */}
+                    {/* Carritos Abandonados 
                     <button
                         type="button"
                         onClick={() => {
@@ -262,10 +261,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/carritos-abandonados"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/carritos-abandonados"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}
@@ -287,7 +285,7 @@ export default function SidebarCliente() {
                         <span className="text-[13px]">
                             Carritos Abandonados
                         </span>
-                    </button>
+                    </button>*/}
 
 
                     {/* Mis envios */}
@@ -307,10 +305,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/mis-envios"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/mis-envios"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}
@@ -323,11 +320,11 @@ export default function SidebarCliente() {
                             strokeWidth="1.7"
                         >
                             <path d="M1 6h13v12H1z" />
-<path d="M14 10h4l4 4v4h-8z" />
-<circle cx="5" cy="19" r="2" />
-<circle cx="18" cy="19" r="2" />
-<path d="M3 19h0" />
-<path d="M14 14h7" />
+                            <path d="M14 10h4l4 4v4h-8z" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="18" cy="19" r="2" />
+                            <path d="M3 19h0" />
+                            <path d="M14 14h7" />
                         </svg>
 
                         <span className="text-[13px]">
@@ -551,14 +548,13 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/monedero"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
-                                }
+                            ${pathname === "/monedero"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
                                 transition-colors
                             `}
-                        >
+                    >
                         <svg
                             className="w-6 h-6 shrink-0"
                             viewBox="0 0 24 24"
@@ -578,13 +574,13 @@ export default function SidebarCliente() {
 
 
                     {/* Mis direcciones */}
-<button
-    type="button"
-    onClick={() => {
-        router.push("/mis-direcciones");
-        setSidebarAbierto(false);
-    }}
-    className={`
+                    <button
+                        type="button"
+                        onClick={() => {
+                            router.push("/mis-direcciones");
+                            setSidebarAbierto(false);
+                        }}
+                        className={`
         w-full
         flex
         items-center
@@ -593,29 +589,28 @@ export default function SidebarCliente() {
         py-3.5
         text-left
         cursor-pointer
-        ${
-            pathname === "/mis-direcciones"
-                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                : "text-[#666666] hover:bg-[#F5F5F5]"
-        }
+        ${pathname === "/mis-direcciones"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
+                            }
         transition-colors
     `}
->
-    <svg
-        className="w-6 h-6 shrink-0"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.7"
-    >
-        <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1116 0z" />
-        <circle cx="12" cy="10" r="2.5" />
-    </svg>
+                    >
+                        <svg
+                            className="w-6 h-6 shrink-0"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                        >
+                            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1116 0z" />
+                            <circle cx="12" cy="10" r="2.5" />
+                        </svg>
 
-    <span className="text-[13px]">
-        Mis direcciones
-    </span>
-</button>
+                        <span className="text-[13px]">
+                            Mis direcciones
+                        </span>
+                    </button>
 
 
                     {/* Suscripciones
@@ -668,10 +663,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/metodos-pago"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/metodos-pago"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}
@@ -709,10 +703,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/formulario_facturacion"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/formulario_facturacion"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}
@@ -761,10 +754,9 @@ export default function SidebarCliente() {
                             py-3.5
                             text-left
                             cursor-pointer
-                            ${
-                                pathname === "/perfil"
-                                    ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
-                                    : "text-[#666666] hover:bg-[#F5F5F5]"
+                            ${pathname === "/perfil"
+                                ? "text-[#6B705C] bg-[#F1F1EF] font-medium"
+                                : "text-[#666666] hover:bg-[#F5F5F5]"
                             }
                             transition-colors
                         `}

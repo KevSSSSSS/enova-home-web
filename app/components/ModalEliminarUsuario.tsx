@@ -38,6 +38,7 @@ export default function ModalEliminarUsuario({
                 `${API_URL}/usuarios/${usuario.id_usuario}/definitivo`,
                 {
                     method: "DELETE",
+                    credentials: "include",
                     headers: {
                         "Content-Type": "application/json",
                     },

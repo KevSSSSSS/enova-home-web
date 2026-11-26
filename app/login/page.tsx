@@ -18,9 +18,22 @@ export default function LoginPage() {
     const [error, setError] = useState("");
     const [cargando, setCargando] = useState(false);
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (autenticado) {
             router.replace("/");
+        }
+    }, [autenticado, router]);*/
+
+    useEffect(() => {
+        if (autenticado) {
+            const redirect = new URLSearchParams(window.location.search).get("redirect");
+
+            const destino =
+                redirect?.startsWith("/") && !redirect.startsWith("//")
+                    ? redirect
+                    : "/";
+
+            router.replace(destino);
         }
     }, [autenticado, router]);
 
@@ -110,8 +123,14 @@ export default function LoginPage() {
 
             /*
              * 7. Regresar al Home
-             */
-            router.push("/");
+             *
+            router.push("/");*/
+            /*
+            * 7. Regresar a la página solicitada
+            */
+            const redirect = new URLSearchParams(window.location.search).get("redirect");
+
+            router.push(redirect || "/");
 
         } catch (error) {
             console.error("Error al iniciar sesión:", error);

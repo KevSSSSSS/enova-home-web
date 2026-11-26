@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCart } from "../context/CartContext";
 
 interface Props {
@@ -8,8 +10,9 @@ interface Props {
 
 export default function CartDropdown({ abierto }: Props) {
     const { items, total, eliminarDelCarrito, actualizarCantidad } = useCart();
+    const pathname = usePathname();
 
-    if (!abierto) return null;
+    if (!abierto || pathname === "/carrito") return null;
 
     return (
         <div className="absolute top-full -right-2 mt-4 w-[calc(100vw-2rem)] max-w-[380px] bg-white rounded-lg shadow-2xl border border-gray-200 z-[100]">
@@ -24,18 +27,21 @@ export default function CartDropdown({ abierto }: Props) {
                     </div>
                 ) : (
                     items.map((item) => (
-                        <div key={item.id} className="flex gap-4 px-5 py-4 border-b">
+                        <div key={item.idVariante} className="flex gap-4 px-5 py-4 border-b">
                             <img src={item.imagen} alt={item.nombre} className="w-20 h-20 object-cover rounded" />
                             <div className="flex-1">
                                 <p className="font-medium text-[#3E4234]">
                                     {item.nombre}
+                                </p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    SKU: {item.sku}
                                 </p>
                                 <div className="flex items-center gap-3 mt-2">
                                     <span className="text-sm text-gray-500">Cantidad:</span>
 
                                     <div className="flex items-center border border-gray-300 rounded">
                                         <button
-                                            onClick={() => actualizarCantidad(item.id, item.cantidad - 1)}
+                                            onClick={() => actualizarCantidad(item.idVariante, item.cantidad - 1)}
                                             disabled={item.cantidad <= 1}
                                             className="w-8 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:cursor-not-allowed transition cursor-pointer"
                                             aria-label={`Disminuir cantidad de ${item.nombre}`}
@@ -48,7 +54,7 @@ export default function CartDropdown({ abierto }: Props) {
                                         </span>
 
                                         <button
-                                            onClick={() => actualizarCantidad(item.id, item.cantidad + 1)}
+                                            onClick={() => actualizarCantidad(item.idVariante, item.cantidad + 1)}
                                             className="w-8 h-7 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition cursor-pointer"
                                             aria-label={`Aumentar cantidad de ${item.nombre}`}
                                         >
@@ -64,7 +70,7 @@ export default function CartDropdown({ abierto }: Props) {
                                     })}
                                 </p>
                             </div>
-                            <button onClick={() => eliminarDelCarrito(item.id)}
+                            <button onClick={() => eliminarDelCarrito(item.idVariante)}
                                 className="text-gray-400 hover:text-red-500 text-3xl leading-none transition cursor-pointer">
                                 ×
                             </button>
@@ -89,11 +95,11 @@ export default function CartDropdown({ abierto }: Props) {
             </div>
 
             {/* Botón */}
-            {/**<div className="p-4">
-                <button className="w-full h-12 rounded-md bg-[#6B705C] text-white hover:bg-[#3E4234] transition">
+            <div className="p-4">
+                <Link href="/carrito" className="w-full h-12 rounded-md bg-[#6B705C] text-white hover:bg-[#3E4234] transition flex items-center justify-center">
                     Ver carrito
-                </button>
-            </div>**/}
+                </Link>
+            </div>
         </div>
     );
 }
